@@ -1,1 +1,9 @@
 Scaffold-DbContext "Addr=localhost\SQLEXPRESS; database=shugyopediaDB; Trusted_Connection=True;MultipleActiveResultSets=true;TrustServerCertificate=True" Microsoft.EntityFrameworkCore.SqlServer -OutputDir Models -ContextDir Data/.. -Force
+
+
+---GIT commands---
+git branch branchname =====> Creates a new branch
+git checkout branchname =====> Change current branch
+git update-index --assume-unchanged  <file> =====> dont include specific files
+git push --set-upstream origin dwightbranch =====> first push to own branch
+git restore --staged <file> =====> usntage a file
