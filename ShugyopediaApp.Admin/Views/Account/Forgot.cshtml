@@ -1,0 +1,32 @@
+﻿@section styles {
+    <link rel="stylesheet" href="~/css/forgot.css" />
+}
+@{
+    ViewBag.LoginView = true;
+    ViewData["Title"] = "Forgot Password";
+}
+<div class="top-container">
+    <div class="left">
+        <img src="darkblue-logo.png" />
+    </div>
+    <div class="right">
+    </div>
+</div>
+<div class="container">
+    <div class="top">
+        <h1>Forgot your Password?</h1>
+        <h4>Enter your email.</h4>
+        <hr>
+    </div>
+    <div class="middle">
+        <form>
+            <div class="email-user">
+                <label for="">Email</label><br>
+                <input type="text" placeholder="Email">
+            </div>
+            <div class="submit-btn">
+                <button type="submit">Email Link</button>
+            </div>
+        </form>
+    </div>
+</div>
