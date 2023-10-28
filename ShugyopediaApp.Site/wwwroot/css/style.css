@@ -10,24 +10,29 @@
 }
 
 :root {
-    --background-color1: #fafaff;
-    --background-color2: #ffffff;
-    --background-color3: #ededed;
-    --background-color4: #cad7fda4;
-    --primary-color: #4b49ac;
-    --secondary-color: #0c007d;
-    --Border-color: #3f0097;
-    --one-use-color: #3f0097;
-    --two-use-color: #5500cb;
+    scroll-behavior: smooth;
 }
 
 body {
-    background-color: var(--background-color4);
+    font-family: "Poppins", sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: white;
+    color: black;
     max-width: 100%;
-    overflow-x: hidden;
 }
 
-header {
+a {
+    color: #4154f1;
+    text-decoration: none;
+}
+
+    a:hover {
+        color: #717ff5;
+        text-decoration: none;
+    }
+
+.header {
     height: 70px;
     width: 100vw;
     padding: 0 30px;
@@ -39,11 +44,100 @@ header {
     align-items: center;
 }
 
+/* ===== HEADER ===== */
 .logo {
-    font-size: 27px;
-    font-weight: 600;
-    color: rgb(47, 141, 70);
+    line-height: 1;
 }
+
+@media (min-width: 1200px) {
+    .logo {
+        width: 280px;
+    }
+}
+
+.logo img {
+    max-height: 70px;
+    margin-right: 6px;
+}
+/* ===== SIDEBAR ===== */
+.sidebar {
+    position: fixed;
+    top: 100px;
+    left: 0;
+    bottom: 0;
+    width: 300px;
+    z-index: 996;
+    transition: all 0.3s;
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: #aab7cf transparent;
+    box-shadow: 0px 0px 20px rgba(1, 41, 112, 0.1);
+    background-color: #fff;
+}
+
+.sidebar-header {
+    border-bottom: 2px solid black;
+    margin: 0;
+    padding: 20px;
+}
+
+@media (max-width: 1199px) {
+    .sidebar {
+        left: -300px;
+    }
+}
+
+.sidebar::-webkit-scrollbar {
+    width: 5px;
+    height: 8px;
+    background-color: #fff;
+}
+
+.sidebar::-webkit-scrollbar-thumb {
+    background-color: #aab7cf;
+}
+
+.sidebar-nav {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+
+    .sidebar-nav li {
+        padding: 0;
+        margin: 0;
+        list-style: none;
+    }
+
+    .sidebar-nav .nav-item {
+        margin-bottom: 5px;
+    }
+
+
+    .sidebar-nav .nav-heading {
+        color: black;
+        font-weight: 600;
+        margin: 10px 0 5px 15px;
+        border-bottom: 1px solid black;
+    }
+
+    .sidebar-nav .nav-link {
+        display: flex;
+        align-items: center;
+        font-size: 20px;
+        color: black;
+        transition: 0.3;
+        padding: 10px 15px;
+    }
+
+    .sidebar-nav .active {
+        background-color: #63C5DAF5;
+    }
+
+
+    .sidebar-nav .nav-link:hover {
+        background: #63C5DAF5;
+    }
 
 .menuicn {
     cursor: pointer;
@@ -116,9 +210,9 @@ header {
     align-items: center;
     justify-content: center;
     position: relative;
-    cursor: pointer; 
+    cursor: pointer;
     position: relative;
-    overflow: hidden; 
+    overflow: hidden;
 }
 
 .main-container {
@@ -133,25 +227,23 @@ header {
     height: 42px;
 }
 
+/* ===== MAIN ===== */
 .main {
-    height: calc(100vh - 70px);
-    width: 100%;
-    overflow-y: scroll;
-    overflow-x: hidden;
-    padding: 40px 30px 30px 30px;
+    margin-top: 100px;
+    transition: all 0.3s;
 }
 
-    .main::-webkit-scrollbar-thumb {
-        background-image: linear-gradient(to bottom, rgb(0, 0, 85), rgb(0, 0, 50));
+@media (max-width: 1199px) {
+    #main {
+        padding: 20px;
     }
+}
 
-    .main::-webkit-scrollbar {
-        width: 5px;
+@media (min-width: 1200px) {
+    #main {
+        margin-left: 300px;
     }
-
-    .main::-webkit-scrollbar-track {
-        background-color: #9e9e9eb2;
-    }
+}
 
 .box-container {
     display: flex;
@@ -362,3 +454,145 @@ header {
     color: white;
     border-radius: 4px;
 }
+
+/* Carousel */
+.carousel-container {
+    height: 230px;
+    color: white;
+    background-color: white;
+    border-bottom: 2px solid black;
+}
+
+.carousel-img {
+    width: 200px;
+}
+
+/* SHAPE DIVIDER */
+.wave-container {
+    background-color: #63C5DAF5;
+    position: relative;
+    height: 60vh;
+    width: 100%;
+    margin-top: 100px;
+}
+
+.shape-divider {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    overflow: hidden;
+    line-height: 0;
+    transform: rotate(180deg);
+}
+
+    .shape-divider svg {
+        position: relative;
+        display: block;
+        width: calc(109% + 1.3px);
+        height: 215px;
+    }
+
+    .shape-divider .shape-fill {
+        fill: #FFFFFF;
+    }
+
+/* SEARCH FORM */
+
+.search-container {
+    display: flex;
+    margin: 0 auto;
+}
+
+.search-input {
+    padding: 10px;
+    border: 1px solid black;
+    border-radius: 20px 0 0 20px;
+    width: 210px;
+}
+
+.search-button {
+    padding: 10px 15px;
+    border: 1px solid black;
+    border-radius: 0 20px 20px 0;
+    color: black;
+    cursor: pointer;
+    outline: none;
+}
+
+.topic-img-container {
+    border: 2px solid black;
+}
+
+.topic-img {
+    width: 200px;
+    height: 150px;
+}
+
+/* GLOBAL CSS */
+.rounded-img {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    overflow: hidden;
+    background-color: #f2f2f2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+    .rounded-img img {
+        max-width: 100%;
+        border-radius: 50%;
+    }
+
+/* RATING */
+.rating {
+    font-size: 24px;
+}
+
+input[type="radio"] {
+    display: none;
+}
+
+.rating {
+    float: left;
+    height: 46px;
+    padding: 0 10px;
+}
+
+    .rating:not(:checked) > input {
+        position: absolute;
+        top: -9999px;
+    }
+
+    .rating:not(:checked) > label {
+        float: right;
+        width: 1em;
+        overflow: hidden;
+        white-space: nowrap;
+        cursor: pointer;
+        font-size: 30px;
+        color: #ccc;
+    }
+
+        .rating:not(:checked) > label:before {
+            content: '★ ';
+        }
+
+    .rating > input:checked ~ label {
+        color: #ffc700;
+    }
+
+    .rating:not(:checked) > label:hover,
+    .rating:not(:checked) > label:hover ~ label {
+        color: #deb217;
+    }
+
+    .rating > input:checked + label:hover,
+    .rating > input:checked + label:hover ~ label,
+    .rating > input:checked ~ label:hover,
+    .rating > input:checked ~ label:hover ~ label,
+    .rating > label:hover ~ input:checked ~ label {
+        color: #c59b08;
+    }
