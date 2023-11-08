@@ -13,5 +13,6 @@ namespace ShugyopediaApp.Data.Models
         public DateTime CreatedTime { get; set; }
         public string UpdatedBy { get; set; }
         public DateTime UpdatedTime { get; set; }
+        public string UserEmail { get; set; }
     }
 }
