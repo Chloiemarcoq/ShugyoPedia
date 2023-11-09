@@ -1,8 +1,41 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Training Category";
 }
 
 <div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    <div>
+        @Html.Partial("~/Views/Shared/_Header.cshtml")
+    </div>
+    <div>
+        @Html.Partial("~/Views/Shared/_TopNavbar.cshtml")
+    </div>
+    <h1>Training Categories</h1>
+    <div class="training-category-btns">
+        <button>Add</button>
+        <input type="search" />
+    </div>
+    <div class="table-container">
+        <table>
+            <tbody>
+                <tr>
+                    <th>Category ID</th>
+                    <th>Category Name</th>
+                    <th>Category Icon</th>
+                    <th>Created By</th>
+                    <th>Created Time</th>
+                    <th>Updated By</th>
+                    <th>Updated Time</th>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>static</td>
+                    <td>static</td>
+                    <td>static</td>
+                    <td>static</td>
+                    <td>static</td>
+                    <td>static</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 </div>
