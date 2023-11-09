@@ -1,0 +1,40 @@
+﻿.top-navbar {
+    /*border: 2px solid black;*/
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 10px 30px;
+    background-color: white;
+}
+
+.training-category-btns {
+    display: flex;
+    justify-content: space-around;
+    /*border: 2px solid black;*/
+}
+
+.training-category-btns button {
+    padding: 5px;
+    /*border-radius: 5px;*/
+}
+
+.training-category-btns input {
+    text-align: center;
+    /*border-radius: 5px;*/
+}
+
+.table-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.table-container tr {
+    padding: 10px;
+    border-bottom: 2px black solid;
+}
+
+.table-container, th, td {
+    padding: 5px 25px;
+    text-align: center;
+}
