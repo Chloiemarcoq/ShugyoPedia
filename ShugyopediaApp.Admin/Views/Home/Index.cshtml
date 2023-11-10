@@ -2,40 +2,56 @@
     ViewData["Title"] = "Training Category";
 }
 
+@{
+    string[] tableHeader = {
+        "Category ID", 
+        "Category Name", 
+        "Category Icon",
+        "Created By",
+        "Created Time",
+        "Updated By",
+        "Updated Time",
+        "Actions"
+    };
+}
+
 <div class="text-center">
     <div>
         @Html.Partial("~/Views/Shared/_Header.cshtml")
     </div>
-    <div>
-        @Html.Partial("~/Views/Shared/_TopNavbar.cshtml")
-    </div>
-    <h1>Training Categories</h1>
-    <div class="training-category-btns">
-        <button>Add</button>
-        <input type="search" />
-    </div>
-    <div class="table-container">
-        <table>
-            <tbody>
-                <tr>
-                    <th>Category ID</th>
-                    <th>Category Name</th>
-                    <th>Category Icon</th>
-                    <th>Created By</th>
-                    <th>Created Time</th>
-                    <th>Updated By</th>
-                    <th>Updated Time</th>
-                </tr>
-                <tr>
-                    <td>1</td>
-                    <td>static</td>
-                    <td>static</td>
-                    <td>static</td>
-                    <td>static</td>
-                    <td>static</td>
-                    <td>static</td>
-                </tr>
-            </tbody>
-        </table>
+    <div style="padding: 20px;">
+        <h1>Training Categories</h1>
+        <div class="training-category-btns">
+            <button>Add</button>
+            <input type="search" placeholder="Search..."/>
+        </div>
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        @foreach (string header in tableHeader)
+                        {
+                            <th>@header</th>
+                        }
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td>static</td>
+                        <td>static</td>
+                        <td>static</td>
+                        <td>static</td>
+                        <td>static</td>
+                        <td>static</td>
+                        <td>
+                            <button>Edit</button>
+                            <button>Delete</button>
+                            <button>View Trainings</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
     </div>
 </div>

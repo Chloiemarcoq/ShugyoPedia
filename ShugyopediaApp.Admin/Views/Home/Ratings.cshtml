@@ -8,12 +8,56 @@
     ViewData["Title"] = "Ratings";
 }
 
+@{
+    string[] tableHeader = {
+        "Rating ID", 
+        "Training ID",
+        "Rating Review",
+        "Rate",
+        "Rater Name",
+        "Rater Email",
+        "Created Time",
+        "Actions"
+    };
+}
+
 <div class="text-center">
     <div>
         @Html.Partial("~/Views/Shared/_Header.cshtml")
     </div>
-    <div>
-        @Html.Partial("~/Views/Shared/_TopNavbar.cshtml")
+    <div style="padding: 20px;">
+        <h1>Ratings page</h1>
+        <div class="training-category-btns">
+            <button>Add</button>
+            <input type="search" placeholder="Search..." />
+        </div>
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        @foreach (string header in tableHeader)
+                        {
+                            <th>@header</th>
+                        }
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td>static</td>
+                        <td>static</td>
+                        <td>static</td>
+                        <td>static</td>
+                        <td>static</td>
+                        <td>static</td>
+                        <td>
+                            <button>Edit</button>
+                            <button>Delete</button>
+                            <button>View Trainings</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
     </div>
-    <h1>Ratings page</h1>
 </div>
