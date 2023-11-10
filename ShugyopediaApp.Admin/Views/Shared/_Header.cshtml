@@ -5,7 +5,7 @@
     <div class="logo-container">
         <img src="~/img/darkblue-logo.png"
              style="width: 185px;" alt="logo"
-             onclick="window.location.href = '@Url.Action("TrainingCategory", "Home")';">
+             onclick="window.location.href = '@Url.Action("Index", "Home")';">
     </div>
     <div class="profile-section">
         @HttpContextAccessor.HttpContext.Session.GetString("UserName")
@@ -29,3 +29,6 @@
         </div>
     </div>
 </header>
+<div>
+    @Html.Partial("_TopNavbar.cshtml")
+</div>
