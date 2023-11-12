@@ -1,16 +1,16 @@
 ﻿@{
-    ViewData["Title"] = "Training Category";
+    ViewData["Title"] = "Resources";
 }
 
 @{
     string[] tableHeader = {
-        "Category ID", 
-        "Category Name", 
-        "Category Icon",
+        "Resource ID",
+        "Topic ID",
+        "Resource Name",
+        "Resource Type",
+        "Resource Path",
         "Created By",
         "Created Time",
-        "Updated By",
-        "Updated Time",
         "Actions"
     };
 }
@@ -20,10 +20,10 @@
         @Html.Partial("~/Views/Shared/_Header.cshtml")
     </div>
     <div style="padding: 20px;">
-        <h1>Training Categories</h1>
+        <h1>Resources Page</h1>
         <div class="training-category-btns">
             <button>Add</button>
-            <input type="search" placeholder="Search..."/>
+            <input type="search" placeholder="Search..." />
         </div>
         <div class="table-container">
             <table>

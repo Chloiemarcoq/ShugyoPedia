@@ -1,4 +1,5 @@
-﻿@using static ShugyopediaApp.Resources.Views.Screen
+﻿@using ShugyopediaApp.Data;
+@using static ShugyopediaApp.Resources.Views.Screen
 
 <!DOCTYPE html>
 <html lang="en">
@@ -15,7 +16,8 @@
 
     <!-- CSS Files -->
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="~/lib/bootstrap/bootstrap-icons/bootstrap-icons.css">
+    <link rel="stylesheet" href="https://192.168.56.1:8080/wwwroot_common/fontawesome/css/all.min.css" />
+    <link rel="stylesheet" href="https://192.168.56.1:8080/wwwroot_common/fontawesome/css/fontawesome.min.css" />
     <link rel="stylesheet" href="~/css/style.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
     @RenderSection("Styles", required: false)

@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 
 namespace ShugyopediaApp.Data
 {
@@ -11,6 +12,8 @@ namespace ShugyopediaApp.Data
         /// Gets or sets the setup root directory.
         /// </summary>
         public static string SetupRootDirectory { get; set; }
+        public static string StorageServerDirectory { get; set; }
+        public static string StorageServerUrl { get; set; }
 
         /// <summary>
         /// Setups the specified setup root directory.
@@ -19,6 +22,14 @@ namespace ShugyopediaApp.Data
         public static void Setup(string setupRootDirectory)
         {
             SetupRootDirectory = setupRootDirectory;
+        }
+        public static void Storage(string storageServerDirectory)
+        {
+            StorageServerDirectory = storageServerDirectory;
+        }
+        public static void StorageUrl(string storageServerUrl)
+        {
+            StorageServerUrl = storageServerUrl;
         }
 
         /// <summary>
@@ -33,6 +44,19 @@ namespace ShugyopediaApp.Data
             {
                 get { return GetFolderPath(SetupRootDirectory, "logs"); }
             }
+            public static string AssetsStorageDirectory
+            {
+                get { return GetFolderPath(StorageServerDirectory, "assets"); }
+            }
+            public static string WWWRootStorageDirectory
+            {
+                get { return GetFolderPath(StorageServerDirectory, "wwwroot_common"); }
+            }
+            public static string TrainingImagesDirectory
+            {
+                get { return GetFolderPath(StorageServerDirectory, "training_images"); }
+            }
+
 
             /// <summary>
             /// application log directory path
@@ -44,11 +68,18 @@ namespace ShugyopediaApp.Data
                 return GetFolderPath(Path.Combine(LogDirectory, appName));
             }
         }
+        public static class UrlPath
+        {
+            public static string TrainingImagesUrl
+            {
+                get { return StorageServerUrl + "training_images/"; }
+            }
+        }
 
-        /// <summary>
-        /// File Path
-        /// </summary>
-        public static class FilePath
+            /// <summary>
+            /// File Path
+            /// </summary>
+            public static class FilePath
         {
         }
 
@@ -65,7 +96,11 @@ namespace ShugyopediaApp.Data
             {
                 Directory.CreateDirectory(result);
             }
-
+            return result;
+        }
+        private static string GetUrlPath(string path, string directoryName = "")
+        {
+            string result = Path.Combine(path, directoryName);
             return result;
         }
     }

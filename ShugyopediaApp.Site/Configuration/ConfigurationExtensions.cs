@@ -19,7 +19,16 @@ namespace ShugyopediaApp.Site.Extensions.Configuration
             return configuration.GetSection("Common")
                                 .GetValue<string>("SetupRoot");
         }
-
+        public static string GetStorageServerDirectoryPath(this IConfiguration configuration)
+        {
+            return configuration.GetSection("Common")
+                                .GetValue<string>("StorageServer");
+        }
+        public static string GetStorageServerUrlPath(this IConfiguration configuration)
+        {
+            return configuration.GetSection("Common")
+                                .GetValue<string>("StorageServerUrl");
+        }
         /// <summary>
         /// Gets the CSV output folder path.
         /// </summary>

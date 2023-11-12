@@ -51,6 +51,8 @@ namespace ShugyopediaApp.Site
             this.Configuration = configuration;
 
             PathManager.Setup(this.Configuration.GetSetupRootDirectoryPath());
+            PathManager.Storage(this.Configuration.GetStorageServerDirectoryPath());
+            PathManager.StorageUrl(this.Configuration.GetStorageServerUrlPath());
 
             var token = this.Configuration.GetTokenAuthentication();
 

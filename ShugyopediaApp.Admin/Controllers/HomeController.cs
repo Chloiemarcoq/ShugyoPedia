@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
+using Microsoft.AspNetCore.Authorization;
 
 namespace ShugyopediaApp.Admin.Controllers
 {
@@ -32,7 +33,45 @@ namespace ShugyopediaApp.Admin.Controllers
         /// Returns Home View.
         /// </summary>
         /// <returns> Home View </returns>
-        public IActionResult Index()
+        /// 
+        [AllowAnonymous]
+        public IActionResult Index() // training category ni
+        {
+            return View();
+        }
+
+        [AllowAnonymous]
+        public IActionResult Training()
+        {
+            return View();
+        }
+
+        [AllowAnonymous]
+        public IActionResult Topics()
+        {
+            return View();
+        }
+
+        [AllowAnonymous]
+        public IActionResult Resources() 
+        {
+            return View();
+        }
+
+        [AllowAnonymous]
+        public IActionResult Ratings()
+        {
+            return View();
+        }
+
+        [AllowAnonymous]
+        public IActionResult Users()
+        {
+            return View();
+        }
+
+        [AllowAnonymous]
+        public IActionResult ForgetPasswordRequests() 
         {
             return View();
         }
