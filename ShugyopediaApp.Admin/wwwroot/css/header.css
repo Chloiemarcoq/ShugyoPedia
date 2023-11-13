@@ -1,0 +1,29 @@
+﻿
+.logo-container {
+    /*border: 2px solid black;*/
+    width: 80%;
+}
+
+.profile-section {
+    /*border: 2px solid black;*/
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+}
+
+.profile-section h1 {
+    font-size: 25px;
+    text-align: center;
+}
+
+.profile-container {
+    /*border: 2px solid black;*/
+    border-radius: 100px;
+}
+
+.profile-logo {
+    border-radius: 100px;
+    height: 60px;
+    width: 60px;
+}

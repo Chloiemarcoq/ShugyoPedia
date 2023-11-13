@@ -1,0 +1,34 @@
+﻿.top-navbar {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 10px 30px;
+    background-color: #4390bc;
+}
+
+.top-navbar a {
+    color: white;
+    text-decoration: none;
+}
+
+.top-navbar a:hover {
+    color: #d8e9f3;
+    text-decoration: underline;
+}
+
+.training-category-btns {
+    display: flex;
+    justify-content: space-around;
+    padding: 20px;
+    /*border: 2px solid black;*/
+}
+
+.training-category-btns button {
+    padding: 5px;
+    /*border-radius: 5px;*/
+}
+
+.training-category-btns input {
+    text-align: center;
+    /*border-radius: 5px;*/
+}

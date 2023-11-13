@@ -1,33 +1,27 @@
-﻿@model LoginViewModel
-@section styles {
-    <link rel="stylesheet" href="~/css/forgot.css" />
-}
-@{
+﻿@{
     ViewBag.LoginView = true;
     ViewData["Title"] = "Forgot Password";
 }
-<div class="top-container">
-    <div class="left">
-        <img src="darkblue-logo.png" />
-    </div>
-    <div class="right">
-    </div>
-</div>
-<div class="container">
-    <div class="top">
-        <h1>Forgot your Password?</h1>
-        <h4>Enter your email.</h4>
-        <hr>
-    </div>
-    <div class="middle">
-        <form method="post">
-            <div class="email-user">
-                <label for="">Email</label><br>
-                <input type="text" asp-for="UserEmail" placeholder="Email">
+<div class="container my-4">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-body">
+                    <div class="d-flex align-items-center justify-content-center mx-auto">
+                        <img src="assets/img/logo_with_text_dark.png" alt="" width="300px">
+                    </div>
+                    <h3 class="card-subtitle mb-2 text-center">Account Recovery</h3>
+                    <p class="card-subtitle mb-2 text-center">Enter the email associated with your account and we’ll send you a link to reset your password.</p>
+                    <form action="" method="POST" class="my-5">
+                        <div class="form-group my-3">
+                            <label for="email">Email</label>
+                            <input type="text" name="email" id="email" class="form-control"
+                                   placeholder="Enter email">
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-block" style="width: 100%;">Submit</button>
+                    </form>
+                </div>
             </div>
-            <div class="submit-btn">
-                <button type="submit">Email Link</button>
-            </div>
-        </form>
+        </div>
     </div>
 </div>

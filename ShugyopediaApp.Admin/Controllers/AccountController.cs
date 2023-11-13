@@ -159,5 +159,11 @@ namespace ShugyopediaApp.Admin.Controllers
         //        return View();
         //    }
         //}
+
+        [AllowAnonymous]
+        public IActionResult Reset()
+        {
+            return View();
+        }
     }
 }
