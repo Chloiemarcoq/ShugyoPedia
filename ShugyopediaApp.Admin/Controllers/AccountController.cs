@@ -138,5 +138,17 @@ namespace ShugyopediaApp.Admin.Controllers
             await this._signInManager.SignOutAsync();
             return RedirectToAction("Login", "Account");
         }
+
+        [AllowAnonymous]
+        public IActionResult Forgot()
+        {
+            return View();
+        }
+
+        [AllowAnonymous]
+        public IActionResult Reset()
+        {
+            return View();
+        }
     }
 }

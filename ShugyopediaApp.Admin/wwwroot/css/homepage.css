@@ -32,19 +32,3 @@
     text-align: center;
     /*border-radius: 5px;*/
 }
-
-.table-container {
-    display: flex;
-    justify-content: center;
-    margin-top: 20px;
-}
-
-table {
-    border-collapse: collapse;
-}
-
-th, td {
-    padding: 10px;
-    text-align: center;
-    border: 1px solid black;
-}
