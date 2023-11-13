@@ -15,6 +15,8 @@ using System;
 using System.IO;
 using System.Threading.Tasks;
 using static ShugyopediaApp.Resources.Constants.Enums;
+using System.Net.Mail;
+using System.Net;
 
 namespace ShugyopediaApp.Admin.Controllers
 {
@@ -98,35 +100,8 @@ namespace ShugyopediaApp.Admin.Controllers
                 TempData["ErrorMessage"] = "Incorrect UserId or Password";
                 return View();
             }
-            return View();
         }
 
-        [HttpGet]
-        [AllowAnonymous]
-        public IActionResult Register()
-        {
-            return View();
-        }
-
-        [HttpPost]
-        [AllowAnonymous]
-        public IActionResult Register(UserViewModel model)
-        {
-            try
-            {
-                _userService.AddUser(model);
-                return RedirectToAction("Login", "Account");
-            }
-            catch(InvalidDataException ex)
-            {
-                TempData["ErrorMessage"] = ex.Message;
-            }
-            catch(Exception ex)
-            {
-                TempData["ErrorMessage"] = Resources.Messages.Errors.ServerError;
-            }
-            return View();
-        }
 
         /// <summary>
         /// Sign Out current account and return login view.
@@ -138,5 +113,51 @@ namespace ShugyopediaApp.Admin.Controllers
             await this._signInManager.SignOutAsync();
             return RedirectToAction("Login", "Account");
         }
+        [AllowAnonymous]
+        public IActionResult Forgot()
+        {
+            return View();
+        }
+        [HttpPost]
+        [AllowAnonymous]
+        public IActionResult Forgot(LoginViewModel email)
+        {
+            var mail = "dwight.eyac20@gmail.com";
+            var pw = "vces kwbh hghn ousu";
+            var client = new SmtpClient("smtp.gmail.com")
+            {
+                Port = 587,
+                Credentials = new NetworkCredential(mail, pw),
+                EnableSsl = true
+            };
+            client.SendMailAsync(
+                new MailMessage(from: mail,
+                                to: email.ToString(),
+                                "test subject",
+                                "tjis is ypur link recovery pass"));
+            TempData["ErrorMessage"] = "Check your email";
+            return RedirectToAction("Login", "Account");
+        }
+
+        //[HttpPost]
+        //[AllowAnonymous]
+        //public IActionResult ResetPassword(LoginViewModel email)
+        //{   
+        //    User user = null;
+        //    var loginResult = _userService.AuthenticateUser(model.UserId, model.Password, ref user);
+        //    if (loginResult == LoginResult.Success)
+        //    {
+        //        // 認証OK
+        //        await this._signInManager.SignInAsync(user);
+        //        this._session.SetString("UserName", user.Name);
+        //        return RedirectToAction("Index", "Home");
+        //    }
+        //    else
+        //    {
+        //        // 認証NG
+        //        TempData["ErrorMessage"] = "Incorrect UserId or Password";
+        //        return View();
+        //    }
+        //}
     }
 }

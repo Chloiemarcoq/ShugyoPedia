@@ -1,4 +1,5 @@
-﻿@section styles {
+﻿@model LoginViewModel
+@section styles {
     <link rel="stylesheet" href="~/css/forgot.css" />
 }
 @{
@@ -19,10 +20,10 @@
         <hr>
     </div>
     <div class="middle">
-        <form>
+        <form method="post">
             <div class="email-user">
                 <label for="">Email</label><br>
-                <input type="text" placeholder="Email">
+                <input type="text" asp-for="UserEmail" placeholder="Email">
             </div>
             <div class="submit-btn">
                 <button type="submit">Email Link</button>

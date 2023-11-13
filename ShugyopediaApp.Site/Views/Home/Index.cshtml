@@ -1,73 +1,8 @@
-﻿@{
+﻿@using System.Text.RegularExpressions;
+@{
     ViewData["Title"] = "Shugyopedia";
 }
-
-<!-- Sidebar -->
-<aside id="sidebar" class="sidebar border border-black border-2">
-    <div class="sidebar-header d-flex align-items-center justify-content-center">
-        <h4 class="m-0"><i class="bi bi-text-left"></i> Training Category</h4>
-    </div>
-    <form action="" method="POST" class="m-2">
-        <input type="text" name="search" id="search" class="form-control border-black" placeholder="Search...">
-    </form>
-    <ul class="sidebar-nav" id="sidebar-nav">
-        <li class="nav-item">
-            <a class="nav-link" asp-controller="TrainingCategory" asp-action="Index">
-                <span><i class="bi bi-pc-display-horizontal"></i> Programming</span>
-            </a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="#">
-                <span><i class="bi bi-book"></i> Education</span>
-            </a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="#">
-                <span><i class="bi bi-heart-pulse"></i> Medical</span>
-            </a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="#">
-                <span><i class="bi bi-camera"></i> Photography</span>
-            </a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="#">
-                <span><i class="bi bi-camera-reels"></i> Videography</span>
-            </a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="#">
-                <span><i class="bi bi-code-slash"></i> Web Development</span>
-            </a>
-        </li>
-
-        <li class="nav-item">
-            <a class="nav-link" href="#">
-                <span><i class="bi bi-palette"></i> Arts</span>
-            </a>
-        </li>
-
-        <li class="nav-item">
-            <a class="nav-link" href="#">
-                <span><i class="bi bi-music-note"></i> Music</span>
-            </a>
-        </li>
-
-        <li class="nav-item">
-            <a class="nav-link" href="#">
-                <span><i class="bi bi-bicycle"></i> Sports</span>
-            </a>
-        </li>
-
-        <li class="nav-item">
-            <a class="nav-link" href="#">
-                <span><i class="bi bi-lightning-fill"></i> Dance</span>
-            </a>
-        </li>
-
-    </ul>
-</aside>
+@model List<ShugyopediaApp.Services.ServiceModels.TrainingCategoryViewModel>
 
 <!-- MAIN BODY -->
 <main id="main" class="main">
