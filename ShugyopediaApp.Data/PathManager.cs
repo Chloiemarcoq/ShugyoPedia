@@ -74,6 +74,10 @@ namespace ShugyopediaApp.Data
             {
                 get { return StorageServerUrl + "training_images/"; }
             }
+            public static string WWWRootCommonUrl
+            {
+                get { return StorageServerUrl + "wwwroot_common/"; }
+            }
         }
 
             /// <summary>

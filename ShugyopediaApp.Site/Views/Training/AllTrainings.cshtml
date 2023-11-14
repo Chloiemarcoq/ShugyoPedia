@@ -1,10 +1,8 @@
 ﻿@using ShugyopediaApp.Services.ServiceModels;
-
+@{
+    ViewData["Title"] = Model["CategoryName"];
+}
 @model Dictionary<string, object>
-@* @foreach (var training in Model)
-{
-    <h1>@training.TrainingName</h1>
-} *@
 
 
 <!-- MAIN BODY -->

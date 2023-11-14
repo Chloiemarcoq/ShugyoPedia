@@ -32,7 +32,7 @@ configurer.ConfigureApp(app, app.Environment);
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=TrainingCategory}/{action=Index}");
+    pattern: "{controller=Home}/{action=Index}");
 app.MapControllers();
 app.MapRazorPages();
 
