@@ -1,0 +1,28 @@
+﻿.nav-center {
+    display: flex;
+    justify-content: space-around;
+    background: #FFFFFF;
+}
+.nav-center .link {
+    padding:10px;
+    font-size: 20px;
+    color:black;
+    cursor: pointer;
+}
+.navbar-logo {
+    display:flex;
+    justify-content:space-between;
+}
+.center-logo img {
+    padding:10px 30px;
+    width:75%;
+}
+.link:hover {
+    color: #2F3CED;
+    text-decoration: none;
+}
+.link {
+    color: white; 
+    transition: color 0.3s ease;
+    text-decoration: none; 
+

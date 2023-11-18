@@ -1,5 +1,6 @@
 ﻿@using Microsoft.AspNetCore.Http
 @inject IHttpContextAccessor HttpContextAccessor
+<<<<<<< Updated upstream
 <header class="@((ViewBag.LoginView == true) ? "hide-navbar" : "")">
     <div class="logosec hover-pointer">
         <img src="~/img/asi-logo-invert.svg"
@@ -28,4 +29,27 @@
             </div>
         </div>
     </div>
+=======
+
+
+<header class="fixed-top" style="background-color: #2F3CED; color: white;">
+    <div class="navbar-logo">
+        <div class="center-logo">
+            <a>
+                <img src="~/img/logo_with_text_light.png" />
+            </a>
+        </div>
+        <div class="right">
+            
+        </div>
+    </div>
+   <div class="nav-center">
+        <a class="link">Training Categories<a>
+        <a class="link">Trainings<a>
+        <a class="link">Ratings</a>
+        <a class="link">Topics</a>
+        <a class="link">Users</a>
+        <a class="link">Account Recovery Requests</a>
+   </div>
+>>>>>>> Stashed changes
 </header>
