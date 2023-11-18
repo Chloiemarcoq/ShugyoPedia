@@ -1,29 +1,28 @@
-﻿
-.logo-container {
-    /*border: 2px solid black;*/
-    width: 80%;
-}
-
-.profile-section {
-    /*border: 2px solid black;*/
+.nav-center {
     display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 15px;
+    justify-content: space-around;
+    background: #FFFFFF;
 }
-
-.profile-section h1 {
-    font-size: 25px;
-    text-align: center;
+.nav-center .link {
+    padding:10px;
+    font-size: 20px;
+    color:black;
+    cursor: pointer;
 }
-
-.profile-container {
-    /*border: 2px solid black;*/
-    border-radius: 100px;
+.navbar-logo {
+    display:flex;
+    justify-content:space-between;
 }
-
-.profile-logo {
-    border-radius: 100px;
-    height: 60px;
-    width: 60px;
+.center-logo img {
+    padding:10px 30px;
+    width:75%;
+}
+.link:hover {
+    color: #2F3CED;
+    text-decoration: none;
+}
+.link {
+    color: white; 
+    transition: color 0.3s ease;
+    text-decoration: none; 
 }
