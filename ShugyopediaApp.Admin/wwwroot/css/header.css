@@ -1,29 +1,27 @@
-﻿
-.logo-container {
-    /*border: 2px solid black;*/
-    width: 80%;
+.navbar {
+    display:flex;
+    justify-content:space-between;
 }
-
-.profile-section {
-    /*border: 2px solid black;*/
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 15px;
+.logo img {
+    padding: 0px 20px;
+    width:75%;
 }
-
-.profile-section h1 {
-    font-size: 25px;
-    text-align: center;
+.navbar2 {
+    display:flex;
+    justify-content:space-around;
+    padding:5px;
+    background:white;
+    font-size:20px;
 }
-
-.profile-container {
-    /*border: 2px solid black;*/
-    border-radius: 100px;
+.navbar2 .link {
+    color: black;
 }
-
-.profile-logo {
-    border-radius: 100px;
-    height: 60px;
-    width: 60px;
+.link {
+    text-decoration: none;
+    color: #000; 
+    cursor:pointer;
+    transition: color 0.3s;
+}
+.link:hover {
+    color: #00f; 
 }

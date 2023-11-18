@@ -3,42 +3,21 @@
 
 
 <header class="fixed-top" style="background-color: #2F3CED; color: white;">
-    <div class="d-flex align-items-center justify-content-between mx-auto p-1">
-        <a class="d-flex flex-column align-items-center p-0 m-0 logo mx-auto" asp-action="Index" asp-controller="TrainingCategory">
-			<img src="~/img/logo_with_text_light.png" />
-        </a>
-        <div class="d-flex align-items-center">
-            <img src="~/img/defaultimage.jpg"
-                 class="rounded-circle mr-2" alt="Profile Image" style="width: 40px; height: 40px;">
-            <span class="font-weight-bold">Username</span>
+    <div class="navbar">
+        <div class="logo">
+            <img src="~/img/logo_with_text_light.png" />
+        </div>
+        <div class="right">
+
         </div>
     </div>
-    <nav class="navbar navbar-expand-lg bg-body-tertiary bg-light">
-        <div class="container-fluid">
-            <div class="collapse navbar-collapse">
-                <div class="d-flex align-items-center justify-content-center">
-                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                        <li class="nav-item mx-5">
-                            <a class="nav-link" asp-action="Index" asp-controller="TrainingCategory">Training Categories</a>
-                        </li>
-                        <li class="nav-item mx-5">
-                            <a class="nav-link" asp-action="Index" asp-controller="Training">Trainings</a>
-                        </li>
-                        <li class="nav-item mx-5">
-                            <a class="nav-link" asp-action="Index" asp-controller="Rating">Ratings</a>
-                        </li>
-                        <li class="nav-item mx-5">
-                            <a class="nav-link" asp-action="Index" asp-controller="Topic">Topics</a>
-                        </li>
-                        <li class="nav-item mx-5">
-                            <a class="nav-link" asp-action="Index" asp-controller="User">Users</a>
-                        </li>
-                        <li class="nav-item mx-5">
-                            <a class="nav-link" asp-action="Index" asp-controller="AccountRecovery">Account Recovery Requests</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </nav>
+    <div class="navbar2">
+        <a class="link">Training Categories</a>
+        <a class="link">Training</a>
+        <a class="link">Ratings</a>
+        <a class="link">Topics</a>
+        <a class="link">Users</a>
+        <a class="link">Account Recovery Requests</a>
+
+   </div>
 </header>
