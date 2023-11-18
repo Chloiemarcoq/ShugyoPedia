@@ -1,0 +1,36 @@
+﻿@{
+	ViewData["Title"] = "Edit Training Category";
+}
+
+<main>
+    <div class="container my-4">
+        <h1 class="text-center">Edit Training Category</h1>
+        <div class="row justify-content-center my-4">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-body">
+                        <form action="" method="POST">
+                            <div class="form-group my-3">
+                                <label for="category_name">Edit Category Name</label>
+                                <input type="text" name="category_name" id="category_name" class="form-control"
+                                       placeholder="Enter category name">
+                            </div>
+                            <div class="form-group my-3">
+                                <label for="category_icon">Edit Category Icon</label>
+                                <input type="text" name="category_icon" id="category_icon" class="form-control"
+                                       placeholder="Enter category icon">
+                                <p class="fw-6 p-0 m-0">
+                                    Copy Snippet from: <a href="http://fontawesome.com" target="_blank">http://fontawesome.com</a>
+                                </p>
+                            </div>
+                            <div class="d-flex align-items-center justify-content-center mt-5">
+                                <button type="reset" class="btn btn-primary mx-5">Clear</button>
+                                <button type="submit" class="btn btn-success mx-5">Edit</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>

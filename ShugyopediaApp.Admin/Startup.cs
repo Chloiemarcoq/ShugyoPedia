@@ -52,6 +52,7 @@ namespace ShugyopediaApp.Admin
             this.Configuration = configuration;
 
             PathManager.Setup(this.Configuration.GetSetupRootDirectoryPath());
+            PathManager.Storage(this.Configuration.GetStorageServerDirectoryPath());
 
             var token = this.Configuration.GetTokenAuthentication();
             this._signingKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(token.SecretKey));

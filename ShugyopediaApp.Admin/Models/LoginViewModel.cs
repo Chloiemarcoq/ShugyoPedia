@@ -16,5 +16,6 @@ namespace ShugyopediaApp.Admin.Models
         [JsonPropertyName("password")]
         [Required(ErrorMessage = "Password is required.")]
         public string Password { get; set; }
+        public string UserEmail { get; set; }
     }
 }

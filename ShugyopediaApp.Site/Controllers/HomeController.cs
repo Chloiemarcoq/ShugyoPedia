@@ -4,6 +4,8 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
+using ShugyopediaApp.Services.Services;
+using ShugyopediaApp.Services.Interfaces;
 
 namespace ShugyopediaApp.Site.Controllers
 {
@@ -12,6 +14,7 @@ namespace ShugyopediaApp.Site.Controllers
     /// </summary>
     public class HomeController : ControllerBase<HomeController>
     {
+        private readonly ITrainingCategoryService _trainingCategoryService;
         /// <summary>
         /// Constructor
         /// </summary>
@@ -20,12 +23,13 @@ namespace ShugyopediaApp.Site.Controllers
         /// <param name="configuration"></param>
         /// <param name="localizer"></param>
         /// <param name="mapper"></param>
-        public HomeController(IHttpContextAccessor httpContextAccessor,
+        public HomeController(ITrainingCategoryService trainingCategoryService,
+                              IHttpContextAccessor httpContextAccessor,
                               ILoggerFactory loggerFactory,
                               IConfiguration configuration,
                               IMapper mapper = null) : base(httpContextAccessor, loggerFactory, configuration, mapper)
         {
-
+            _trainingCategoryService = trainingCategoryService;
         }
 
         /// <summary>
@@ -34,7 +38,8 @@ namespace ShugyopediaApp.Site.Controllers
         /// <returns> Home View </returns>
         public IActionResult Index()
         {
-            return View();
+            var data = _trainingCategoryService.GetTrainingCategories();
+            return View("Index", data);
         }
     }
 }

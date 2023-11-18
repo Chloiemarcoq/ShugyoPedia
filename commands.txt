@@ -1,4 +1,49 @@
+---.NET COMMANDS---
 Scaffold-DbContext "Addr=localhost\SQLEXPRESS; database=shugyopediaDB; Trusted_Connection=True;MultipleActiveResultSets=true;TrustServerCertificate=True" Microsoft.EntityFrameworkCore.SqlServer -OutputDir Models -ContextDir Data/.. -Force
+
+
+---HTTP SERVER---
+http-server -S -C cert.pem -o
+
+
+---DATABASE QUERIES---
+ALTER TABLE Users
+ADD UserEmail varchar(320) NOT NULL;
+
+INSERT INTO Trainings (CategoryId, TrainingName, TrainingDescription, TrainingImage, CreatedBy, CreatedTime, UpdatedBy, UpdatedTime)
+VALUES (1, 'HTML Basics', 'Learn the basics of HTML.', 'test.png', 'Admin', GETDATE(), 'Admin', GETDATE());
+
+INSERT INTO Ratings (TrainingId, RatingReview, Rate,  RaterName, RaterEmail, CreatedTime)
+VALUES (4, 'This looks good.', 4, 'Rason', 'rason@gmail.com', GETDATE());
+
+CREATE TABLE [Ratings] (
+    [RatingID] int IDENTITY(1,1),
+    [RatingReview] varchar(50) not null unique,
+    [RatingID] varchar(50) not null,
+    [TrainingName] varchar(50) not null,
+    [TrainingDescription] text not null,
+    [TrainingCover] varchar(2048) not null,
+    [CreatedBy] varchar(50) not null,
+    [CreatedTime] DateTime not null,
+    [UpdatedBy] varchar(50) not null,
+    [UpdatedTime] DateTime not null,
+    PRIMARY KEY (TrainingID)
+);
+
+ALTER TABLE Trainings
+ADD CONSTRAINT FK_CategoryID FOREIGN KEY (CategoryID) 
+REFERENCES TrainingCategories(CategoryID);
+
+
+---PROCESS WEBAPP---
+Repository - inherits baserepo, irepo
+		- constructor(IUNITofwork unitofwork) : base(unitofwork)
+		-queryable get all data
+IRepo - add functions
+Service - inherets IService - constructor assign repository cosntant
+IService -add functions
+ViewModel - define viewmodel
+Add service and repo to startup DI
 
 
 ---GIT commands---
@@ -7,3 +52,7 @@ git checkout branchname =====> Change current branch
 git update-index --assume-unchanged  <file> =====> dont include specific files
 git push --set-upstream origin dwightbranch =====> first push to own branch
 git restore --staged <file> =====> usntage a file
+
+
+---GMAIL PASS---
+smtp: vces kwbh hghn ousu

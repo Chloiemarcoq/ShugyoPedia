@@ -19,15 +19,16 @@
     --Border-color: #3f0097;
     --one-use-color: #3f0097;
     --two-use-color: #5500cb;
+    scroll-behavior: smooth;
 }
 
 body {
-    background-color: var(--background-color4);
+    background-color: #B2D3E6;
     max-width: 100%;
     overflow-x: hidden;
 }
 
-header {
+/*header {
     height: 70px;
     width: 100vw;
     padding: 0 30px;
@@ -37,12 +38,31 @@ header {
     display: flex;
     justify-content: space-between;
     align-items: center;
+}*/
+
+a {
+    color: #4154f1;
+    text-decoration: none;
 }
 
-.logo {
-    font-size: 27px;
-    font-weight: 600;
-    color: rgb(47, 141, 70);
+    a:hover {
+        color: #717ff5;
+        text-decoration: none;
+    }
+
+/* ===== HEADER ===== */
+.logo img {
+    max-height: 100px;
+    margin-right: 6px;
 }
 
+/* ===== MAIN ===== */
+main {
+    margin-top: 200px;
+}
 
+h1 select {
+    background-color: transparent;
+    border: none;
+    outline: none;
+}
