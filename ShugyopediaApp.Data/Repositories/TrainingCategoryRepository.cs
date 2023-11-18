@@ -19,5 +19,10 @@ namespace ShugyopediaApp.Data.Repositories
         {
             return this.GetDbSet<TrainingCategory>();
         }
+        public void AddTrainingCategory(TrainingCategory trainingCategory)
+        {
+            this.GetDbSet<TrainingCategory>().Add(trainingCategory);
+            UnitOfWork.SaveChanges();
+        }
     }
 }

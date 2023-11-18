@@ -7,10 +7,10 @@ using ShugyopediaApp.Services.Interfaces;
 
 namespace ShugyopediaApp.Site.Component
 {
-    public class TrainingCategorySidebarViewComponent : ViewComponent
+    public class TrainingCategorySidebar : ViewComponent
     {
         private readonly ITrainingCategoryService _trainingCategoryService;
-        public TrainingCategorySidebarViewComponent(ITrainingCategoryService trainingCategoryService)
+        public TrainingCategorySidebar(ITrainingCategoryService trainingCategoryService)
         {
             _trainingCategoryService = trainingCategoryService;
         }

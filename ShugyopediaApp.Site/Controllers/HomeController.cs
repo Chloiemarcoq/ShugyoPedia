@@ -38,8 +38,7 @@ namespace ShugyopediaApp.Site.Controllers
         /// <returns> Home View </returns>
         public IActionResult Index()
         {
-            var data = _trainingCategoryService.GetTrainingCategories();
-            return View("Index", data);
+            return View();
         }
     }
 }

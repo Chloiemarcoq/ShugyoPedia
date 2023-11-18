@@ -55,7 +55,7 @@ namespace ShugyopediaApp.Data
 
             modelBuilder.Entity<Topic>(entity =>
             {
-                entity.HasIndex(e => e.TopicName, "UQ__Topics__6C795E8C95411B4B")
+                entity.HasIndex(e => e.TopicName, "UQ__Topics__6C795E8C0B27597E")
                     .IsUnique();
 
                 entity.Property(e => e.CreatedBy)
@@ -87,7 +87,7 @@ namespace ShugyopediaApp.Data
             modelBuilder.Entity<TopicResource>(entity =>
             {
                 entity.HasKey(e => e.ResourceId)
-                    .HasName("PK__TopicRes__4ED1816F53C6B3BD");
+                    .HasName("PK__TopicRes__4ED1814F2BCF88B6");
 
                 entity.Property(e => e.CreatedBy)
                     .IsRequired()
@@ -191,7 +191,7 @@ namespace ShugyopediaApp.Data
 
             modelBuilder.Entity<User>(entity =>
             {
-                entity.HasIndex(e => e.UserId, "UQ__Users__1788CCAD6FD26CEC")
+                entity.HasIndex(e => e.UserId, "UQ__Users__1788CC4DA596A5F8")
                     .IsUnique();
 
                 entity.Property(e => e.CreatedBy)
@@ -226,8 +226,7 @@ namespace ShugyopediaApp.Data
                 entity.Property(e => e.UserId)
                     .IsRequired()
                     .HasMaxLength(50)
-                    .IsUnicode(false)
-                    .HasColumnName("UserID");
+                    .IsUnicode(false);
             });
 
             OnModelCreatingPartial(modelBuilder);
