@@ -5,72 +5,58 @@
 @model List<ShugyopediaApp.Services.ServiceModels.TrainingCategoryViewModel>
 
 <!-- MAIN BODY -->
-<main id="main" class="main">
-    <!-- Carousel -->
-    <div class="carousel-container">
-        <div id="topics" class="carousel slide py-4" data-bs-ride="carousel">
-            <div class="carousel-indicators">
-                <button type="button" data-bs-target="#topics" data-bs-slide-to="0" class="active" aria-current="true"
-                        aria-label="Slide 1"></button>
-                <button type="button" data-bs-target="#topics" data-bs-slide-to="1" aria-label="Slide 2"></button>
-                <button type="button" data-bs-target="#topics" data-bs-slide-to="2" aria-label="Slide 3"></button>
+@await Component.InvokeAsync("TrainingCategorySidebar")
+<main id="main" class="container-main">
+    <!-- About Shugyopedia -->
+    <div>
+        <h3>What will you learn today?</h3>
+    </div>
+    <!--carousel-->
+    <div id="carousel" class="carousel-container">
+        <div class="carousel-content">
+            <div id="first_content">
+                <img src="~/img/carousel_pic1.png" style="width:320px;" />
+                <div class="carousel-text">
+                    <h3>Dive into Programming Learn Python, C#</h3>
+                    <p>
+                        Unlock the world of programming! Learn python and C# for a powerful coding
+                        foundation. Perfect for beginners or those looking to expand their skills. Start
+                        your coding journey now!
+                    </p>
+                </div>
             </div>
-            <div class="carousel-inner">
-                <div class="carousel-item active">
-                    <div class="carousel-content text-dark">
-                        <div class="row">
-                            <div class="col-6 px-5 py-4">
-                                <h3>Dive into Programming</h3>
-                                <h4 class="fw-bold">Learn C#, Python, and many more</h4>
-                            </div>
-                            <div class="col-6">
-                                <div class="d-flex align-items-start justify-content-center">
-                                    <img src="~/img/person_coding.png" class="img-fluid carousel-img" alt="">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+            <div id="second_content">
+                <img src="~/img/carousel_pic1.png" style="width:320px;" />
+                <div class="carousel-text">
+                    <h3>Second Content</h3>
+                    <p>
+                        lorem ipsum
+                    </p>
                 </div>
-                <div class="carousel-item ">
-                    <div class="carousel-content text-dark">
-                        <div class="row">
-                            <div class="col-6 px-5 py-4">
-                                <h3 class="fw-bold">Study your favorite subject</h3>
-                                <h4 class="fw-bold">Learn Math, Science, and many more</h4>
-                            </div>
-                            <div class="col-6">
-                                <div class="d-flex align-items-start justify-content-center">
-                                    <img src="~/img/person_coding.png" class="img-fluid carousel-img" alt="">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="carousel-item">
-                    <div class="carousel-content text-dark">
-                        <div class="row">
-                            <div class="col-6 px-5 py-4">
-                                <h3 class="fw-bold">Discover home remedies</h3>
-                                <h4 class="fw-bold">Learn about medicines and many more</h4>
-                            </div>
-                            <div class="col-6">
-                                <div class="d-flex align-items-start justify-content-center">
-                                    <img src="~/img/person_coding.png" class="img-fluid carousel-img" alt="">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+            </div>
+            <div id="third_content">
+                <img src="~/img/carousel_pic1.png" style="width:320px;" />
+                <div class="carousel-text">
+                    <h3>Third Content</h3>
+                    <p>
+                        ipsum lorem
+                    </p>
                 </div>
             </div>
         </div>
+        <!-- end of carousel content -->
+        <div class="carousel-buttons">
+            <button onclick="showItem(0)">&nbsp;</button>
+            <button onclick="showItem(1)">&nbsp;</button>
+            <button onclick="showItem(2)">&nbsp;</button>
+        </div>
     </div>
-    <!-- About Shugyopedia -->
-    <div class="container p-5">
-        <h2 class="fw-normal lh-mg">
+    
+    <!--end of carousel-->
+    <div class="bottom-content">
+        <h5>
             With SHUGYOPEDIA, you’ll have access to an endless amount of knowledge.
             Get Started by selecting a Training Category.
-        </h2>
-
+        </h5>
     </div>
-
 </main>
