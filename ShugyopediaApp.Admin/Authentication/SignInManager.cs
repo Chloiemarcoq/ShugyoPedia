@@ -5,13 +5,13 @@ using System.Security.Claims;
 using System.Security.Principal;
 using System.Threading.Tasks;
 using ShugyopediaApp.Admin.Extensions.Configuration;
-using ShugyopediaApp.Admin.Models;
 using ShugyopediaApp.Resources.Constants;
 using ShugyopediaApp.Data.Models;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using static ShugyopediaApp.Resources.Constants.Enums;
+using ShugyopediaApp.Admin.Models;
 
 namespace ShugyopediaApp.Admin.Authentication
 {
