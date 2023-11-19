@@ -1,26 +1,56 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Logging;
+using ShugyopediaApp.Admin.Mvc;
+using ShugyopediaApp.Data.Models;
+using ShugyopediaApp.Services.Interfaces;
+using ShugyopediaApp.Services.ServiceModels;
+using System.Collections.Generic;
 
 namespace ShugyopediaApp.Admin.Controllers
 {
-    public class TrainingCategoryController : Controller
+    public class TrainingCategoryController : ControllerBase<TrainingCategoryController>
     {
-        [AllowAnonymous]
+        private readonly ITrainingCategoryService _trainingCategoryService;
+        public TrainingCategoryController(
+            ITrainingCategoryService trainingCategoryService,
+            IHttpContextAccessor httpContextAccessor,
+            ILoggerFactory loggerFactory,
+            IConfiguration configuration,
+            IMapper mapper = null)
+            : base(httpContextAccessor, loggerFactory, configuration, mapper)
+        {
+            _trainingCategoryService = trainingCategoryService;
+        }
         public IActionResult Index()
         {
-            return View();
+            List<TrainingCategoryViewModel> categories = _trainingCategoryService.GetTrainingCategories();
+            return View(categories);
         }
-
-        [AllowAnonymous]
-        public IActionResult Add()
+        [HttpGet]
+        public IActionResult AddTrainingCategory()
         {
             return View();
         }
-
-		[AllowAnonymous]
-		public IActionResult Edit()
+        [HttpPost]
+        public IActionResult AddTrainingCategory(TrainingCategoryViewModel trainingCategory)
+        {
+            _trainingCategoryService.AddTrainingCategory(trainingCategory, this.UserId);
+            return RedirectToAction("Index");
+        }
+        [HttpPost]
+        public IActionResult RedirectEditTrainingCategory(TrainingCategoryViewModel trainingCategory)
+        {
+            return View("EditTrainingCategory", trainingCategory);
+        }
+        [HttpPost]
+        public IActionResult EditTrainingCategory(TrainingCategoryViewModel trainingCategory)
 		{
-			return View();
-		}
+            _trainingCategoryService.EditTrainingCategory(trainingCategory, this.UserId);
+            return RedirectToAction("Index");
+        }
 	}
 }

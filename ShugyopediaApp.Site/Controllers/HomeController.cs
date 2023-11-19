@@ -43,8 +43,7 @@ namespace ShugyopediaApp.Site.Controllers
         [AllowAnonymous]
         public IActionResult Index()
         {
-            var data = _trainingCategoryService.GetTrainingCategories();
-            return View("Index", data);
+            return View();
         }
     }
 }
