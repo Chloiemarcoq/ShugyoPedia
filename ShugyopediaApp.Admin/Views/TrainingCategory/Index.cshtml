@@ -21,15 +21,20 @@
                     </thead>
                     <tbody>
 
-                        @foreach (var category in Model)
+                        @foreach (var category in (IEnumerable<TrainingCategoryViewModel>)Model)
                         {
                             <tr>
                                 <td>@category.CategoryName</td>
-                                <td>@Html.Raw(category.CategoryIcon) <kbd><kbd>"@category.CategoryIcon"</kbd></kbd></td>
+                                <td style ="text-align: left;">@Html.Raw(category.CategoryIcon) <kbd><kbd>"@category.CategoryIcon"</kbd></kbd></td>
                                 <td>
-                                    <a class="btn btn-primary" asp-action="Index" asp-controller="Training">View Trainings</a>
-                                    <a class="btn btn-primary" asp-action="EditTrainingCategory" asp-controller="TrainingCategory" asp-route-categoryId="@category.CategoryId">&#128393;</a>
-                                    <a class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal">&#128465;</a>
+                                    <form method="post">
+                                        <input type="hidden" id="CategoryId" name="CategoryId" class="form-control" value="@category.CategoryId">
+                                        <input type="hidden" id="CategoryName" name="CategoryName" class="form-control" value="@category.CategoryName">
+                                        <input type="hidden" id="CategoryIcon" name="CategoryIcon" class="form-control" value="@category.CategoryIcon">
+                                        <input type="submit" class="btn btn-primary" asp-action="Trainings" asp-controller="Training" value="View Trainings"><br>
+                                        <input type="submit" class="btn btn-primary" asp-action="RedirectEditTrainingCategory" asp-controller="TrainingCategory" value="&#128393;">
+                                        <input type="submit" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal" value="&#128465">;
+                                    </form>                                    
                                 </td>
                             </tr>
                         }                        

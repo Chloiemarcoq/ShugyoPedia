@@ -51,6 +51,15 @@ namespace ShugyopediaApp.Services.Services
             model.UpdatedTime = DateTime.Now;
             _trainingCategoryRepository.AddTrainingCategory(model);
         }
-
+        public void EditTrainingCategory(TrainingCategoryViewModel trainingCategory, string user)
+        {
+            var model = new TrainingCategory();
+            model.CategoryId = trainingCategory.CategoryId;
+            model.CategoryName = trainingCategory.CategoryName;
+            model.CategoryIcon = trainingCategory.CategoryIcon;
+            model.UpdatedBy = user;
+            model.UpdatedTime = DateTime.Now;
+            _trainingCategoryRepository.EditTrainingCategory(model);
+        }
     }
 }

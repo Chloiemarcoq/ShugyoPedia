@@ -12,5 +12,6 @@ namespace ShugyopediaApp.Services.Interfaces
         List<TrainingCategoryViewModel> GetTrainingCategories();
         string GetCategoryNameById(int categoryId);
         void AddTrainingCategory(TrainingCategoryViewModel trainingCategory, string user);
+        void EditTrainingCategory(TrainingCategoryViewModel trainingCategory, string user);
     }
 }

@@ -11,6 +11,7 @@ namespace ShugyopediaApp.Data.Interfaces
     {
         IQueryable<TrainingCategory> GetTrainingCategories();
         void AddTrainingCategory(TrainingCategory trainingCategory);
+        void EditTrainingCategory(TrainingCategory trainingCategory);
 
     }
 }

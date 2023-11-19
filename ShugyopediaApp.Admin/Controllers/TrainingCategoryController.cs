@@ -41,10 +41,16 @@ namespace ShugyopediaApp.Admin.Controllers
             _trainingCategoryService.AddTrainingCategory(trainingCategory, this.UserId);
             return RedirectToAction("Index");
         }
-        [HttpGet]
-        public IActionResult Edit(TrainingCategoryViewModel trainingCategory)
+        [HttpPost]
+        public IActionResult RedirectEditTrainingCategory(TrainingCategoryViewModel trainingCategory)
+        {
+            return View("EditTrainingCategory", trainingCategory);
+        }
+        [HttpPost]
+        public IActionResult EditTrainingCategory(TrainingCategoryViewModel trainingCategory)
 		{
-			return View(trainingCategory);
-		}
+            _trainingCategoryService.EditTrainingCategory(trainingCategory, this.UserId);
+            return RedirectToAction("Index");
+        }
 	}
 }
