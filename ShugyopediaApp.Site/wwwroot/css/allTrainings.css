@@ -1,0 +1,49 @@
+﻿.main-con {
+    background-image: url("/img/bg-shape.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: auto;
+}
+
+.allTrainings-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 50px;
+    padding-top:150px;
+    height: auto;
+    width: 100%;
+}
+
+/* SEARCH FORM */
+
+.search-container {
+    display: flex;
+}
+
+.search-input {
+    padding: 10px;
+    border: none;
+    border-radius: 20px;
+    width: 210px;
+    outline: none;
+}
+
+.search-button {
+    border: none;
+    padding: 10px 15px;
+    border-radius: 20px;
+    color: black;
+    cursor: pointer;
+    outline: none;
+}
+
+.topic-img-container {
+    border: 2px solid black;
+}
+
+.topic-img {
+    width: 200px;
+    height: 150px;
+}

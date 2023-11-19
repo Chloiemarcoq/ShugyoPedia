@@ -6,6 +6,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using ShugyopediaApp.Services.Services;
 using ShugyopediaApp.Services.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 
 namespace ShugyopediaApp.Site.Controllers
 {
@@ -36,6 +37,10 @@ namespace ShugyopediaApp.Site.Controllers
         /// Returns Home View.
         /// </summary>
         /// <returns> Home View </returns>
+        /// 
+
+        [HttpGet]
+        [AllowAnonymous]
         public IActionResult Index()
         {
             return View();

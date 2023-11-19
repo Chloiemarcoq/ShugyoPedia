@@ -1,19 +1,30 @@
 ﻿<!-- Sidebar -->
-<aside id="sidebar" class="sidebar border border-black border-2">
-    <div class="sidebar-header d-flex align-items-center justify-content-center">
-        <h4 class="m-0"><i class="bi bi-text-left"></i> Training Category</h4>
+<div id="sidebar" class="sidebar">
+    <div class="sidebar-header">
+        <img src="~/img/logo_with_text_dark.png" alt="" />
     </div>
+    <!--SEARCH BAR-->
     <form action="" method="POST" class="m-2">
-        <input type="text" name="search" id="search" class="form-control border-black" placeholder="Search...">
+        <div class="search-container">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <input type="search" name="search" id="search" class="form-control" placeholder="Search...">
+            <!--<input type="reset" />-->
+        </div>
     </form>
-    <ul class="sidebar-nav" id="sidebar-nav">
-        @foreach (var category in Model)
-        {
-            <li class="nav-item">
-                <a class="nav-link" asp-controller="Training" asp-action="AllTrainings" asp-route-category="@category.CategoryName">
-                    <span>@Html.Raw(category.CategoryIcon) @category.CategoryName</span>
-                </a>
-            </li>
-        }
-    </ul>
-</aside>
+    <!--END OF SEARCH BAR-->
+    <div style="padding:10px 10px;">
+        <h1 style="font-size:25px;">Trainings</h1>
+        <div class="trainings-list">
+            <ul class="sidebar-nav" id="sidebar-nav">
+                @foreach (var category in Model)
+                {
+                    <li class="nav-item">
+                        <a class="nav-link" asp-controller="Training" asp-action="AllTrainings" asp-route-category="@category.CategoryName">
+                            <span>@Html.Raw(category.CategoryIcon) @category.CategoryName</span>
+                        </a>
+                    </li>
+                }
+            </ul>
+        </div>
+    </div>
+</div>
