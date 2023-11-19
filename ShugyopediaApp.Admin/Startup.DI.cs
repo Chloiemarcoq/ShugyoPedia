@@ -33,14 +33,17 @@ namespace ShugyopediaApp.Admin
             this._services.AddScoped<IUnitOfWork, UnitOfWork>();
 
             // Services
-            this._services.TryAddSingleton<TokenValidationParametersFactory>();
             this._services.AddScoped<IUserService, UserService>();
             this._services.AddScoped<ITrainingCategoryService, TrainingCategoryService>();
+            this._services.AddScoped<ITrainingService, TrainingService>();
+            this._services.AddScoped<IRatingService, RatingService>();
 
 
             // Repositories
             this._services.AddScoped<IUserRepository, UserRepository>();
             this._services.AddScoped<ITrainingCategoryRepository, TrainingCategoryRepository>();
+            this._services.AddScoped<ITrainingRepository, TrainingRepository>();
+            this._services.AddScoped<IRatingRepository, RatingRepository>();
 
             // Manager Class
             this._services.AddScoped<SignInManager>();

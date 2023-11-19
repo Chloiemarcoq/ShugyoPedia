@@ -10,5 +10,8 @@ namespace ShugyopediaApp.Services.Interfaces
     public interface ITrainingService
     {
         Dictionary<string, object> GetTrainingsFromCategory(string category);
+        List<TrainingViewModel> GetTrainings();
+        void AddTraining(AddTrainingViewModel training, string user);
+        AddTrainingViewModel GetTrainingCategorySummary();//fetch only id and name
     }
 }

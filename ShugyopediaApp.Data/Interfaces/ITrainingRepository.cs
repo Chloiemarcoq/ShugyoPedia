@@ -10,5 +10,6 @@ namespace ShugyopediaApp.Data.Interfaces
     public interface ITrainingRepository
     {
         IQueryable<Training> GetTrainings();
+        void AddTraining(Training training);
     }
 }

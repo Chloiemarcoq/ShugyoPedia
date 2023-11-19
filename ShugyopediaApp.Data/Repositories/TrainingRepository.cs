@@ -18,6 +18,11 @@ namespace ShugyopediaApp.Data.Repositories
         {
             return this.GetDbSet<Training>();
         }
+        public void AddTraining(Training training)
+        {
+            this.GetDbSet<Training>().Add(training);
+            UnitOfWork.SaveChanges();
+        }
 
     }
 }

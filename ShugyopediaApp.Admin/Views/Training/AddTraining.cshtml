@@ -1,0 +1,50 @@
+﻿@{
+	ViewData["Title"] = "Add Training";
+}
+@model ShugyopediaApp.Services.ServiceModels.AddTrainingViewModel
+<main>
+    <div class="container my-4">
+        <h1 class="text-center">Add Training</h1>
+        <div class="row justify-content-center my-4">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-body">
+                        <form asp-controller="Training" asp-action="AddTraining" enctype="multipart/form-data" method="POST">
+                            <div class="form-group my-3">
+                                <div class="row">
+                                    <div class="col-6">
+                                        <label for="TrainingName">Training Name</label>
+                                        <input type="text" asp-for="TrainingName"
+                                               class="form-control" placeholder="Enter training name">
+                                    </div>
+                                    <div class="col-6">
+                                        <label for="CategoryNames">Category</label>
+                                        <select asp-for="CategoryId" class="form-select">
+                                            <option selected disabled>Select Category</option>
+                                            @foreach (var category in Model.Categories)
+                                            {
+                                                <option value="@category.CategoryId">@category.CategoryName</option>
+                                            }
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group my-3">
+                                <label for="TrainingDescription">Training Description:</label>
+                                <textarea asp-for="TrainingDescription" class="form-control" rows="3" placeholder="Enter training description..."></textarea>
+                            </div>
+                            <div class="form-group my-3 mx-auto">
+                                <label for="TrainingImage">Training Image: </label>
+                                <input type="file" asp-for="TrainingImage" accept=".png">
+                            </div>
+                            <div class="d-flex align-items-center justify-content-center mt-5">
+                                <button type="reset" class="btn btn-primary mx-5">Clear</button>
+                                <button type="submit" class="btn btn-success mx-5">Add Training</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>

@@ -11,6 +11,7 @@ namespace ShugyopediaApp.Services.ServiceModels
     {
         public int TrainingId { get; set; }
         public int CategoryId { get; set; }
+        public string CategoryName { get; set; }
         public string RateAverage { get; set; }
         public string TrainingName { get; set; }
         public string TrainingDescription { get; set; }

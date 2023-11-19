@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Text.RegularExpressions;
 
 namespace ShugyopediaApp.Data
 {
@@ -106,6 +107,24 @@ namespace ShugyopediaApp.Data
         {
             string result = Path.Combine(path, directoryName);
             return result;
+        }
+        public static string MakeValidFileName(string input)
+        {
+            // Replace invalid characters with an underscore
+            string invalidChars = new string(Path.GetInvalidFileNameChars()) + new string(Path.GetInvalidPathChars());
+            string regexPattern = "[" + Regex.Escape(invalidChars) + "]";
+            string validFileName = Regex.Replace(input, regexPattern, "_");
+
+            // Truncate the file name if it exceeds the maximum length
+            int maxLength = 255; // Maximum file name length in Windows
+            if (validFileName.Length > maxLength)
+            {
+                int extensionLength = Path.GetExtension(validFileName).Length;
+                int fileNameLength = maxLength - extensionLength;
+                validFileName = validFileName.Substring(0, fileNameLength) + Path.GetExtension(validFileName);
+            }
+
+            return validFileName;
         }
     }
 }
