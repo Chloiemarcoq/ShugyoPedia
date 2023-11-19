@@ -4,7 +4,7 @@
 
 @{
     ViewData["Title"] = "Training";
-    string trainingImagesUrl = PathManager.DirectoryPath.TrainingImagesDirectory;
+    string trainingImagesUrl = PathManager.UrlPath.TrainingImagesUrl;
 }
 @model List<TrainingViewModel>
 <main>
@@ -58,16 +58,16 @@
                                 <td>@training.CategoryName</td>
                                 <td>@training.TrainingDescription</td>
                                 <td>@training.RateAverage</td>
-                                <td><img src="@training.TrainingImage" class="rounded" alt="@training.TrainingImage"></td>                
+                                <td><img src="@training.TrainingImage" class="rounded" alt="@training.TrainingImage.Replace(trainingImagesUrl, string.Empty)"></td>
                                 <td>
                                     <form method="post">
-                                        <input type="hidden" id="TrainingId" name="TrainingId" class="form-control" value="@training.TrainingImage.Replace(trainingImagesUrl, "")">
+                                        <input type="hidden" id="TrainingId" name="TrainingId" class="form-control" value="@training.TrainingId">
                                         <input type="hidden" id="TrainingName" name="TrainingName" class="form-control" value="@training.TrainingName">
+                                        <input type="hidden" id="CategoryId" name="CategoryId" class="form-control" value="@training.CategoryId">
                                         <input type="hidden" id="CategoryName" name="CategoryName" class="form-control" value="@training.CategoryName">
                                         <input type="hidden" id="TrainingDescription" name="TrainingDescription" class="form-control" value="@training.TrainingDescription">
-                                        <input type="hidden" id="RateAverage" name="RateAverage" class="form-control" value="@training.RateAverage">
-                                        <input type="hidden" id="TrainingImage" name="TrainingImage" class="form-control" value="@training.TrainingImage">
-                                        <input type="submit" class="btn btn-primary" asp-action="RedirectEditTrainings" asp-controller="Training" value="&#128393;">
+                                        <input type="hidden" id="TrainingImage" name="TrainingImage" class="form-control" value="@training.TrainingImage.Replace(trainingImagesUrl, string.Empty)">
+                                        <input type="submit" class="btn btn-primary" asp-action="RedirectEditTraining" asp-controller="Training" value="&#128393;">
                                         <input type="submit" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal" value="&#128465">
                                     </form>
                                 </td>

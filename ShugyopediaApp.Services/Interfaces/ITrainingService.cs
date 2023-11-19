@@ -13,5 +13,6 @@ namespace ShugyopediaApp.Services.Interfaces
         List<TrainingViewModel> GetTrainings();
         void AddTraining(AddTrainingViewModel training, string user);
         AddTrainingViewModel GetTrainingCategorySummary();//fetch only id and name
+        void EditTraining(AddTrainingViewModel training, string user);
     }
 }

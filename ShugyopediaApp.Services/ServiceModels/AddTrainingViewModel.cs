@@ -12,9 +12,11 @@ namespace ShugyopediaApp.Services.ServiceModels
     {
         public List<TrainingCategoryViewModel> Categories { get; set; }
         public int CategoryId { get; set; }
+        public int TrainingId { get; set; }
         public string CategoryName { get; set; }
         public string TrainingName { get; set; }
         public string TrainingDescription { get; set; }
-        public IFormFile TrainingImage { get; set; }
+        public IFormFile TrainingImageFile { get; set; }
+        public string TrainingImage { get; set; }
     }
 }

@@ -53,6 +53,7 @@ namespace ShugyopediaApp.Services.Services
                     TrainingId = s.TrainingId,
                     TrainingName = s.TrainingName,
                     CategoryName = s.Category.CategoryName,
+                    CategoryId = s.CategoryId,
                     TrainingDescription = s.TrainingDescription,
                     TrainingImage = _trainingImagesUrl + s.TrainingImage,
                     RateAverage = _ratingService.GetRatingAverageFromTraining(s.TrainingId).ToString()
@@ -88,10 +89,31 @@ namespace ShugyopediaApp.Services.Services
             string trainingImageFullPath = Path.Combine(_trainingImagesDirectory, model.TrainingImage);
             using (var fileStream = new FileStream(trainingImageFullPath, FileMode.Create))
             {
-                training.TrainingImage.CopyTo(fileStream);
+                training.TrainingImageFile.CopyTo(fileStream);
             }
 
             _trainingRepository.AddTraining(model);
+        }
+        public void EditTraining(AddTrainingViewModel training, string user)
+        {
+            var model = new Training();
+            model.TrainingId = training.TrainingId;
+            model.TrainingName = training.TrainingName;
+            model.CategoryId = training.CategoryId;
+            model.TrainingDescription = training.TrainingDescription;
+            model.TrainingImage = PathManager.MakeValidFileName(training.TrainingName) + ".png";
+            model.UpdatedBy = user;
+            model.UpdatedTime = DateTime.Now;
+
+            if (training.TrainingImageFile != null)
+            {
+                string trainingImageFullPath = Path.Combine(_trainingImagesDirectory, model.TrainingImage);
+                using (var fileStream = new FileStream(trainingImageFullPath, FileMode.Create))
+                {
+                    training.TrainingImageFile.CopyTo(fileStream);
+                }
+            }
+            _trainingRepository.EditTraining(model);
         }
     }
 }

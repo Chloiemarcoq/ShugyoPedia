@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using ShugyopediaApp.Admin.Mvc;
+using ShugyopediaApp.Data.Models;
 using ShugyopediaApp.Services.Interfaces;
 using ShugyopediaApp.Services.ServiceModels;
 using ShugyopediaApp.Services.Services;
@@ -42,10 +43,23 @@ namespace ShugyopediaApp.Admin.Controllers
             _trainingService.AddTraining(training, this.UserId);
             return RedirectToAction("Index");
         }
-        [AllowAnonymous]
-		public IActionResult Edit()
-		{
-			return View();
+        [HttpPost]
+		public IActionResult RedirectEditTraining(TrainingViewModel training)
+        {
+            AddTrainingViewModel editTrainingData =  _trainingService.GetTrainingCategorySummary();
+            editTrainingData.TrainingId = training.TrainingId;
+            editTrainingData.TrainingName = training.TrainingName;
+            editTrainingData.CategoryId = training.CategoryId;
+            editTrainingData.CategoryName = training.CategoryName;
+            editTrainingData.TrainingDescription = training.TrainingDescription;
+            editTrainingData.TrainingImage = training.TrainingImage;
+            return View("EditTraining", editTrainingData);
 		}
-	}
+        [HttpPost]
+        public IActionResult EditTraining(AddTrainingViewModel training)
+        {
+            _trainingService.EditTraining(training, this.UserId);
+            return RedirectToAction("Index");
+        }
+    }
 }
