@@ -1,4 +1,5 @@
 ﻿using Basecode.Data.Repositories;
+using Microsoft.EntityFrameworkCore;
 using ShugyopediaApp.Data.Interfaces;
 using ShugyopediaApp.Data.Models;
 using System;
@@ -33,6 +34,16 @@ namespace ShugyopediaApp.Data.Repositories
                 recordFound.CategoryIcon = trainingCategory.CategoryIcon;
                 recordFound.UpdatedBy = trainingCategory.UpdatedBy;
                 recordFound.UpdatedTime = trainingCategory.UpdatedTime;
+                UnitOfWork.SaveChanges();
+            }
+        }
+        public void DeleteTrainingCategory(TrainingCategory trainingCategory)
+        {
+            var categoryToDelete = this.GetDbSet<TrainingCategory>().Find(trainingCategory.CategoryId);
+
+            if (categoryToDelete != null)
+            {
+                this.GetDbSet<TrainingCategory>().Remove(categoryToDelete);
                 UnitOfWork.SaveChanges();
             }
         }

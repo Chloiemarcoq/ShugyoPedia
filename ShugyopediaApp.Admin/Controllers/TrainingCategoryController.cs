@@ -52,5 +52,11 @@ namespace ShugyopediaApp.Admin.Controllers
             _trainingCategoryService.EditTrainingCategory(trainingCategory, this.UserId);
             return RedirectToAction("Index");
         }
+
+        [HttpPost]
+        public IActionResult DeleteTrainingCategory(TrainingCategory trainingCategory) {
+            _trainingCategoryService.DeleteTrainingCategory(trainingCategory.CategoryId);
+            return RedirectToAction("Index");
+        }
 	}
 }
