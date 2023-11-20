@@ -61,5 +61,11 @@ namespace ShugyopediaApp.Services.Services
             model.UpdatedTime = DateTime.Now;
             _trainingCategoryRepository.EditTrainingCategory(model);
         }
+        public void DeleteTrainingCategory(int categoryId)
+        {
+            var model = new TrainingCategory();
+            model.CategoryId = categoryId;
+            _trainingCategoryRepository.DeleteTrainingCategory(model);
+        }
     }
 }
