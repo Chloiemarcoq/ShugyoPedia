@@ -1,7 +1,7 @@
 ﻿@{
 	ViewData["Title"] = "Edit Training Category";
 }
-
+@model ShugyopediaApp.Services.ServiceModels.TrainingCategoryViewModel
 <main>
     <div class="container my-4">
         <h1 class="text-center">Edit Training Category</h1>
@@ -9,18 +9,19 @@
             <div class="col-md-6">
                 <div class="card">
                     <div class="card-body">
-                        <form action="" method="POST">
+                        <form asp-controller="TrainingCategory" asp-action="EditTrainingCategory" method="POST">
+                            <input type="hidden" asp-for="CategoryId" class="form-control"
+                                   value="@Model.CategoryId">
                             <div class="form-group my-3">
-                                <label for="category_name">Edit Category Name</label>
-                                <input type="text" name="category_name" id="category_name" class="form-control"
-                                       placeholder="Enter category name">
+                                <label for="CategoryName">Category Name</label>
+                                <input type="text" asp-for="CategoryName" class="form-control"
+                                       value="@Model.CategoryName">
                             </div>
                             <div class="form-group my-3">
-                                <label for="category_icon">Edit Category Icon</label>
-                                <input type="text" name="category_icon" id="category_icon" class="form-control"
-                                       placeholder="Enter category icon">
+                                <label for="CategoryIcon">Category Icon</label>
+                                <input type="text" asp-for="CategoryIcon" class="form-control" value="@Model.CategoryIcon">
                                 <p class="fw-6 p-0 m-0">
-                                    Copy Snippet from: <a href="http://fontawesome.com/search" target="_blank">http://fontawesome.com/search</a>
+                                    Copy Snippet from: <a href="http://fontawesome.com/search" target="_blank">http://fontawesome.com</a>
                                 </p>
                             </div>
                             <div class="d-flex align-items-center justify-content-center mt-5">

@@ -3,7 +3,7 @@ Scaffold-DbContext "Addr=localhost\SQLEXPRESS; database=shugyopediaDB; Trusted_C
 
 
 ---HTTP SERVER---
-http-server -S -C cert.pem -o
+http-server --cors -S -C cert.pem -o
 
 
 ---DATABASE QUERIES---

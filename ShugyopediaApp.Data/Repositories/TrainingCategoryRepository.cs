@@ -1,4 +1,5 @@
 ﻿using Basecode.Data.Repositories;
+using Microsoft.EntityFrameworkCore;
 using ShugyopediaApp.Data.Interfaces;
 using ShugyopediaApp.Data.Models;
 using System;
@@ -18,6 +19,33 @@ namespace ShugyopediaApp.Data.Repositories
         public IQueryable<TrainingCategory> GetTrainingCategories() 
         {
             return this.GetDbSet<TrainingCategory>();
+        }
+        public void AddTrainingCategory(TrainingCategory trainingCategory)
+        {
+            this.GetDbSet<TrainingCategory>().Add(trainingCategory);
+            UnitOfWork.SaveChanges();
+        }
+        public void EditTrainingCategory(TrainingCategory trainingCategory)
+        {
+            var recordFound = this.GetDbSet<TrainingCategory>().Find(trainingCategory.CategoryId);
+            if (recordFound != null)
+            {
+                recordFound.CategoryName = trainingCategory.CategoryName;
+                recordFound.CategoryIcon = trainingCategory.CategoryIcon;
+                recordFound.UpdatedBy = trainingCategory.UpdatedBy;
+                recordFound.UpdatedTime = trainingCategory.UpdatedTime;
+                UnitOfWork.SaveChanges();
+            }
+        }
+        public void DeleteTrainingCategory(TrainingCategory trainingCategory)
+        {
+            var categoryToDelete = this.GetDbSet<TrainingCategory>().Find(trainingCategory.CategoryId);
+
+            if (categoryToDelete != null)
+            {
+                this.GetDbSet<TrainingCategory>().Remove(categoryToDelete);
+                UnitOfWork.SaveChanges();
+            }
         }
     }
 }

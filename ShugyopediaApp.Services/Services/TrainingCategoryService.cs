@@ -1,4 +1,5 @@
 ﻿using ShugyopediaApp.Data.Interfaces;
+using ShugyopediaApp.Data.Models;
 using ShugyopediaApp.Data.Repositories;
 using ShugyopediaApp.Services.Interfaces;
 using ShugyopediaApp.Services.ServiceModels;
@@ -20,10 +21,16 @@ namespace ShugyopediaApp.Services.Services
         }
         public List<TrainingCategoryViewModel> GetTrainingCategories() 
         {
-            var data = _trainingCategoryRepository.GetTrainingCategories().Select(s => new TrainingCategoryViewModel{
-                CategoryName = s.CategoryName,
-                CategoryIcon = s.CategoryIcon}).ToList();
-            return data;            
+            var data = _trainingCategoryRepository
+                .GetTrainingCategories()
+                .Select(s => new TrainingCategoryViewModel{
+                    CategoryId = s.CategoryId,
+                    CategoryName = s.CategoryName,
+                    CategoryIcon = s.CategoryIcon
+                })
+                .OrderBy(s => s.CategoryId)
+                .ToList();
+            return data;
         }
         public string GetCategoryNameById(int categoryId)
         {
@@ -33,6 +40,32 @@ namespace ShugyopediaApp.Services.Services
                 .FirstOrDefault();
             return categoryName;
         }
-
+        public void AddTrainingCategory(TrainingCategoryViewModel trainingCategory, string user)
+        {
+            var model = new TrainingCategory();
+            model.CategoryName = trainingCategory.CategoryName;
+            model.CategoryIcon = trainingCategory.CategoryIcon;
+            model.CreatedBy = user;
+            model.CreatedTime = DateTime.Now;
+            model.UpdatedBy = user;
+            model.UpdatedTime = DateTime.Now;
+            _trainingCategoryRepository.AddTrainingCategory(model);
+        }
+        public void EditTrainingCategory(TrainingCategoryViewModel trainingCategory, string user)
+        {
+            var model = new TrainingCategory();
+            model.CategoryId = trainingCategory.CategoryId;
+            model.CategoryName = trainingCategory.CategoryName;
+            model.CategoryIcon = trainingCategory.CategoryIcon;
+            model.UpdatedBy = user;
+            model.UpdatedTime = DateTime.Now;
+            _trainingCategoryRepository.EditTrainingCategory(model);
+        }
+        public void DeleteTrainingCategory(int categoryId)
+        {
+            var model = new TrainingCategory();
+            model.CategoryId = categoryId;
+            _trainingCategoryRepository.DeleteTrainingCategory(model);
+        }
     }
 }

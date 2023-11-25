@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
@@ -30,12 +31,14 @@ namespace ShugyopediaApp.Site.Controllers
             _trainingService = trainingService;
         }
         [HttpGet]
+        [AllowAnonymous]
         public IActionResult AllTrainings(string category)
         {
             var data = _trainingService.GetTrainingsFromCategory(category);
             return View("AllTrainings", data);
         }
         [HttpGet]
+        [AllowAnonymous]
         public IActionResult Training(string training)
         {
             var data = _trainingService.GetTrainingsFromCategory(training);

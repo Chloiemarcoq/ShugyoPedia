@@ -11,6 +11,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Include="wwwroot\img\bg-shape.png" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="AutoMapper" Version="11.0.1" />
     <PackageReference Include="BCrypt.Net-Next" Version="4.0.3" />
     <PackageReference Include="LinqKit" Version="1.2.2" />
@@ -33,9 +37,5 @@
   <ItemGroup>
     <ProjectReference Include="..\ShugyopediaApp.Resources\ShugyopediaApp.Resources.csproj" />
     <ProjectReference Include="..\ShugyopediaApp.Services\ShugyopediaApp.Services.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="wwwroot\img\" />
   </ItemGroup>
 </Project>
