@@ -44,5 +44,10 @@ namespace ShugyopediaApp.Site.Controllers
             var data = _trainingService.GetTrainingsFromCategory(training);
             return View("Training", data);
         }
+
+        public IActionResult Topic()
+        {
+            return View();
+        }
     }
 }
