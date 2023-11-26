@@ -7,17 +7,26 @@
         <div class="logo">
             <img src="~/img/logo_with_text_light.png" />
         </div>
-        <div class="right">
-
+        <div class="right d-flex align-items-center me-5">
+            <ul>
+                <li class="nav-item dropdown" style="list-style: none;">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <img src="~/img/defaultimage.jpg" class="rounded-circle" width="40"> Username
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" asp-action="" asp-controller=""><i class="fa-regular fa-user"></i> Manage Account</a></li>
+                        <li><a class="dropdown-item" asp-action="" asp-controller=""><i class="fa-solid fa-arrow-right-from-bracket"></i> Logout</a></li>
+                    </ul>
+                </li>
+            </ul>
         </div>
     </div>
     <div class="navbar2">
-        <a class="link">Training Categories</a>
-        <a class="link">Training</a>
-        <a class="link">Ratings</a>
-        <a class="link">Topics</a>
-        <a class="link">Users</a>
-        <a class="link">Account Recovery Requests</a>
-
+        <a class="link" asp-action="Index" asp-controller="TrainingCategory">Training Categories</a>
+        <a class="link" asp-action="Index" asp-controller="Training">Training</a>
+        <a class="link" asp-action="Index" asp-controller="Rating">Ratings</a>
+        <a class="link" asp-action="Index" asp-controller="Topic">Topics</a>
+        <a class="link" asp-action="Index" asp-controller="User">Users</a>
+        <a class="link" asp-action="Index" asp-controller="AccountRecovery">Account Recovery Requests</a>
    </div>
 </header>
