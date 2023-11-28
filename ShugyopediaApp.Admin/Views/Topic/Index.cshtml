@@ -1,105 +1,53 @@
-﻿@{
+﻿@using ShugyopediaApp.Data;
+@using ShugyopediaApp.Services.ServiceModels;
+@{
 	ViewData["Title"] = "Topics";
+    string topicResourcesUrl = PathManager.UrlPath.TopicResources;
 }
+@model List<TopicViewModel>
 
 <main>
     <div class="container-fluid">
         <h1 class="text-center">Topics</h1>
         @await Component.InvokeAsync("Filter")
         <div class="d-flex justify-content-between">
-            <a class="btn btn-success" asp-action="Add" asp-controller="Topic">+Add Topic</a>
+            <a class="btn btn-success" asp-action="AddTopic" asp-controller="Topic">+Add Topic</a>
         </div>
         <div class="card my-3">
             <div class="card-body">
                 <table class="table table-striped table-hover table-borderless text-center my-3" id="datatable">
                     <thead class="table-info">
                         <tr>
-                            <th>Topic ID</th>
-                            <th>Topic Name</th>
                             <th>Training Name</th>
-                            <th>Created By</th>
-                            <th>Created Time</th>
-                            <th>Updated By</th>
-                            <th>Updated Time</th>
+                            <th>Topic Name</th>
                             <th>Resource</th>
-                            <th>Resource Action</th>
                             <th>Topic Action</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>1</td>
-                            <td>Introduction to HTML</td>
-                            <td>HTML</td>
-                            <td>Alpha</td>
-                            <td>02/02/02</td>
-                            <td>Bravo</td>
-                            <td>02/02/02</td>
-                            <td>html.pdf</td>
-                            <td>
-                                <button class="btn btn-success" data-bs-toggle="modal"
-                                        data-bs-target="#editModal">
-                                    &#128393;
-                                </button>
-                                <button class="btn btn-danger" data-bs-toggle="modal"
-                                        data-bs-target="#deleteResourceModal">
-                                    &#128465;
-                                </button>
-                                <a class="btn btn-primary w-25" href="#" download>&#10515;</a>
-                            </td>
-                            <td>
-                                <a class="btn btn-primary" asp-action="Edit" asp-controller="Topic">&#128393;</a>
-                                <a class="btn btn-danger" data-bs-toggle="modal"
-                                   data-bs-target="#deleteTopicModal">&#128465;</a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>2</td>
-                            <td>Introduction to Python</td>
-                            <td>Python</td>
-                            <td>Alpha</td>
-                            <td>02/02/02</td>
-                            <td>Bravo</td>
-                            <td>02/02/02</td>
-                            <td>None</td>
-                            <td>
-                                <button class="btn btn-success" data-bs-toggle="modal"
-                                        data-bs-target="#addModal">
-                                    Add
-                                </button>
-                            </td>
-                            <td>
-                                <a class="btn btn-primary" asp-action="Edit" asp-controller="Topic">&#128393;</a>
-                                <a class="btn btn-danger" data-bs-toggle="modal"
-                                   data-bs-target="#deleteTopicModal">&#128465;</a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>3</td>
-                            <td>Introduction to HTML</td>
-                            <td>HTML</td>
-                            <td>Alpha</td>
-                            <td>02/02/02</td>
-                            <td>Bravo</td>
-                            <td>02/02/02</td>
-                            <td>html.pdf</td>
-                            <td>
-                                <button class="btn btn-success" data-bs-toggle="modal"
-                                        data-bs-target="#editModal">
-                                    E
-                                </button>
-                                <button class="btn btn-danger" data-bs-toggle="modal"
-                                        data-bs-target="#deleteResourceModal">
-                                    &#128465;
-                                </button>
-                                <a class="btn btn-primary w-25" href="#" download>&#10515;</a>
-                            </td>
-                            <td>
-                                <a class="btn btn-primary" asp-action="Edit" asp-controller="Topic">&#128393;</a>
-                                <a class="btn btn-danger" data-bs-toggle="modal"
-                                   data-bs-target="#deleteTopicModal">&#128465;</a>
-                            </td>
-                        </tr>
+                        @foreach (var topic in Model)
+                        {
+                            <tr>
+                                <td>@topic.TrainingName</td>
+                                <td>@topic.TopicName</td>
+                                <td>
+                                    <a>
+                                        @topic.ResourceFile
+                                    </a>
+                                </td>
+                                <td>
+                                    <form method="post">
+                                        <input type="hidden" id="TrainingId" name="TrainingId" class="form-control" value="@topic.TrainingId">
+                                        <input type="hidden" id="TrainingName" name="TrainingName" class="form-control" value="@topic.TrainingName">
+                                        <input type="hidden" id="TopicId" name="TopicId" class="form-control" value="@topic.TopicId">
+                                        <input type="hidden" id="TopicName" name="TopicName" class="form-control" value="@topic.TopicName">
+                                        <input type="hidden" id="ResourceFile" name="ResourceFile" class="form-control" value="@topic.ResourceFile">
+                                        <input type="submit" class="btn btn-primary" asp-action="RedirectEditTopic" asp-controller="Topic" value="&#128393;">
+                                        <input type="submit" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal" value="&#128465">
+                                    </form>
+                                </td>
+                            </tr>
+                        }                        
                     </tbody>
                 </table>
             </div>
