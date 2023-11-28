@@ -1,7 +1,7 @@
 ﻿@{
 	ViewData["Title"] = "Add Topic";
 }
-
+@model ShugyopediaApp.Services.ServiceModels.AddTopicViewModel
 <main>
     <div class="container my-4">
         <h1 class="text-center">Add Topic</h1>
@@ -9,20 +9,22 @@
             <div class="col-md-6">
                 <div class="card">
                     <div class="card-body">
-                        <form action="" method="POST">
+                        <form asp-controller="Topic" asp-action="AddTopic" enctype="multipart/form-data" method="POST">
                             <div class="form-group my-3">
                                 <div class="row">
                                     <div class="col-6">
                                         <label for="training_name">Training Name</label>
-                                        <select name="training_name" id="training_name" class="form-select">
-                                            <option value="html">HTML</option>
-                                            <option value="python">PYTHON</option>
-                                            <option value="php">PHP</option>
+                                        <select asp-for="TrainingId" class="form-select">
+                                            <option selected disabled>Select Training</option>
+                                            @foreach (var training in Model.Trainings)
+                                            {
+                                                <option value="@training.TrainingId">@training.TrainingName</option>
+                                            }
                                         </select>
                                     </div>
                                     <div class="col-6">
-                                        <label for="topic_name">Topic Name</label>
-                                        <input type="text" name="topic_name" id="topic_name" class="form-control" placeholder="Enter topic name">
+                                        <label for="TopicName">Topic Name</label>
+                                        <input type="text" asp-for="TopicName" class="form-control" placeholder="Enter topic name">
                                     </div>
                                 </div>
                             </div>
@@ -31,18 +33,14 @@
                             <div class="form-group my-3">
                                 <div class="row">
                                     <div class="col-6">
-                                        <label for="resource_name">Resource Name</label>
-                                        <input type="text" name="resource_name" id="resource_name" class="form-control" placeholder="Enter resource name">
-                                    </div>
-                                    <div class="col-6">
-                                        <label for="resource_file">Resource File Upload</label>
-                                        <input type="file" name="resource_file" id="resource_file">
+                                        <label for="ResourceFileUpload">Resource File</label>
+                                        <input type="file" asp-for="ResourceFileUpload" accept=".mp4,.pdf,.ppt,.pps">
                                     </div>
                                 </div>
                             </div>
                             <div class="d-flex align-items-center justify-content-center mt-5">
                                 <button type="reset" class="btn btn-primary mx-5">Clear</button>
-                                <button type="submit" class="btn btn-success mx-5">Add</button>
+                                <button type="submit" class="btn btn-success mx-5">Add Topic</button>
                             </div>
                         </form>
                     </div>

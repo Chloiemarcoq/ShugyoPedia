@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Text.RegularExpressions;
 
 namespace ShugyopediaApp.Data
 {
@@ -56,7 +57,10 @@ namespace ShugyopediaApp.Data
             {
                 get { return GetFolderPath(StorageServerDirectory, "training_images"); }
             }
-
+            public static string TopicResourcesDirectory
+            {
+                get { return GetFolderPath(StorageServerDirectory, "topic_resources"); }
+            }
 
             /// <summary>
             /// application log directory path
@@ -77,6 +81,10 @@ namespace ShugyopediaApp.Data
             public static string WWWRootCommonUrl
             {
                 get { return StorageServerUrl + "wwwroot_common/"; }
+            }
+            public static string TopicResources
+            {
+                get { return StorageServerUrl + "topic_resources/"; }
             }
         }
 
@@ -106,6 +114,24 @@ namespace ShugyopediaApp.Data
         {
             string result = Path.Combine(path, directoryName);
             return result;
+        }
+        public static string MakeValidFileName(string input)
+        {
+            // Replace invalid characters with an underscore
+            string invalidChars = new string(Path.GetInvalidFileNameChars()) + new string(Path.GetInvalidPathChars());
+            string regexPattern = "[" + Regex.Escape(invalidChars) + "]";
+            string validFileName = Regex.Replace(input, regexPattern, "_");
+
+            // Truncate the file name if it exceeds the maximum length
+            int maxLength = 255; // Maximum file name length in Windows
+            if (validFileName.Length > maxLength)
+            {
+                int extensionLength = Path.GetExtension(validFileName).Length;
+                int fileNameLength = maxLength - extensionLength;
+                validFileName = validFileName.Substring(0, fileNameLength) + Path.GetExtension(validFileName);
+            }
+
+            return validFileName;
         }
     }
 }

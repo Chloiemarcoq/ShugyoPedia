@@ -18,7 +18,7 @@ namespace ShugyopediaApp.Data.Repositories
         }
         public IQueryable<TrainingCategory> GetTrainingCategories() 
         {
-            return this.GetDbSet<TrainingCategory>();
+            return this.GetDbSet<TrainingCategory>().Include(s => s.training);
         }
         public void AddTrainingCategory(TrainingCategory trainingCategory)
         {

@@ -31,7 +31,7 @@
                                         <input type="hidden" id="CategoryId" name="CategoryId" class="form-control" value="@category.CategoryId">
                                         <input type="hidden" id="CategoryName" name="CategoryName" class="form-control" value="@category.CategoryName">
                                         <input type="hidden" id="CategoryIcon" name="CategoryIcon" class="form-control" value="@category.CategoryIcon">
-                                        <input type="submit" class="btn btn-primary" asp-action="Trainings" asp-controller="Training" value="View Trainings"><br>
+                                        <input type="submit" class="btn btn-primary" asp-action="Index" asp-controller="Training" asp-route-category="@category.CategoryName" value="View Trainings"><br>
                                         <input type="submit" class="btn btn-primary" asp-action="RedirectEditTrainingCategory" asp-controller="TrainingCategory" value="&#128393;">
                                         <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal_@category.CategoryId">&#128465;</button>
                                     </form>                                    
