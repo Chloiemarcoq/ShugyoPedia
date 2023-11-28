@@ -22,7 +22,7 @@ namespace ShugyopediaApp.Services.Services
         }
         public List<TrainingCategoryViewModel> GetTrainingCategories() 
         {
-            var data = _trainingCategoryRepository
+            List<TrainingCategoryViewModel> data = _trainingCategoryRepository
                 .GetTrainingCategories()                
                 .Select(s => new TrainingCategoryViewModel{
                     CategoryId = s.CategoryId,
@@ -36,7 +36,7 @@ namespace ShugyopediaApp.Services.Services
         }
         public string GetCategoryNameById(int categoryId)
         {
-            var categoryName = _trainingCategoryRepository.GetTrainingCategories()
+            string categoryName = _trainingCategoryRepository.GetTrainingCategories()
                 .Where(t => t.CategoryId == categoryId)
                 .Select(t => t.CategoryName)
                 .FirstOrDefault();
