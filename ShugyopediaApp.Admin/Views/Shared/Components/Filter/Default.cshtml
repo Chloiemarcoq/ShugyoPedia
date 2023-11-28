@@ -1,0 +1,32 @@
+﻿@model Dictionary<string, List<string>>
+<div class="row justify-content-center my-4">
+    <div class="col-6">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="text-center">Advanced Filter</h4>
+                <form action="" method="POST">
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="form-group my-3">
+                                <label for="filter_category">Filter by: Training</label>
+                                <div class="d-flex">
+                                    <select name="filter_category" id="filter_category" class="form-select">
+                                        <option selected><u>All</u></option>
+                                        @foreach (var category in Model)
+                                        {                                            
+                                            <option disabled><u>@category.Key</u></option>
+                                            foreach (var training in category.Value)
+                                            {
+                                                <option value="@training">@training</option>
+                                            }
+                                        }                                        
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
