@@ -13,5 +13,6 @@ namespace ShugyopediaApp.Services.Interfaces
         string GetCategoryNameById(int categoryId);
         void AddTrainingCategory(TrainingCategoryViewModel trainingCategory, string user);
         void EditTrainingCategory(TrainingCategoryViewModel trainingCategory, string user);
+        void DeleteTrainingCategory(int categoryId);
     }
 }
