@@ -61,7 +61,7 @@ namespace ShugyopediaApp.Admin.Controllers
         }
         public IActionResult DeleteUser(User user)
 		{
-            _userService.DeleteUser(user.id);
+            _userService.DeleteUser(user.Id);
             return RedirectToAction("Index");
 		}
     }
