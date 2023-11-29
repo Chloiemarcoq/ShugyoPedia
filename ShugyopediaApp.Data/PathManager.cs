@@ -57,7 +57,10 @@ namespace ShugyopediaApp.Data
             {
                 get { return GetFolderPath(StorageServerDirectory, "training_images"); }
             }
-
+            public static string TopicResourcesDirectory
+            {
+                get { return GetFolderPath(StorageServerDirectory, "topic_resources"); }
+            }
 
             /// <summary>
             /// application log directory path
@@ -78,6 +81,10 @@ namespace ShugyopediaApp.Data
             public static string WWWRootCommonUrl
             {
                 get { return StorageServerUrl + "wwwroot_common/"; }
+            }
+            public static string TopicResources
+            {
+                get { return StorageServerUrl + "topic_resources/"; }
             }
         }
 

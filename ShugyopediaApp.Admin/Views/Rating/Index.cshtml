@@ -1,6 +1,8 @@
-﻿@{
+﻿@using ShugyopediaApp.Services.ServiceModels;
+@{
     ViewData["Title"] = "Rating";
 }
+@model List<RatingViewModel>
 
 <main>
     <div class="container-fluid">
@@ -10,15 +12,15 @@
                 <option value="html">HTML</option>
             </select>
         </h1>
+        @await Component.InvokeAsync("Filter")
         <div class="card my-3">
             <div class="card-body">
                 <table class="table table-striped table-hover table-borderless text-center my-3" id="datatable">
                     <thead class="table-info">
                         <tr>
-                            <th>Rating ID</th>
                             <th>Training Name</th>
-                            <th>Rating Review</th>
                             <th>Rate</th>
+                            <th>Rating Review</th>
                             <th>Rater's Name</th>
                             <th>Rater's Email</th>
                             <th>Created Time</th>
@@ -26,45 +28,21 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>1</td>
-                            <td>Programming</td>
-                            <td>Looks good</td>
-                            <td>5</td>
-                            <td>Alpha</td>
-                            <td>alpha@gmail.com</td>
-                            <td>02/02/02</td>
-                            <td>
-                                <a class="btn btn-danger" data-bs-toggle="modal"
-                                   data-bs-target="#deleteModal">&#128465;</a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>2</td>
-                            <td>Programming</td>
-                            <td>Very informative</td>
-                            <td>5</td>
-                            <td>Bravo</td>
-                            <td>bravo@gmail.com</td>
-                            <td>02/02/02</td>
-                            <td>
-                                <a class="btn btn-danger" data-bs-toggle="modal"
-                                   data-bs-target="#deleteModal">&#128465;</a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>3</td>
-                            <td>Programming</td>
-                            <td>Alot of learnings</td>
-                            <td>5</td>
-                            <td>Charlie</td>
-                            <td>charlie@gmail.com</td>
-                            <td>02/02/02</td>
-                            <td>
-                                <a class="btn btn-danger" data-bs-toggle="modal"
-                                   data-bs-target="#deleteModal">&#128465;</a>
-                            </td>
-                        </tr>
+                        @foreach (var rating in (IEnumerable<RatingViewModel>)Model)
+                        {
+                            <tr>
+                                <td>@rating.TrainingName</td>
+                                <td>@rating.Rate</td>
+                                <td>@rating.RatingReview</td>
+                                <td>@rating.RaterName</td>
+                                <td>@rating.RaterEmail</td>
+                                <td>@rating.CreatedTime</td>
+                                <td>
+                                    <a class="btn btn-danger" data-bs-toggle="modal"
+                                       data-bs-target="#deleteModal">&#128465;</a>
+                                </td>
+                            </tr>
+                        }
                     </tbody>
                 </table>
             </div>

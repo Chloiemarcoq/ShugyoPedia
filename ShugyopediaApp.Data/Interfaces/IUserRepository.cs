@@ -13,5 +13,6 @@ namespace ShugyopediaApp.Data.Interfaces
         bool UserExists(string userId);
         void AddUser(User user);
         void DeleteUser(User user);
+        void EditUser(User user);
     }
 }

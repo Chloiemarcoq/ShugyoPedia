@@ -9,6 +9,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace ShugyopediaApp.Services.Services
@@ -45,8 +46,8 @@ namespace ShugyopediaApp.Services.Services
             return result;
         }
         public List<TrainingViewModel> GetTrainings()
-        {           
-            var trainings = _trainingRepository
+        {
+            List<TrainingViewModel> trainings = _trainingRepository
                 .GetTrainings()
                 .Select(s => new TrainingViewModel
                 {
@@ -80,7 +81,7 @@ namespace ShugyopediaApp.Services.Services
             model.TrainingName = training.TrainingName;
             model.CategoryId = training.CategoryId;
             model.TrainingDescription = training.TrainingDescription;
-            model.TrainingImage = PathManager.MakeValidFileName(training.TrainingName) + ".png";
+            model.TrainingImage = Regex.Replace(PathManager.MakeValidFileName(training.TrainingName) + ".png", @"\s", "");
             model.CreatedBy = user;
             model.CreatedTime = DateTime.Now;
             model.UpdatedBy = user;
@@ -101,7 +102,7 @@ namespace ShugyopediaApp.Services.Services
             model.TrainingName = training.TrainingName;
             model.CategoryId = training.CategoryId;
             model.TrainingDescription = training.TrainingDescription;
-            model.TrainingImage = PathManager.MakeValidFileName(training.TrainingName) + ".png";
+            model.TrainingImage = Regex.Replace(PathManager.MakeValidFileName(training.TrainingName) + ".png", @"\s", "");
             model.UpdatedBy = user;
             model.UpdatedTime = DateTime.Now;
 

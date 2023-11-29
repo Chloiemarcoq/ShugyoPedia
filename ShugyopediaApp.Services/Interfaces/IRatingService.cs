@@ -1,4 +1,5 @@
 ﻿using ShugyopediaApp.Data.Interfaces;
+using ShugyopediaApp.Services.ServiceModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,5 +13,6 @@ namespace ShugyopediaApp.Services.Interfaces
     {
         public float GetRatingAverageFromTraining(int trainingId);
         public void DeleteRating(int ratingId);
+        List<RatingViewModel> GetRatings();
     }
 }

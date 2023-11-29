@@ -9,6 +9,9 @@ namespace ShugyopediaApp.Data.Interfaces
 {
     public interface ITopicRepository
     {
+        IQueryable<Topic> GetTopics();
+        void AddTopic(Topic topic);
+        void EditTopic(Topic topic);
         void DeleteTopic(Topic topic);
     }
 }
