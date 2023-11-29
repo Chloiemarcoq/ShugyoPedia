@@ -8,5 +8,6 @@ namespace ShugyopediaApp.Services.Interfaces
     {
         LoginResult AuthenticateUser(string userid, string password, ref User user);
         void AddUser(UserViewModel model);
+        void DeleteUser(int id);
     }
 }

@@ -37,6 +37,16 @@ namespace ShugyopediaApp.Data.Repositories
                 UnitOfWork.SaveChanges();
             }
         }
+        public void DeleteTraining(Training training)
+        {
+            var trainingToDelete = this.GetDbSet<Training>().Find(training.TrainingId);
+
+            if (trainingToDelete != null)
+            {
+                this.GetDbSet<Training>().Remove(trainingToDelete);
+                UnitOfWork.SaveChanges();
+            }
+        }
 
     }
 }

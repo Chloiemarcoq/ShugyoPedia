@@ -1,5 +1,15 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Logging;
+using ShugyopediaApp.Admin.Mvc;
+using ShugyopediaApp.Data.Models;
+using ShugyopediaApp.Services.Interfaces;
+using ShugyopediaApp.Services.ServiceModels;
+using ShugyopediaApp.Services.Services;
+using System.Collections.Generic;
 
 namespace ShugyopediaApp.Admin.Controllers
 {
@@ -21,6 +31,12 @@ namespace ShugyopediaApp.Admin.Controllers
 		public IActionResult Edit()
 		{
 			return View();
+		}
+
+		public IActionResult DeleteUser(User user)
+		{
+            _userService.DeleteUser(user.id);
+            return RedirectToAction("Index");
 		}
 	}
 }

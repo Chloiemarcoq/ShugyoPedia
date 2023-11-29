@@ -54,7 +54,7 @@ namespace ShugyopediaApp.Data
 
             modelBuilder.Entity<Topic>(entity =>
             {
-                entity.HasIndex(e => e.TopicName, "UQ__Topics__6C795E8CAD34DA35")
+                entity.HasIndex(e => e.TopicName, "UQ__Topics__6C795E8C95411B4B")
                     .IsUnique();
 
                 entity.Property(e => e.CreatedBy)
@@ -86,7 +86,7 @@ namespace ShugyopediaApp.Data
             modelBuilder.Entity<TopicResource>(entity =>
             {
                 entity.HasKey(e => e.ResourceId)
-                    .HasName("PK__TopicRes__4ED1816F213287A4");
+                    .HasName("PK__TopicRes__4ED1816F53C6B3BD");
 
                 entity.Property(e => e.CreatedBy)
                     .IsRequired()
@@ -190,7 +190,7 @@ namespace ShugyopediaApp.Data
 
             modelBuilder.Entity<User>(entity =>
             {
-                entity.HasIndex(e => e.UserId, "UQ__Users__1788CCADAF754138")
+                entity.HasIndex(e => e.UserId, "UQ__Users__1788CCAD6FD26CEC")
                     .IsUnique();
 
                 entity.Property(e => e.CreatedBy)

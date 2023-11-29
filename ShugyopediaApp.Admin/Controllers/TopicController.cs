@@ -22,5 +22,16 @@ namespace ShugyopediaApp.Admin.Controllers
 		{
 			return View();
 		}
+
+		public IActionResult DeleteResource()
+		{
+			return RedirectToAction("Index");
+		}
+
+		public IActionResult DeleteTopic(Topic topic)
+		{
+			_topicService.DeleteTopic(topic.topicId);
+            return RedirectToAction("Index");
+        }
 	}
 }

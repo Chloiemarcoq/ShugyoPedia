@@ -32,5 +32,15 @@ namespace ShugyopediaApp.Data.Repositories
             UnitOfWork.SaveChanges();
         }
 
+        public void DeleteUser(User user)
+        {
+            var userToDelete = this.GetDbSet<User>().Find(user.Id);
+
+            if (userToDelete != null)
+            {
+                this.GetDbSet<User>().Remove(userToDelete);
+                UnitOfWork.SaveChanges();
+            }
+        }
     }
 }

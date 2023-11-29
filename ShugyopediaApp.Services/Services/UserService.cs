@@ -1,4 +1,5 @@
-﻿using ShugyopediaApp.Data.Interfaces;
+﻿using ShugyopediaApp.Data;
+using ShugyopediaApp.Data.Interfaces;
 using ShugyopediaApp.Data.Models;
 using ShugyopediaApp.Services.Interfaces;
 using ShugyopediaApp.Services.Manager;
@@ -8,6 +9,7 @@ using System;
 using System.IO;
 using System.Linq;
 using static ShugyopediaApp.Resources.Constants.Enums;
+using ShugyopediaApp.Data.Repositories;
 
 namespace ShugyopediaApp.Services.Services
 {
@@ -50,6 +52,13 @@ namespace ShugyopediaApp.Services.Services
             {
                 throw new InvalidDataException(Resources.Messages.Errors.UserExists);
             }
+        }
+
+        public void DeleteUser(int id)
+        {
+            var model = new User();
+            model.Id = id;
+            _userRepository.DeleteUser(model);
         }
     }
 }

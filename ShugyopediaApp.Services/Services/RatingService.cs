@@ -1,5 +1,6 @@
 ﻿using ShugyopediaApp.Data.Interfaces;
 using ShugyopediaApp.Data.Models;
+using ShugyopediaApp.Data.Repositories;
 using ShugyopediaApp.Services.Interfaces;
 using ShugyopediaApp.Services.ServiceModels;
 using System;
@@ -25,6 +26,13 @@ namespace ShugyopediaApp.Services.Services
             float averageRate = countOfRatings > 0 ? sumOfRates / countOfRatings : 0;
             averageRate = (float)Math.Round(averageRate, 1);
             return averageRate;
+        }
+
+        public void DeleteRating(int ratingId) 
+        {
+            var model = new Rating();
+            model.RatingId = ratingId;
+            _ratingRepository.DeleteRating(model);
         }
     }
 }

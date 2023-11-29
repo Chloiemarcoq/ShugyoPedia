@@ -18,6 +18,6 @@ namespace ShugyopediaApp.Data.Models
         public string UpdatedBy { get; set; }
         public DateTime UpdatedTime { get; set; }
 
-        public ICollection<Training> training { get; set; }
+        public virtual ICollection<Training> training { get; set; }
     }
 }

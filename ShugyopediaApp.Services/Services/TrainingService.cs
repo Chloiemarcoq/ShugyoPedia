@@ -115,5 +115,11 @@ namespace ShugyopediaApp.Services.Services
             }
             _trainingRepository.EditTraining(model);
         }
+        public void DeleteTraining(int trainingId) 
+        {
+            var model = new Training();
+            model.TrainingId = trainingId;
+            _trainingRepository.DeleteTraining(model);
+        }
     }
 }

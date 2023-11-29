@@ -7,11 +7,8 @@ using System.Threading.Tasks;
 
 namespace ShugyopediaApp.Data.Interfaces
 {
-    public interface IUserRepository
+    public interface ITopicRepository
     {
-        IQueryable<User> GetUsers();
-        bool UserExists(string userId);
-        void AddUser(User user);
-        void DeleteUser(User user);
+        void DeleteTopic(Topic topic);
     }
 }

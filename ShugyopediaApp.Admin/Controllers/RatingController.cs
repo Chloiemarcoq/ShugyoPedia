@@ -10,5 +10,11 @@ namespace ShugyopediaApp.Admin.Controllers
         {
             return View();
         }
+
+        public IActionResult DeleteRating(Rating rating)
+        {
+            _ratingService.DeleteRating(rating.ratingId);
+            return RedirectToAction("Index");
+        }
     }
 }

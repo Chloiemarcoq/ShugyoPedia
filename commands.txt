@@ -1,3 +1,6 @@
+--- CLONE BUT ONLY A SPECIFIC BRANCH ---
+git clone --single-branch --branch <branchname> <remote-repo>
+
 ---.NET COMMANDS---
 Scaffold-DbContext "Addr=localhost\SQLEXPRESS; database=shugyopediaDB; Trusted_Connection=True;MultipleActiveResultSets=true;TrustServerCertificate=True" Microsoft.EntityFrameworkCore.SqlServer -OutputDir Models -ContextDir Data/.. -Force
 
@@ -5,6 +8,11 @@ Scaffold-DbContext "Addr=localhost\SQLEXPRESS; database=shugyopediaDB; Trusted_C
 ---HTTP SERVER---
 http-server --cors -S -C cert.pem -o
 
+-- para mag delete --
+= controller
+= service then interface IService
+= repository then interface IRepository
+= 
 
 ---DATABASE QUERIES---
 ALTER TABLE Users

@@ -7,10 +7,8 @@ using System.Threading.Tasks;
 
 namespace ShugyopediaApp.Services.Interfaces
 {
-    
-    public interface IRatingService
+    public interface ITopicService
     {
-        public float GetRatingAverageFromTraining(int trainingId);
-        public void DeleteRating(int ratingId);
+        void DeleteTopic(int topicId);
     }
 }
