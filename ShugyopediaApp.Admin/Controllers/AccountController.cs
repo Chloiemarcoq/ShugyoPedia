@@ -17,6 +17,8 @@ using System.Threading.Tasks;
 using static ShugyopediaApp.Resources.Constants.Enums;
 using System.Net.Mail;
 using System.Net;
+using ShugyopediaApp.Data.Interfaces;
+using ShugyopediaApp.Data.Repositories;
 
 namespace ShugyopediaApp.Admin.Controllers
 {
@@ -28,6 +30,7 @@ namespace ShugyopediaApp.Admin.Controllers
         private readonly TokenProviderOptionsFactory _tokenProviderOptionsFactory;
         private readonly IConfiguration _appConfiguration;
         private readonly IUserService _userService;
+        private readonly IAccountRecoveryRequestRepository _accountRecoveryRequestRepository;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="AccountController"/> class.
@@ -48,6 +51,7 @@ namespace ShugyopediaApp.Admin.Controllers
                             IConfiguration configuration,
                             IMapper mapper,
                             IUserService userService,
+                            IAccountRecoveryRequestRepository accountRecoveryRequestRepository,
                             TokenValidationParametersFactory tokenValidationParametersFactory,
                             TokenProviderOptionsFactory tokenProviderOptionsFactory) : base(httpContextAccessor, loggerFactory, configuration, mapper)
         {
@@ -57,6 +61,7 @@ namespace ShugyopediaApp.Admin.Controllers
             this._tokenValidationParametersFactory = tokenValidationParametersFactory;
             this._appConfiguration = configuration;
             this._userService = userService;
+            _accountRecoveryRequestRepository = accountRecoveryRequestRepository;
         }
 
         /// <summary>
@@ -114,35 +119,81 @@ namespace ShugyopediaApp.Admin.Controllers
             return RedirectToAction("Login", "Account");
         }
         [AllowAnonymous]
-        public IActionResult Forgot()
+        public IActionResult ForgotPassword()
         {
             return View();
         }
         [HttpPost]
         [AllowAnonymous]
-        public IActionResult Forgot(LoginViewModel email)
+        public IActionResult EmailCheckExist(ForgotPasswordViewModel email)
         {
-            var mail = "dwight.eyac20@gmail.com";
+            //if email exist else return view error
+            if (_userService.UserExistsEmail(email.UserEmail))
+            {
+                return RedirectToAction("EmailSender", "Account", new { receiverEmail = email.UserEmail});
+            }
+            else
+            {
+                TempData["ErrorMessage"] = "Email associated to any account";
+                return RedirectToAction("ForgotPassword", "Account");
+            }
+            
+        }
+        [HttpGet]
+        [AllowAnonymous]
+        //This saves the request to the database as well as send the email
+        public IActionResult EmailSender(string receiverEmail)
+        {            
+            string token = Guid.NewGuid().ToString();
+            AccountRecoveryRequest request = new AccountRecoveryRequest { 
+                UserEmail = receiverEmail,
+                Token = token,
+                DateExpiration = DateTime.Now.AddHours(2)
+            };
+            _accountRecoveryRequestRepository.AddRequest(request);
+            var senderMail = "dwight.eyac20@gmail.com";
             var pw = "vces kwbh hghn ousu";
             var client = new SmtpClient("smtp.gmail.com")
             {
                 Port = 587,
-                Credentials = new NetworkCredential(mail, pw),
+                Credentials = new NetworkCredential(senderMail, pw),
                 EnableSsl = true
             };
             client.SendMailAsync(
-                new MailMessage(from: mail,
-                                to: email.ToString(),
-                                "test subject",
-                                "tjis is ypur link recovery pass"));
+                new MailMessage(from: senderMail,
+                                to: receiverEmail, 
+                                subject: "test subject",
+                                body: "https://localhost:22519/Account/ResetPassword?token="+ token
+                                )
+                );
             TempData["ErrorMessage"] = "Check your email";
             return RedirectToAction("Login", "Account");
         }
 
-        //[HttpPost]
-        //[AllowAnonymous]
-        //public IActionResult ResetPassword(LoginViewModel email)
-        //{   
+        [HttpGet]
+        [AllowAnonymous]
+        public IActionResult ResetPassword(string token)
+        {
+            if (_accountRecoveryRequestRepository.ValidRequest(token))
+            {
+                string email = _accountRecoveryRequestRepository.GetRequestEmailByToken(token);
+                if (_userService.UserExistsEmail(email))
+                {
+                    UserViewModel model = new UserViewModel { UserEmail = email };
+                    return View(model);
+                }
+            }
+            //invalid token or expired request here
+            return RedirectToAction("ForgotPassword", "Account");          
+        }
+        [HttpPost]
+        [AllowAnonymous]
+        public IActionResult ResetPassword(UserViewModel user)
+        {
+            _userService.ResetPassword(user);
+            TempData["ErrorMessage"] = "Password Reset Successful";
+            return RedirectToAction("Login", "Account");
+        }
         //    User user = null;
         //    var loginResult = _userService.AuthenticateUser(model.UserId, model.Password, ref user);
         //    if (loginResult == LoginResult.Success)
@@ -160,10 +211,5 @@ namespace ShugyopediaApp.Admin.Controllers
         //    }
         //}
 
-        [AllowAnonymous]
-        public IActionResult Reset()
-        {
-            return View();
-        }
     }
 }

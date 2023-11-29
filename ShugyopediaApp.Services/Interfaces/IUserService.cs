@@ -11,5 +11,7 @@ namespace ShugyopediaApp.Services.Interfaces
         List<UserViewModel> GetUsers();
         public void AddUser(UserViewModel addUser, string user);
         void EditUser(UserViewModel editUser, string user);
+        bool UserExistsEmail(string email);
+        void ResetPassword(UserViewModel user);
     }
 }

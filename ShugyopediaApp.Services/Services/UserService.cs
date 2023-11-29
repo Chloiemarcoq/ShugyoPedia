@@ -83,5 +83,18 @@ namespace ShugyopediaApp.Services.Services
             model.UpdatedBy = user;
             _repository.EditUser(model);
         }
+        public bool UserExistsEmail(string email)
+        {
+            return _repository.UserExistsEmail(email);
+        }
+        public void ResetPassword(UserViewModel user)
+        {
+            User model = new User();
+            model.UserEmail = user.UserEmail;
+            model.Password = PasswordManager.EncryptPassword(user.Password);
+            model.UpdatedTime = DateTime.Now;
+            model.UpdatedBy = user.UserEmail;
+            _repository.ResetPassword(model);
+        }
     }
 }
