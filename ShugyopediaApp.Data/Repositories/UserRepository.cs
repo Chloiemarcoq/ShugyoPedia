@@ -31,6 +31,20 @@ namespace ShugyopediaApp.Data.Repositories
             this.GetDbSet<User>().Add(user);
             UnitOfWork.SaveChanges();
         }
+        public void EditUser(User user)
+        {
+            var recordFound = this.GetDbSet<User>().Find(user.Id);
+            if (recordFound != null)
+            {
+                recordFound.UserId = user.UserId;
+                recordFound.Name = user.Name;
+                recordFound.UserEmail = user.UserEmail;
+                recordFound.Password = user.Password;
+                recordFound.UpdatedBy = user.UpdatedBy;
+                recordFound.UpdatedTime = user.UpdatedTime;
+                UnitOfWork.SaveChanges();
+            }
+        }
 
     }
 }

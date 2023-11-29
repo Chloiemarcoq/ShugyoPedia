@@ -8,6 +8,10 @@ using System;
 using System.IO;
 using System.Linq;
 using static ShugyopediaApp.Resources.Constants.Enums;
+using System.Collections.Generic;
+using ShugyopediaApp.Data.Repositories;
+using ShugyopediaApp.Data;
+using System.Text.RegularExpressions;
 
 namespace ShugyopediaApp.Services.Services
 {
@@ -31,25 +35,53 @@ namespace ShugyopediaApp.Services.Services
 
             return user != null ? LoginResult.Success : LoginResult.Failed;
         }
-
-        public void AddUser(UserViewModel model)
+        public List<UserViewModel> GetUsers()
         {
-            var user = new User();
-            if (!_repository.UserExists(model.UserId))
-            {
-                _mapper.Map(model, user);
-                user.Password = PasswordManager.EncryptPassword(model.Password);
-                user.CreatedTime = DateTime.Now;
-                user.UpdatedTime = DateTime.Now;
-                user.CreatedBy = System.Environment.UserName;
-                user.UpdatedBy = System.Environment.UserName;
+            List<UserViewModel> users = _repository.GetUsers()
+                .Select(s => new UserViewModel
+                {
+                    Id = s.Id,
+                    UserId = s.UserId,
+                    Name = s.Name,
+                    UserEmail = s.UserEmail,
+                    Password = PasswordManager.DecryptPassword(s.Password)
+                })
+                .OrderBy(s => s.UserId)
+                .ToList();
+            return users;
+        }
 
-                _repository.AddUser(user);
+        public void AddUser(UserViewModel addUser, string user)
+        {
+            if (!_repository.UserExists(addUser.UserId))
+            {
+                User model = new User();
+                model.UserId = addUser.UserId;
+                model.Name = addUser.Name;
+                model.UserEmail = addUser.UserEmail;
+                model.Password = PasswordManager.EncryptPassword(addUser.Password);
+                model.CreatedTime = DateTime.Now;
+                model.UpdatedTime = DateTime.Now;
+                model.CreatedBy = user;
+                model.UpdatedBy = user;
+                _repository.AddUser(model);
             }
             else
             {
                 throw new InvalidDataException(Resources.Messages.Errors.UserExists);
             }
+        }
+        public void EditUser(UserViewModel editUser, string user)
+        {
+            User model = new User();
+            model.Id = editUser.Id;
+            model.UserId = editUser.UserId;
+            model.Name = editUser.Name;
+            model.UserEmail = editUser.UserEmail;
+            model.Password = PasswordManager.EncryptPassword(editUser.Password);
+            model.UpdatedTime = DateTime.Now;
+            model.UpdatedBy = user;
+            _repository.EditUser(model);
         }
     }
 }

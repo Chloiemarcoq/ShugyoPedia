@@ -12,5 +12,6 @@ namespace ShugyopediaApp.Data.Interfaces
         IQueryable<User> GetUsers();
         bool UserExists(string userId);
         void AddUser(User user);
+        void EditUser(User user);
     }
 }

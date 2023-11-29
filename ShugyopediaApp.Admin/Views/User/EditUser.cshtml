@@ -1,0 +1,49 @@
+﻿@{
+	ViewData["Title"] = "Edit User";
+}
+@model ShugyopediaApp.Services.ServiceModels.UserViewModel
+<main>
+    <div class="container my-4">
+        <h1 class="text-center">Edit User</h1>
+        <div class="row justify-content-center my-4">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-body">
+                        <form asp-action="EditUser" asp-controller="User" method="POST">
+                            <input type="hidden" asp-for="Id" value="@Model.Id">
+                            <div class="form-group my-3">
+                                <label for="UserId">User ID</label>
+                                <input type="text" asp-for="UserId" class="form-control"
+                                       placeholder="Enter username">
+                            </div>
+                            <div class="form-group my-3">
+                                <label for="Name">Full Name</label>
+                                <input type="text" asp-for="Name" class="form-control"
+                                       placeholder="Enter Full Name">
+                            </div>
+                            <div class="form-group my-3">
+                                <label for="UserEmail">Email</label>
+                                <input type="email" asp-for="UserEmail" class="form-control"
+                                       placeholder="Enter email">
+                            </div>
+                            <div class="form-group my-3">
+                                <label for="Password">Old Password</label>
+                                <input type="password" asp-for="Password" class="form-control"
+                                       placeholder="Enter password" value="@Model.Password">
+                            </div>
+                            <div class="form-group my-3">
+                                <label for="ConfirmPassword">Confirm Password</label>
+                                <input type="password" asp-for="ConfirmPassword" class="form-control"
+                                       placeholder="Enter confirm password" value="@Model.Password">
+                            </div>                            
+                            <div class="d-flex align-items-center justify-content-center mt-5">
+                                <button type="reset" class="btn btn-primary mx-5">Clear</button>
+                                <button type="submit" class="btn btn-success mx-5">Edit</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
