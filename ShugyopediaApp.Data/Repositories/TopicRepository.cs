@@ -1,4 +1,5 @@
 ﻿using Basecode.Data.Repositories;
+using Microsoft.EntityFrameworkCore;
 using ShugyopediaApp.Data.Interfaces;
 using ShugyopediaApp.Data.Models;
 using System;
