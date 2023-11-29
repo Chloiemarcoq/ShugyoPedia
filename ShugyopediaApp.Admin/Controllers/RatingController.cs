@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using ShugyopediaApp.Admin.Mvc;
+using ShugyopediaApp.Data.Models;
 using ShugyopediaApp.Services.Interfaces;
 using ShugyopediaApp.Services.ServiceModels;
 using System.Collections.Generic;
@@ -32,7 +33,7 @@ namespace ShugyopediaApp.Admin.Controllers
 
         public IActionResult DeleteRating(Rating rating)
         {
-            _ratingService.DeleteRating(rating.ratingId);
+            _ratingService.DeleteRating(rating.RatingId);
             return RedirectToAction("Index");
         }
     }

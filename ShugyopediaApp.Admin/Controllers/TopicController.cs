@@ -62,7 +62,7 @@ namespace ShugyopediaApp.Admin.Controllers
         }
         public IActionResult DeleteTopic(Topic topic)
 		{
-			_topicService.DeleteTopic(topic.topicId);
+			_topicService.DeleteTopic(topic.TopicId);
             return RedirectToAction("Index");
         }
     }
