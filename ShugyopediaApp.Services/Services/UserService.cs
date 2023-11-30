@@ -51,6 +51,11 @@ namespace ShugyopediaApp.Services.Services
                 .ToList();
             return users;
         }
+        public User GetUserByEmail(string email)
+        {
+            User user = _repository.GetUserByEmail(email);
+            return user;
+        }
 
         public void AddUser(UserViewModel addUser, string user)
         {
@@ -83,6 +88,19 @@ namespace ShugyopediaApp.Services.Services
             model.UpdatedTime = DateTime.Now;
             model.UpdatedBy = user;
             _repository.EditUser(model);
+        }
+        public bool UserExistsEmail(string email)
+        {
+            return _repository.UserExistsEmail(email);
+        }
+        public void ResetPassword(UserViewModel user)
+        {
+            User model = new User();
+            model.UserEmail = user.UserEmail;
+            model.Password = PasswordManager.EncryptPassword(user.Password);
+            model.UpdatedTime = DateTime.Now;
+            model.UpdatedBy = user.UserEmail;
+            _repository.ResetPassword(model);
         }
         public void DeleteUser(int id)
         {

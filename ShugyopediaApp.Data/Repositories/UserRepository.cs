@@ -20,10 +20,18 @@ namespace ShugyopediaApp.Data.Repositories
         {
             return this.GetDbSet<User>();
         }
-
+        public User GetUserByEmail(string email)
+        {
+            return GetDbSet<User>()
+                .FirstOrDefault(u => u.UserEmail == email);
+        }
         public bool UserExists(string userId)
         {
             return this.GetDbSet<User>().Any(x => x.UserId == userId);
+        }
+        public bool UserExistsEmail(string userEmail)
+        {
+            return this.GetDbSet<User>().Any(x => x.UserEmail == userEmail);
         }
 
         public void AddUser(User user)
@@ -39,6 +47,19 @@ namespace ShugyopediaApp.Data.Repositories
                 recordFound.UserId = user.UserId;
                 recordFound.Name = user.Name;
                 recordFound.UserEmail = user.UserEmail;
+                recordFound.Password = user.Password;
+                recordFound.UpdatedBy = user.UpdatedBy;
+                recordFound.UpdatedTime = user.UpdatedTime;
+                UnitOfWork.SaveChanges();
+            }
+        }
+        public void ResetPassword(User user)
+        {
+            var recordFound = this.GetDbSet<User>()
+                .FirstOrDefault(u => u.UserEmail == user.UserEmail);
+
+            if (recordFound != null)
+            {
                 recordFound.Password = user.Password;
                 recordFound.UpdatedBy = user.UpdatedBy;
                 recordFound.UpdatedTime = user.UpdatedTime;

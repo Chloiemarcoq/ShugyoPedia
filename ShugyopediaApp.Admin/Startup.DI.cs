@@ -38,6 +38,7 @@ namespace ShugyopediaApp.Admin
             this._services.AddScoped<ITrainingService, TrainingService>();
             this._services.AddScoped<IRatingService, RatingService>();
             this._services.AddScoped<ITopicService, TopicService>();
+            this._services.AddScoped<IAccountRecoveryRequestService, AccountRecoveryRequestService>();
 
 
             // Repositories
@@ -46,6 +47,7 @@ namespace ShugyopediaApp.Admin
             this._services.AddScoped<ITrainingRepository, TrainingRepository>();
             this._services.AddScoped<IRatingRepository, RatingRepository>();
             this._services.AddScoped<ITopicRepository, TopicRepository>();
+            this._services.AddScoped<IAccountRecoveryRequestRepository, AccountRecoveryRequestRepository>();
 
             // Manager Class
             this._services.AddScoped<SignInManager>();

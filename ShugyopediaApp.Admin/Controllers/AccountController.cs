@@ -17,6 +17,8 @@ using System.Threading.Tasks;
 using static ShugyopediaApp.Resources.Constants.Enums;
 using System.Net.Mail;
 using System.Net;
+using ShugyopediaApp.Data.Interfaces;
+using ShugyopediaApp.Data.Repositories;
 
 namespace ShugyopediaApp.Admin.Controllers
 {
@@ -28,6 +30,7 @@ namespace ShugyopediaApp.Admin.Controllers
         private readonly TokenProviderOptionsFactory _tokenProviderOptionsFactory;
         private readonly IConfiguration _appConfiguration;
         private readonly IUserService _userService;
+        private readonly IAccountRecoveryRequestService _accountRecoveryRequestService;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="AccountController"/> class.
@@ -48,6 +51,7 @@ namespace ShugyopediaApp.Admin.Controllers
                             IConfiguration configuration,
                             IMapper mapper,
                             IUserService userService,
+                            IAccountRecoveryRequestService accountRecoveryRequestService,
                             TokenValidationParametersFactory tokenValidationParametersFactory,
                             TokenProviderOptionsFactory tokenProviderOptionsFactory) : base(httpContextAccessor, loggerFactory, configuration, mapper)
         {
@@ -57,6 +61,7 @@ namespace ShugyopediaApp.Admin.Controllers
             this._tokenValidationParametersFactory = tokenValidationParametersFactory;
             this._appConfiguration = configuration;
             this._userService = userService;
+            _accountRecoveryRequestService = accountRecoveryRequestService;
         }
 
         /// <summary>
@@ -114,56 +119,58 @@ namespace ShugyopediaApp.Admin.Controllers
             return RedirectToAction("Login", "Account");
         }
         [AllowAnonymous]
-        public IActionResult Forgot()
+        public IActionResult ForgotPassword()
         {
             return View();
         }
         [HttpPost]
         [AllowAnonymous]
-        public IActionResult Forgot(LoginViewModel email)
+        public IActionResult EmailCheckExist(ForgotPasswordViewModel email)
         {
-            var mail = "dwight.eyac20@gmail.com";
-            var pw = "vces kwbh hghn ousu";
-            var client = new SmtpClient("smtp.gmail.com")
+            //if email exist else return view error
+            if (_userService.UserExistsEmail(email.UserEmail))
             {
-                Port = 587,
-                Credentials = new NetworkCredential(mail, pw),
-                EnableSsl = true
-            };
-            client.SendMailAsync(
-                new MailMessage(from: mail,
-                                to: email.ToString(),
-                                "test subject",
-                                "tjis is ypur link recovery pass"));
+                return RedirectToAction("EmailSender", "Account", new { receiverEmail = email.UserEmail});
+            }
+            else
+            {
+                TempData["ErrorMessage"] = "Email associated to any account";
+                return RedirectToAction("ForgotPassword", "Account");
+            }
+            
+        }
+        [HttpGet]
+        [AllowAnonymous]
+        //This saves the request to the database as well as send the email
+        public IActionResult EmailSender(string email)
+        {            
+            _accountRecoveryRequestService.EmailSender(email);
             TempData["ErrorMessage"] = "Check your email";
             return RedirectToAction("Login", "Account");
         }
-
-        //[HttpPost]
-        //[AllowAnonymous]
-        //public IActionResult ResetPassword(LoginViewModel email)
-        //{   
-        //    User user = null;
-        //    var loginResult = _userService.AuthenticateUser(model.UserId, model.Password, ref user);
-        //    if (loginResult == LoginResult.Success)
-        //    {
-        //        // 認証OK
-        //        await this._signInManager.SignInAsync(user);
-        //        this._session.SetString("UserName", user.Name);
-        //        return RedirectToAction("Index", "Home");
-        //    }
-        //    else
-        //    {
-        //        // 認証NG
-        //        TempData["ErrorMessage"] = "Incorrect UserId or Password";
-        //        return View();
-        //    }
-        //}
-
+        [HttpGet]
         [AllowAnonymous]
-        public IActionResult Reset()
+        public IActionResult ResetPassword(string token)
         {
-            return View();
+            if (_accountRecoveryRequestService.ValidRequest(token))
+            {
+                string email = _accountRecoveryRequestService.GetRequestEmailByToken(token);
+                if (_userService.UserExistsEmail(email))
+                {
+                    UserViewModel model = new UserViewModel { UserEmail = email };
+                    return View(model);
+                }
+            }
+            //invalid token or expired request here
+            return RedirectToAction("ForgotPassword", "Account");          
+        }
+        [HttpPost]
+        [AllowAnonymous]
+        public IActionResult ResetPassword(UserViewModel user)
+        {
+            _userService.ResetPassword(user);
+            TempData["ErrorMessage"] = "Password Reset Successful";
+            return RedirectToAction("Login", "Account");
         }
     }
 }
