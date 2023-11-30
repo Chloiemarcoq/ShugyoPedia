@@ -130,7 +130,7 @@ namespace ShugyopediaApp.Admin.Controllers
             //if email exist else return view error
             if (_userService.UserExistsEmail(email.UserEmail))
             {
-                return RedirectToAction("EmailSender", "Account", new { receiverEmail = email.UserEmail});
+                return RedirectToAction("EmailSender", "Account", new { email = email.UserEmail});
             }
             else
             {
@@ -169,6 +169,7 @@ namespace ShugyopediaApp.Admin.Controllers
         public IActionResult ResetPassword(UserViewModel user)
         {
             _userService.ResetPassword(user);
+            _accountRecoveryRequestService.DeleteRequestByEmail(user.UserEmail);
             TempData["ErrorMessage"] = "Password Reset Successful";
             return RedirectToAction("Login", "Account");
         }

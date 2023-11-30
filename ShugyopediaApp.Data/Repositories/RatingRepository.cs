@@ -22,7 +22,7 @@ namespace ShugyopediaApp.Data.Repositories
 
         public void DeleteRating(Rating rating)
         {
-            var ratingToDelete = this.GetDbSet<Rating>().Find(rating.RaterName);
+            var ratingToDelete = this.GetDbSet<Rating>().Find(rating.RatingId);
 
             if (ratingToDelete != null)
             {

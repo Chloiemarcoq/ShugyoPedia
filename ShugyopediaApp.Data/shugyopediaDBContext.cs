@@ -23,7 +23,7 @@ namespace ShugyopediaApp.Data
         public virtual DbSet<Training> Trainings { get; set; }
         public virtual DbSet<TrainingCategory> TrainingCategories { get; set; }
         public virtual DbSet<User> Users { get; set; }
-                
+        
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<AccountRecoveryRequest>(entity =>
@@ -111,40 +111,6 @@ namespace ShugyopediaApp.Data
                     .HasForeignKey(d => d.TrainingId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_TrainingID");
-            });
-            
-            modelBuilder.Entity<TopicResource>(entity =>
-            {
-                entity.HasKey(e => e.ResourceId)
-                    .HasName("PK__TopicRes__4ED1816F53C6B3BD");
-
-                entity.Property(e => e.CreatedBy)
-                    .IsRequired()
-                    .HasMaxLength(50)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.CreatedTime).HasColumnType("datetime");
-
-                entity.Property(e => e.ResourceName)
-                    .IsRequired()
-                    .HasMaxLength(50)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.ResourcePath)
-                    .IsRequired()
-                    .HasMaxLength(2048)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.ResourceType)
-                    .IsRequired()
-                    .HasMaxLength(50)
-                    .IsUnicode(false);
-
-                entity.HasOne(d => d.Topic)
-                    .WithMany(p => p.TopicResources)
-                    .HasForeignKey(d => d.TopicId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_TopicID");
             });
 
             modelBuilder.Entity<Training>(entity =>

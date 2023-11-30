@@ -11,7 +11,6 @@ using System.Linq;
 using static ShugyopediaApp.Resources.Constants.Enums;
 using System.Collections.Generic;
 using ShugyopediaApp.Data.Repositories;
-using ShugyopediaApp.Data;
 using System.Text.RegularExpressions;
 
 namespace ShugyopediaApp.Services.Services
@@ -106,7 +105,7 @@ namespace ShugyopediaApp.Services.Services
         {
             var model = new User();
             model.Id = id;
-            _userRepository.DeleteUser(model);
+            _repository.DeleteUser(model);
         }
     }
 }
