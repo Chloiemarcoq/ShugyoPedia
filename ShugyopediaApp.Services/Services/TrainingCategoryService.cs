@@ -5,6 +5,7 @@ using ShugyopediaApp.Services.Interfaces;
 using ShugyopediaApp.Services.ServiceModels;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -21,12 +22,13 @@ namespace ShugyopediaApp.Services.Services
         }
         public List<TrainingCategoryViewModel> GetTrainingCategories() 
         {
-            var data = _trainingCategoryRepository
-                .GetTrainingCategories()
+            List<TrainingCategoryViewModel> data = _trainingCategoryRepository
+                .GetTrainingCategories()                
                 .Select(s => new TrainingCategoryViewModel{
                     CategoryId = s.CategoryId,
                     CategoryName = s.CategoryName,
-                    CategoryIcon = s.CategoryIcon
+                    CategoryIcon = s.CategoryIcon,
+                    Training = s.training
                 })
                 .OrderBy(s => s.CategoryId)
                 .ToList();
@@ -34,7 +36,7 @@ namespace ShugyopediaApp.Services.Services
         }
         public string GetCategoryNameById(int categoryId)
         {
-            var categoryName = _trainingCategoryRepository.GetTrainingCategories()
+            string categoryName = _trainingCategoryRepository.GetTrainingCategories()
                 .Where(t => t.CategoryId == categoryId)
                 .Select(t => t.CategoryName)
                 .FirstOrDefault();

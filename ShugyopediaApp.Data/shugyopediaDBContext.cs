@@ -19,7 +19,6 @@ namespace ShugyopediaApp.Data
 
         public virtual DbSet<Rating> Ratings { get; set; }
         public virtual DbSet<Topic> Topics { get; set; }
-        public virtual DbSet<TopicResource> TopicResources { get; set; }
         public virtual DbSet<Training> Trainings { get; set; }
         public virtual DbSet<TrainingCategory> TrainingCategories { get; set; }
         public virtual DbSet<User> Users { get; set; }
@@ -54,7 +53,7 @@ namespace ShugyopediaApp.Data
 
             modelBuilder.Entity<Topic>(entity =>
             {
-                entity.HasIndex(e => e.TopicName, "UQ__Topics__6C795E8CAD34DA35")
+                entity.HasIndex(e => e.TopicName, "UQ__Topics__6C795E8CAFD64F1B")
                     .IsUnique();
 
                 entity.Property(e => e.CreatedBy)
@@ -63,6 +62,10 @@ namespace ShugyopediaApp.Data
                     .IsUnicode(false);
 
                 entity.Property(e => e.CreatedTime).HasColumnType("datetime");
+
+                entity.Property(e => e.ResourceFile)
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
 
                 entity.Property(e => e.TopicName)
                     .IsRequired()
@@ -81,40 +84,6 @@ namespace ShugyopediaApp.Data
                     .HasForeignKey(d => d.TrainingId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_TrainingID");
-            });
-
-            modelBuilder.Entity<TopicResource>(entity =>
-            {
-                entity.HasKey(e => e.ResourceId)
-                    .HasName("PK__TopicRes__4ED1816F213287A4");
-
-                entity.Property(e => e.CreatedBy)
-                    .IsRequired()
-                    .HasMaxLength(50)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.CreatedTime).HasColumnType("datetime");
-
-                entity.Property(e => e.ResourceName)
-                    .IsRequired()
-                    .HasMaxLength(50)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.ResourcePath)
-                    .IsRequired()
-                    .HasMaxLength(2048)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.ResourceType)
-                    .IsRequired()
-                    .HasMaxLength(50)
-                    .IsUnicode(false);
-
-                entity.HasOne(d => d.Topic)
-                    .WithMany(p => p.TopicResources)
-                    .HasForeignKey(d => d.TopicId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_TopicID");
             });
 
             modelBuilder.Entity<Training>(entity =>
@@ -190,7 +159,7 @@ namespace ShugyopediaApp.Data
 
             modelBuilder.Entity<User>(entity =>
             {
-                entity.HasIndex(e => e.UserId, "UQ__Users__1788CCADAF754138")
+                entity.HasIndex(e => e.UserId, "UQ__Users__1788CC4DA596A5F8")
                     .IsUnique();
 
                 entity.Property(e => e.CreatedBy)
@@ -225,8 +194,7 @@ namespace ShugyopediaApp.Data
                 entity.Property(e => e.UserId)
                     .IsRequired()
                     .HasMaxLength(50)
-                    .IsUnicode(false)
-                    .HasColumnName("UserID");
+                    .IsUnicode(false);
             });
 
             OnModelCreatingPartial(modelBuilder);
