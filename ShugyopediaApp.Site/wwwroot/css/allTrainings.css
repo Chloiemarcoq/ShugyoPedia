@@ -1,11 +1,25 @@
-﻿.main-con {
+﻿.main {
+    padding: 20px;
+    margin-left: 300px;
+}
+.imgtop {
+position:absolute;
+z-index:1;
+align-content:center;
+align-items:center;
+text-align:center;
+float:right;
+margin-top:5%;
+}
+
+.main-con {
     background-image: url("/img/bg-shape.png");
     background-repeat: no-repeat;
     background-size: cover;
-    height: auto;
+    background-position: center center;
 }
 
-.allTrainings-container {
+/*.allTrainings-container {
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -14,7 +28,7 @@
     padding-top:150px;
     height: auto;
     width: 100%;
-}
+}*/
 
 /* SEARCH FORM */
 
@@ -46,4 +60,30 @@
 .topic-img {
     width: 200px;
     height: 150px;
+}
+
+.pos-img {
+    position: absolute;
+    top: -5px;
+    right: 1px;
+}
+
+.cut-text {
+    display: -webkit-box;
+    overflow: hidden;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 4;
+}
+
+.cut-text-2 {
+    display: -webkit-box;
+    overflow: hidden;
+    -webkit-box-orient: horizontal;
+    -webkit-line-clamp: 2;
+}
+
+.learn-btn {
+    background-color: #2F3CED;
+    position: absolute;
+    bottom: 30px;
 }
