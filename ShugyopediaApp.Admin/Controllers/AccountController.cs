@@ -30,7 +30,7 @@ namespace ShugyopediaApp.Admin.Controllers
         private readonly TokenProviderOptionsFactory _tokenProviderOptionsFactory;
         private readonly IConfiguration _appConfiguration;
         private readonly IUserService _userService;
-        private readonly IAccountRecoveryRequestRepository _accountRecoveryRequestRepository;
+        private readonly IAccountRecoveryRequestService _accountRecoveryRequestService;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="AccountController"/> class.
@@ -51,7 +51,7 @@ namespace ShugyopediaApp.Admin.Controllers
                             IConfiguration configuration,
                             IMapper mapper,
                             IUserService userService,
-                            IAccountRecoveryRequestRepository accountRecoveryRequestRepository,
+                            IAccountRecoveryRequestService accountRecoveryRequestService,
                             TokenValidationParametersFactory tokenValidationParametersFactory,
                             TokenProviderOptionsFactory tokenProviderOptionsFactory) : base(httpContextAccessor, loggerFactory, configuration, mapper)
         {
@@ -61,7 +61,7 @@ namespace ShugyopediaApp.Admin.Controllers
             this._tokenValidationParametersFactory = tokenValidationParametersFactory;
             this._appConfiguration = configuration;
             this._userService = userService;
-            _accountRecoveryRequestRepository = accountRecoveryRequestRepository;
+            _accountRecoveryRequestService = accountRecoveryRequestService;
         }
 
         /// <summary>
@@ -142,41 +142,19 @@ namespace ShugyopediaApp.Admin.Controllers
         [HttpGet]
         [AllowAnonymous]
         //This saves the request to the database as well as send the email
-        public IActionResult EmailSender(string receiverEmail)
+        public IActionResult EmailSender(string email)
         {            
-            string token = Guid.NewGuid().ToString();
-            AccountRecoveryRequest request = new AccountRecoveryRequest { 
-                UserEmail = receiverEmail,
-                Token = token,
-                DateExpiration = DateTime.Now.AddHours(2)
-            };
-            _accountRecoveryRequestRepository.AddRequest(request);
-            var senderMail = "dwight.eyac20@gmail.com";
-            var pw = "vces kwbh hghn ousu";
-            var client = new SmtpClient("smtp.gmail.com")
-            {
-                Port = 587,
-                Credentials = new NetworkCredential(senderMail, pw),
-                EnableSsl = true
-            };
-            client.SendMailAsync(
-                new MailMessage(from: senderMail,
-                                to: receiverEmail, 
-                                subject: "test subject",
-                                body: "https://localhost:22519/Account/ResetPassword?token="+ token
-                                )
-                );
+            _accountRecoveryRequestService.EmailSender(email);
             TempData["ErrorMessage"] = "Check your email";
             return RedirectToAction("Login", "Account");
         }
-
         [HttpGet]
         [AllowAnonymous]
         public IActionResult ResetPassword(string token)
         {
-            if (_accountRecoveryRequestRepository.ValidRequest(token))
+            if (_accountRecoveryRequestService.ValidRequest(token))
             {
-                string email = _accountRecoveryRequestRepository.GetRequestEmailByToken(token);
+                string email = _accountRecoveryRequestService.GetRequestEmailByToken(token);
                 if (_userService.UserExistsEmail(email))
                 {
                     UserViewModel model = new UserViewModel { UserEmail = email };
@@ -194,22 +172,5 @@ namespace ShugyopediaApp.Admin.Controllers
             TempData["ErrorMessage"] = "Password Reset Successful";
             return RedirectToAction("Login", "Account");
         }
-        //    User user = null;
-        //    var loginResult = _userService.AuthenticateUser(model.UserId, model.Password, ref user);
-        //    if (loginResult == LoginResult.Success)
-        //    {
-        //        // 認証OK
-        //        await this._signInManager.SignInAsync(user);
-        //        this._session.SetString("UserName", user.Name);
-        //        return RedirectToAction("Index", "Home");
-        //    }
-        //    else
-        //    {
-        //        // 認証NG
-        //        TempData["ErrorMessage"] = "Incorrect UserId or Password";
-        //        return View();
-        //    }
-        //}
-
     }
 }

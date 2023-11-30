@@ -10,6 +10,7 @@ namespace ShugyopediaApp.Data.Interfaces
     public interface IUserRepository
     {
         IQueryable<User> GetUsers();
+        User GetUserByEmail(string email);
         bool UserExists(string userId);
         bool UserExistsEmail(string userEmail);
         void AddUser(User user);

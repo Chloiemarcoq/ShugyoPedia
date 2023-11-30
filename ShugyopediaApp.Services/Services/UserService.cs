@@ -50,6 +50,11 @@ namespace ShugyopediaApp.Services.Services
                 .ToList();
             return users;
         }
+        public User GetUserByEmail(string email)
+        {
+            User user = _repository.GetUserByEmail(email);
+            return user;
+        }
 
         public void AddUser(UserViewModel addUser, string user)
         {

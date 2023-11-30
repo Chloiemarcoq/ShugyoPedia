@@ -20,7 +20,11 @@ namespace ShugyopediaApp.Data.Repositories
         {
             return this.GetDbSet<User>();
         }
-
+        public User GetUserByEmail(string email)
+        {
+            return GetDbSet<User>()
+                .FirstOrDefault(u => u.UserEmail == email);
+        }
         public bool UserExists(string userId)
         {
             return this.GetDbSet<User>().Any(x => x.UserId == userId);

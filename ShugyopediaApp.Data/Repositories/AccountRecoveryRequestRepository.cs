@@ -34,5 +34,10 @@ namespace ShugyopediaApp.Data.Repositories
 
             return request?.UserEmail; // Returns the email associated with the token or null if not found
         }
+        public IQueryable<AccountRecoveryRequest> GetValidRequests()
+        {
+            return this.GetDbSet<AccountRecoveryRequest>()
+                .Where(r => r.DateExpiration > DateTime.Now);
+        }
     }
 }

@@ -12,5 +12,6 @@ namespace ShugyopediaApp.Data.Interfaces
         bool ValidRequest(string token);
         void AddRequest(AccountRecoveryRequest request);
         string GetRequestEmailByToken(string token);
+        IQueryable<AccountRecoveryRequest> GetValidRequests();
     }
 }
