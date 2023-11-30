@@ -14,5 +14,6 @@ namespace ShugyopediaApp.Data.Interfaces
         string GetRequestEmailByToken(string token);
         IQueryable<AccountRecoveryRequest> GetValidRequests();
         void DeleteAccountRecovery(AccountRecoveryRequest requestId);
+        public void DeleteRequestByEmail(string email);
     }
 }

@@ -9,6 +9,7 @@ namespace ShugyopediaApp.Services.ServiceModels
     public class RatingViewModel
     {
         public string RatingReview { get; set; }
+        public int RatingId { get; set; }
         public string TrainingName { get; set; }
         public double Rate { get; set; }
         public string RaterName { get; set; }

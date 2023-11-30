@@ -33,6 +33,7 @@ namespace ShugyopediaApp.Services.Services
             List<RatingViewModel> data = _ratingRepository.GetRatings()
                 .Select(s => new RatingViewModel
                 {
+                    RatingId = s.RatingId,
                     TrainingName = s.Training.TrainingName,
                     RatingReview = s.RatingReview,
                     Rate = s.Rate,
@@ -44,10 +45,10 @@ namespace ShugyopediaApp.Services.Services
             return data;
         }
 
-        public void DeleteRating(string raterName) 
+        public void DeleteRating(string ratingId) 
         {
             var model = new Rating();
-            model.RaterName = raterName;
+            model.RatingId = int.Parse(ratingId);
             _ratingRepository.DeleteRating(model);
         }
     }

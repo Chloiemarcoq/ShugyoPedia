@@ -83,5 +83,9 @@ namespace ShugyopediaApp.Services.Services
             model.RequestId = requestId;
             _accountRecoveryRequestRepository.DeleteAccountRecovery(model);
         }
+        public void DeleteRequestByEmail(string email)
+        {
+            _accountRecoveryRequestRepository.DeleteRequestByEmail(email);
+        }
     }
 }

@@ -50,5 +50,16 @@ namespace ShugyopediaApp.Data.Repositories
                 UnitOfWork.SaveChanges();
             }
         }
+        public void DeleteRequestByEmail(string email)
+        {
+            var accountRecoveryToDelete = this.GetDbSet<AccountRecoveryRequest>()
+                .FirstOrDefault(r => r.UserEmail == email);
+
+            if (accountRecoveryToDelete != null)
+            {
+                this.GetDbSet<AccountRecoveryRequest>().Remove(accountRecoveryToDelete);
+                UnitOfWork.SaveChanges();
+            }
+        }
     }
 }
