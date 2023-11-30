@@ -30,7 +30,7 @@
                                 <td>@request.UserEmail</td>
                                 <td>@request.RequestDate</td>
                                 <td>
-                                    <a class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#delete-@request.RequestId">&#128465;</a>
+                                    <a class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal_@request.RequestId">&#128465;</a>
                                 </td>
                             </tr>
                             i++;
@@ -45,7 +45,7 @@
 <!-- Modal -->
 @foreach (var request in Model)
 {
-    <div class="modal fade" id="delete-@request.RequestId" tabindex="-1" data-bs-backdrop="static">
+    <div class="modal fade" id="deleteModal_@request.RequestId" tabindex="-1" data-bs-backdrop="static">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">

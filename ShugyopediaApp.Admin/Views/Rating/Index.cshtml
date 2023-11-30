@@ -38,8 +38,7 @@
                                 <td>@rating.RaterEmail</td>
                                 <td>@rating.CreatedTime</td>
                                 <td>
-                                    <a class="btn btn-danger" data-bs-toggle="modal"
-                                       data-bs-target="#delete-@rating.RaterName">&#128465;</a>
+                                    <a class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal_@rating.RaterName">&#128465;</a>
                                 </td>
                             </tr>
                         }
@@ -53,11 +52,11 @@
 <!-- Modal -->
 @foreach (var rating in (IEnumerable<RatingViewModel>)Model)
 {
-    <div class="modal fade" id="delete-@rating.RaterName" tabindex="-1" data-bs-backdrop="static">
+    <div class="modal fade" id="deleteModal_@rating.RaterName" tabindex="-1" data-bs-backdrop="static">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="exampleModalLabel">Delete @rating.TrainingName?</h1>
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Delete @rating.RaterName?</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
@@ -65,7 +64,7 @@
                     <div class="d-flex align-items-center justify-content-center">
                         <button type="button" class="btn btn-success mx-3" data-bs-dismiss="modal">Cancel</button>
                         <form asp-controller="Rating" asp-action="DeleteRating" method="post">
-                            <input type="hidden" name="ratingName" id="ratingName" value="@rating.RaterName" />
+                            <input type="hidden" name="raterName" id="raterName" value="@rating.RaterName" />
                             <input type="submit" name="delete" id="delete" value="Delete" class="btn btn-danger mx-3" />
                         </form>
                     </div>
