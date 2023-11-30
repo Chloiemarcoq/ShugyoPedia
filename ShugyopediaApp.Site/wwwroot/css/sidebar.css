@@ -16,18 +16,16 @@
 }
 
 .sidebar-header {
-    display: flex;
-    justify-content: center;
-    align-items: center;
     margin: 0;
     padding: 20px 15px;
+    color: #808191;
 }
 
-.sidebar-header img {
-    margin-left: 45px;
-    height: 100px;
-    width: auto;
-}
+    .sidebar-header img {
+        margin-left: 45px;
+        height: 100px;
+        width: auto;
+    }
 
 /*
 @media (max-width: 1199px) {
@@ -48,53 +46,47 @@
 }
 
 .sidebar-nav {
-    position: relative;
-    padding: 0;
-    margin: 0;
-    list-style: none;
-}
-
-.sidebar-nav .nav-item {
-    position: absolute;
     padding: 10px;
     margin: 0;
     list-style: none;
-    margin-bottom: 5px;
-    width: 290px;
-    left: -70px;
-    transition-duration: 150ms;
-    /*border: 1px solid black;*/
-    border-radius: 10px;
 }
 
-.sidebar-nav .nav-item:hover {
-    background-color: #3366e8;
-    color: white;
-    cursor: pointer;
-}
+    .sidebar-nav .nav-item {
+        padding: 10px;
+        margin: 0;
+        list-style: none;
+        margin-bottom: 5px;
+        transition-duration: 150ms;
+        border-radius: 10px;
+    }
 
-.sidebar-nav .nav-heading {
-    color: black;
-    font-weight: 600;
-    margin: 10px 0 5px 15px;
-    border-bottom: 1px solid black;
-}
+    .sidebar-nav .nav-heading {
+        color: black;
+        font-weight: 600;
+        margin: 10px 0 5px 15px;
+        border-bottom: 1px solid black;
+    }
 
-.sidebar-nav .nav-link {
-    display: flex;
-    justify-content: center;
-    font-size: 18px;
-}
+    .sidebar-nav .nav-link {
+        font-size: 18px;
+        color: #808191;
+        transition: 0.3s; /* Added 's' to the transition property */
+        padding: 10px 15px;
+    }
 
-.sidebar-nav .active {
-    background-color: #63C5DAF5;
-}
 
-/*
-.sidebar-nav .nav-link:hover {
-    background: blue;
-}
-*/
+    .sidebar-nav .nav-link:hover {
+        background: #2F3CED;
+        color: white;
+        border-radius: 10px;
+    }
+
+    .sidebar-nav .active {
+        background: #2F3CED;
+        color: white;
+        border-radius: 10px;
+    }
+
 
 .search-container {
     display: flex;
