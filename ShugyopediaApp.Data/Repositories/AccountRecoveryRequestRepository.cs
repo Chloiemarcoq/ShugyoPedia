@@ -39,5 +39,16 @@ namespace ShugyopediaApp.Data.Repositories
             return this.GetDbSet<AccountRecoveryRequest>()
                 .Where(r => r.DateExpiration > DateTime.Now);
         }
+
+        public void DeleteAccountRecovery(AccountRecoveryRequest accountRecoveryRequest)
+        {
+            var accountRecoveryToDelete = this.GetDbSet<AccountRecoveryRequest>().Find(accountRecoveryRequest.RequestId);
+
+            if (accountRecoveryToDelete != null)
+            {
+                this.GetDbSet<AccountRecoveryRequest>().Remove(accountRecoveryToDelete);
+                UnitOfWork.SaveChanges();
+            }
+        }
     }
 }

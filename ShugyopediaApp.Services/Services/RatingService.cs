@@ -44,10 +44,10 @@ namespace ShugyopediaApp.Services.Services
             return data;
         }
 
-        public void DeleteRating(int ratingId) 
+        public void DeleteRating(string raterName) 
         {
             var model = new Rating();
-            model.RatingId = ratingId;
+            model.RaterName = raterName;
             _ratingRepository.DeleteRating(model);
         }
     }

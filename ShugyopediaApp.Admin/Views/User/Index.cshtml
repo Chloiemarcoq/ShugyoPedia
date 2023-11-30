@@ -35,7 +35,7 @@
                                         <input type="hidden" id="UserEmail" name="UserEmail" class="form-control" value="@user.UserEmail">
                                         <input type="hidden" id="Password" name="Password" class="form-control" value="@user.Password">
                                         <input type="submit" class="btn btn-primary" asp-action="RedirectEditUser" asp-controller="User" value="&#128393;">
-                                        <input type="submit" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal" value="&#128465">
+                                        <button type="submit" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#delete-@user.UserId">&#128465;</button>
                                     </form>
                                 </td>
                             </tr>
@@ -48,23 +48,27 @@
 </main>
 <!-- DELETE MODAL -->
 <!-- Modal -->
-<div class="modal fade" id="deleteModal" tabindex="-1" data-bs-backdrop="static">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h1 class="modal-title fs-5" id="exampleModalLabel">Delete</h1>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <p class="fw-5 text-center">Are you sure you want to delete this User?</p>
-                <div class="d-flex align-items-center justify-content-center">
-                    <button type="button" class="btn btn-success mx-3" data-bs-dismiss="modal">Cancel</button>
-                    <form asp-controller="User" asp-action="DeleteUser" method="post">
-                        <input type="hidden" name="categoryId" id="categoryId" value="" />
-                        <input type="submit" name="delete" id="delete" value="Delete" class="btn btn-danger mx-3" />
-                    </form>
+@foreach(var user in Model)
+{
+    <div class="modal fade" id="delete-@user.UserId" tabindex="-1" data-bs-backdrop="static">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Delete @user.Name?</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p class="fw-5 text-center">Are you sure you want to delete this User?</p>
+                    <div class="d-flex align-items-center justify-content-center">
+                        <button type="button" class="btn btn-success mx-3" data-bs-dismiss="modal">Cancel</button>
+                        <form asp-controller="User" asp-action="DeleteUser" method="post">
+                            <input type="hidden" name="userId" id="userId" value="@user.UserId" />
+                            <input type="submit" name="delete" id="delete" value="Delete" class="btn btn-danger mx-3" />
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
+}
+

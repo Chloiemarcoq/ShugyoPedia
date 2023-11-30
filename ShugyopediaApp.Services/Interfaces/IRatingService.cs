@@ -12,7 +12,7 @@ namespace ShugyopediaApp.Services.Interfaces
     public interface IRatingService
     {
         public float GetRatingAverageFromTraining(int trainingId);
-        public void DeleteRating(int ratingId);
+        public void DeleteRating(string raterName);
         List<RatingViewModel> GetRatings();
     }
 }

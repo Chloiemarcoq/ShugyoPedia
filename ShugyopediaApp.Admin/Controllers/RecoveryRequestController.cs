@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using ShugyopediaApp.Admin.Mvc;
+using ShugyopediaApp.Data.Models;
 using ShugyopediaApp.Services.Interfaces;
 using ShugyopediaApp.Services.Services;
 
@@ -26,6 +27,11 @@ namespace ShugyopediaApp.Admin.Controllers
         public IActionResult Index()
         {            
             return View(_accountRecoveryRequestService.GetValidRequests());
+        }
+        public IActionResult DeleteAccountRecovery(AccountRecoveryRequest accountRecoveryRequest)
+        {
+            _accountRecoveryRequestService.DeleteAccountRecovery(accountRecoveryRequest.RequestId);
+            return RedirectToAction("Index");
         }
     }
 }

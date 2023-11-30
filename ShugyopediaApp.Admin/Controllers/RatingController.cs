@@ -33,7 +33,7 @@ namespace ShugyopediaApp.Admin.Controllers
 
         public IActionResult DeleteRating(Rating rating)
         {
-            _ratingService.DeleteRating(rating.RatingId);
+            _ratingService.DeleteRating(rating.RaterName);
             return RedirectToAction("Index");
         }
     }

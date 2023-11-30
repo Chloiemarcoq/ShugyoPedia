@@ -77,5 +77,11 @@ namespace ShugyopediaApp.Services.Services
             return _accountRecoveryRequestRepository.GetRequestEmailByToken(token);
         }
 
+        public void DeleteAccountRecovery(int requestId)
+        {
+            var model = new AccountRecoveryRequest();
+            model.RequestId = requestId;
+            _accountRecoveryRequestRepository.DeleteAccountRecovery(model);
+        }
     }
 }
