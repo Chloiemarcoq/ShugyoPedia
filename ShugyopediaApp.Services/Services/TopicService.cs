@@ -94,10 +94,10 @@ namespace ShugyopediaApp.Services.Services
             }
             _topicRepository.EditTopic(model);
         }
-        public void DeleteTopic(int topicId)
+        public void DeleteTopic(int TopicId)
         {
             var model = new Topic();
-            model.TopicId = topicId;
+            model.TopicId = TopicId;
             _topicRepository.DeleteTopic(model);
         }
     }
