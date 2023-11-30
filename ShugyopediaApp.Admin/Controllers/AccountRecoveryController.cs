@@ -10,5 +10,11 @@ namespace ShugyopediaApp.Admin.Controllers
         {
             return View();
         }
+
+        public IActionResult DeleteAccountRecovery(AccountRecovery accountRecovery)
+        {
+            _accountRecoveryService.DeleteAccountRecovery(accountRecovery.RequestId);
+            return RedirectToAction("Index");
+        }
     }
 }
