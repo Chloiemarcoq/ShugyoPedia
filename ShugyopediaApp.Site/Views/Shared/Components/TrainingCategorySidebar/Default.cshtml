@@ -1,30 +1,39 @@
-﻿<!-- Sidebar -->
-<div id="sidebar" class="sidebar">
-    <div class="sidebar-header">
-        <img src="~/img/logo_with_text_dark.png" alt="" />
+﻿<aside id="sidebar" class="sidebar border">
+    <div class="sidebar-header d-flex align-items-center justify-content-center me-5">
+        <a asp-action="Index" asp-controller="Home"><img src="~/img/logo_with_text_dark.png" alt="" /></a>
     </div>
     <!--SEARCH BAR-->
-    <form action="" method="POST" class="m-2">
-        <div class="search-container">
-            <i class="fa-solid fa-magnifying-glass"></i>
-            <input type="search" name="search" id="search" class="form-control" placeholder="Search...">
-            <!--<input type="reset" />-->
-        </div>
+    <form action="" class="m-2">
+        <input type="search" name="search" id="search" class="form-control" placeholder="Search...">
     </form>
     <!--END OF SEARCH BAR-->
-    <div style="padding:10px 10px;">
-        <h1 style="font-size:25px;">Trainings</h1>
-        <div class="trainings-list">
-            <ul class="sidebar-nav" id="sidebar-nav">
-                @foreach (var category in Model)
-                {
-                    <li class="nav-item">
-                        <a class="nav-link" asp-controller="Training" asp-action="AllTrainings" asp-route-category="@category.CategoryName">
-                            <span>@Html.Raw(category.CategoryIcon) @category.CategoryName</span>
-                        </a>
-                    </li>
-                }
-            </ul>
-        </div>
-    </div>
-</div>
+    <ul class="sidebar-nav" id="sidebar-nav">
+        <li class="nav-item">
+            <a class="nav-link active" asp-controller="Home" asp-action="Index" id="nav-link">
+                <span><i class="fa-solid fa-house"></i> Home</span>
+            </a>
+        </li>
+    </ul>
+    <hr class="m-0">
+    <div class="fs-5 sidebar-header p-2">Training Category</div>
+    <ul class="sidebar-nav" id="sidebar-nav">
+        <li class="nav-item">
+            <a class="nav-link" asp-controller="Training" asp-action="AllTrainings" id="nav-link">
+                <span><i class="fa-solid fa-code"></i> Programming</span>
+            </a>
+        </li>
+
+        <li class="nav-item">
+            <a class="nav-link" asp-controller="Training" asp-action="AllTrainings" id="nav-link">
+                <span><i class="fa-solid fa-book"></i> Education</span>
+            </a>
+        </li>
+
+        <li class="nav-item">
+            <a class="nav-link" asp-controller="Training" asp-action="AllTrainings" id="nav-link">
+                <span><i class="fa-solid fa-suitcase-medical"></i> Medical</span>
+            </a>
+        </li>
+
+    </ul>
+</aside>

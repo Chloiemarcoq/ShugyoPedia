@@ -34,8 +34,4 @@
     <ProjectReference Include="..\ShugyopediaApp.Resources\ShugyopediaApp.Resources.csproj" />
     <ProjectReference Include="..\ShugyopediaApp.Services\ShugyopediaApp.Services.csproj" />
   </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="wwwroot\img\" />
-  </ItemGroup>
 </Project>

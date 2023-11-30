@@ -11,7 +11,18 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Include="wwwroot\img\bg-shape.png" />
+    <None Include="wwwroot\lib\bootstrap\js\bootstrap.bundle.js" />
+    <None Include="wwwroot\lib\bootstrap\js\bootstrap.bundle.js.map" />
+    <None Include="wwwroot\lib\bootstrap\js\bootstrap.bundle.min.js" />
+    <None Include="wwwroot\lib\bootstrap\js\bootstrap.bundle.min.js.map" />
+    <None Include="wwwroot\lib\bootstrap\js\bootstrap.esm.js" />
+    <None Include="wwwroot\lib\bootstrap\js\bootstrap.esm.js.map" />
+    <None Include="wwwroot\lib\bootstrap\js\bootstrap.esm.min.js" />
+    <None Include="wwwroot\lib\bootstrap\js\bootstrap.esm.min.js.map" />
+    <None Include="wwwroot\lib\bootstrap\js\bootstrap.js" />
+    <None Include="wwwroot\lib\bootstrap\js\bootstrap.js.map" />
+    <None Include="wwwroot\lib\bootstrap\js\bootstrap.min.js" />
+    <None Include="wwwroot\lib\bootstrap\js\bootstrap.min.js.map" />
   </ItemGroup>
 
   <ItemGroup>
@@ -37,5 +48,12 @@
   <ItemGroup>
     <ProjectReference Include="..\ShugyopediaApp.Resources\ShugyopediaApp.Resources.csproj" />
     <ProjectReference Include="..\ShugyopediaApp.Services\ShugyopediaApp.Services.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Update="Views\Shared\_Header.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
   </ItemGroup>
 </Project>

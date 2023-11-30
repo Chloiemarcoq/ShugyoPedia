@@ -1,6 +1,14 @@
-﻿let dpicn = document.querySelector(".dpicn");
-let dropdown = document.querySelector(".dropdown");
+﻿var sidebar = document.getElementById("sidebar");
+var read_more = document.getElementById("read-more");
 
-dpicn.addEventListener("click", () => {
-    dropdown.classList.toggle("dropdown-open");
+sidebar.addEventListener("mouseenter", () => {
+    document.getElementById("nav-link").classList.remove("active");
+})
+
+sidebar.addEventListener("mouseleave", () => {
+    document.getElementById("nav-link").classList.add("active");
+})
+
+read_more.addEventListener("onclick", () => {
+    document.getElementById("nav-link").classList.add("active");
 })
