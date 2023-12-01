@@ -5,6 +5,7 @@ using ShugyopediaApp.Services.ServiceModels;
 using System.Collections.Generic;
 using System.Linq;
 
+//used in trainings page only
 namespace ShugyopediaApp.Admin.ViewComponents
 {
     public class FilterCategory : ViewComponent
