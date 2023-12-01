@@ -1,0 +1,69 @@
+﻿@{
+    ViewData["Title"] = "Account Recovery Requests";
+}
+@using ShugyopediaApp.Services.ServiceModels
+@model List<AccountRecoveryRequestViewModel>
+<main>
+    <div class="container-fluid">
+        <h1 class="text-center">Account Recovery Requests</h1>
+        <div class="float-end my-3">
+        </div>
+        <div class="card my-3">
+            <div class="card-body">
+                <table class="table table-striped table-hover table-borderless text-center my-3" id="datatable">
+                    <thead class="table-info">
+                        <tr>
+                            <th>No.</th>
+                            <th>User ID</th>
+                            <th>Email</th>
+                            <th>Request Timestamp</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @{int i = 1;}
+                        @foreach (var request in Model)
+                        {                            
+                            <tr>
+                                <td>@i</td>
+                                <td>@request.UserId</td>
+                                <td>@request.UserEmail</td>
+                                <td>@request.RequestDate</td>
+                                <td>
+                                    <a class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal_@request.RequestId">&#128465;</a>
+                                </td>
+                            </tr>
+                            i++;
+                        }                        
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</main>
+<!-- DELETE MODAL -->
+<!-- Modal -->
+@foreach (var request in Model)
+{
+    <div class="modal fade" id="deleteModal_@request.RequestId" tabindex="-1" data-bs-backdrop="static">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Delete @request.UserEmail?</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p class="fw-5 text-center">Are you sure you want to delete this Request?</p>
+                    <div class="d-flex align-items-center justify-content-center">
+                        <button type="button" class="btn btn-success mx-3" data-bs-dismiss="modal">Cancel</button>
+                        <form asp-controller="RecoveryRequest" asp-action="DeleteAccountRecovery" method="post">
+                            <input type="hidden" name="requestId" id="requestId" value="@request.RequestId" />
+                            <input type="submit" name="delete" id="delete" value="Delete" class="btn btn-danger mx-3" />
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+}

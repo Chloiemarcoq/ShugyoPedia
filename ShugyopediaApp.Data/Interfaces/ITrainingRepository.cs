@@ -12,5 +12,6 @@ namespace ShugyopediaApp.Data.Interfaces
         IQueryable<Training> GetTrainings();
         void AddTraining(Training training);
         void EditTraining(Training training);
+        void DeleteTraining(Training training);
     }
 }

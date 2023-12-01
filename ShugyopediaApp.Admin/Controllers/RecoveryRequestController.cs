@@ -7,33 +7,30 @@ using Microsoft.Extensions.Logging;
 using ShugyopediaApp.Admin.Mvc;
 using ShugyopediaApp.Data.Models;
 using ShugyopediaApp.Services.Interfaces;
-using ShugyopediaApp.Services.ServiceModels;
-using System.Collections.Generic;
+using ShugyopediaApp.Services.Services;
 
 namespace ShugyopediaApp.Admin.Controllers
 {
-    public class RatingController : ControllerBase<RatingController>
+    public class RecoveryRequestController : ControllerBase<RecoveryRequestController>
     {
-        private readonly IRatingService _ratingService;
-        public RatingController(
-            IRatingService ratingService,
+        private readonly IAccountRecoveryRequestService _accountRecoveryRequestService;
+        public RecoveryRequestController(
+            IAccountRecoveryRequestService accountRecoveryRequestService,
             IHttpContextAccessor httpContextAccessor,
             ILoggerFactory loggerFactory,
             IConfiguration configuration,
             IMapper mapper = null)
             : base(httpContextAccessor, loggerFactory, configuration, mapper)
         {
-            _ratingService = ratingService;
+            _accountRecoveryRequestService = accountRecoveryRequestService;
         }
         public IActionResult Index()
-        {
-            List<RatingViewModel> ratings = _ratingService.GetRatings();
-            return View(ratings);
+        {            
+            return View(_accountRecoveryRequestService.GetValidRequests());
         }
-
-        public IActionResult DeleteRating(string ratingId)
+        public IActionResult DeleteAccountRecovery(AccountRecoveryRequest accountRecoveryRequest)
         {
-            _ratingService.DeleteRating(ratingId);
+            _accountRecoveryRequestService.DeleteAccountRecovery(accountRecoveryRequest.RequestId);
             return RedirectToAction("Index");
         }
     }

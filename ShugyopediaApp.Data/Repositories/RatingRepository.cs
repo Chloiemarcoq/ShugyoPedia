@@ -19,5 +19,16 @@ namespace ShugyopediaApp.Data.Repositories
         {
             return this.GetDbSet<Rating>();
         }
+
+        public void DeleteRating(Rating rating)
+        {
+            var ratingToDelete = this.GetDbSet<Rating>().Find(rating.RatingId);
+
+            if (ratingToDelete != null)
+            {
+                this.GetDbSet<Rating>().Remove(ratingToDelete);
+                UnitOfWork.SaveChanges();
+            }
+        }
     }
 }

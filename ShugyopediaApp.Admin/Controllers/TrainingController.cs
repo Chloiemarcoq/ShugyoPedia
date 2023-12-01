@@ -61,5 +61,11 @@ namespace ShugyopediaApp.Admin.Controllers
             _trainingService.EditTraining(training, this.UserId);
             return RedirectToAction("Index");
         }
-    }
+        [HttpPost]
+        public IActionResult DeleteTraining(Training training)
+        {
+            _trainingService.DeleteTraining(training.TrainingId);
+            return RedirectToAction("Index");
+        }
+     }
 }

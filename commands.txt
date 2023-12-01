@@ -1,3 +1,6 @@
+--- CLONE BUT ONLY A SPECIFIC BRANCH ---
+git clone --single-branch --branch <branchname> <remote-repo>
+
 ---.NET COMMANDS---
 Scaffold-DbContext "Addr=localhost\SQLEXPRESS; database=shugyopediaDB; Trusted_Connection=True;MultipleActiveResultSets=true;TrustServerCertificate=True" Microsoft.EntityFrameworkCore.SqlServer -OutputDir Models -ContextDir Data/.. -Force
 
@@ -5,10 +8,18 @@ Scaffold-DbContext "Addr=localhost\SQLEXPRESS; database=shugyopediaDB; Trusted_C
 ---HTTP SERVER---
 http-server --cors -S -C cert.pem -o
 
+-- para mag delete --
+= controller
+= service then interface IService
+= repository then interface IRepository
+= 
 
 ---DATABASE QUERIES---
 ALTER TABLE Users
 ADD UserEmail varchar(320) NOT NULL;
+
+INSERT INTO Users (UserId, Name, Password, CreatedBy, CreatedTime, UpdatedBy, UpdatedTime, UserEmail)
+VALUES (1, 'namehere', 'Kw7+jFXwfGw/o6Mi2vJEXw==', 'Admin', GETDATE(), 'Admin', GETDATE(), 'namehere@gmail.com');
 
 INSERT INTO Trainings (CategoryId, TrainingName, TrainingDescription, TrainingImage, CreatedBy, CreatedTime, UpdatedBy, UpdatedTime)
 VALUES (1, 'HTML Basics', 'Learn the basics of HTML.', 'test.png', 'Admin', GETDATE(), 'Admin', GETDATE());
