@@ -74,3 +74,18 @@
         </div>
     </div>
 }
+<script>
+    $(document).ready(() => {
+        var filterCategorySelect = document.getElementById('filter_category')
+        var table = $('#datatable').DataTable()
+        var searchInput = $('input[type="search"]')
+
+        filterCategorySelect.addEventListener('change', () => {
+            var selectedOption = filterCategorySelect.options[filterCategorySelect.selectedIndex]
+            var selectedValue = selectedOption.value
+
+            //console.log(selectedValue)
+            table.search(selectedValue).draw();
+        })
+    })
+</script>
