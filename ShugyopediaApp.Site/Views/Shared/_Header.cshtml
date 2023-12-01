@@ -1,13 +1,11 @@
 ﻿@using Microsoft.AspNetCore.Http
 @inject IHttpContextAccessor HttpContextAccessor
+
+
 <header class="fixed-top" style="background-color: #2F3CED; color: white;">
     <div class="navbar">
-        <div class="d-flex align-items-center justify-content-center">
             <div class="logo">
-                <img src="~/img/logo_with_text_light.png" width="250" />
+                <a asp-action="Index" asp-controller="Home"><img src="~/img/logo_with_text_light.png" /></a>
             </div>
-        </div>
     </div>
 </header>
-
-

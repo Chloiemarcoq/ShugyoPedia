@@ -1,39 +1,93 @@
 ﻿@using ShugyopediaApp.Services.ServiceModels;
 @{
-    ViewData["Title"] = Model["CategoryName"];
+    ViewData["Title"] = "All Trainings";
 }
 @model Dictionary<string, object>
+
+<!-- SIDE BAR -->
+@await Component.InvokeAsync("TrainingCategorySidebar")
 <!-- MAIN BODY -->
-@Html.Partial("TopNavBar.cshtml")
-<main class="main-con">
-    <div class="allTrainings-container">
-        <h1>@Model["CategoryName"]</h1>
-        <div class="search-container">
-            <form action="" method="POST">
-                <input type="search" name="search" id="search" class="search-input" placeholder="Search Training...">
-                <button type="submit" class="search-button">
-                    <i class="fa-solid fa-magnifying-glass"></i>
-                </button>
-            </form>
-        </div>
+<main class="main">
+    <div class="pos-img">
+        <img src="~/img/bg-shape1.png" alt="HTML tutorial" class="w-100" />
     </div>
 
-    <!-- TOPICS -->
-    <div class="container">
-        <div class="row my-5">
-            @foreach (var training in (IEnumerable<TrainingViewModel>)Model["Trainings"])
-            {
-                <div class="col-4">
-                    <div class="d-flex flex-column justify-content-center align-items-center">
-                        <div class="topic-img-container">
-                            <a asp-controller="@training.TrainingName" asp-action="Index"><img src="@training.TrainingImage" class="img-fluid topic-img" alt=""></a>
+    <!-- TRAININGS -->
+    <div class="container" style="margin-top: 100px;">
+            <div class="d-flex align-items-center justify-content-between my-3">
+                <h3>Programming</h3>
+                <form action="">
+                    <input type="text" name="search" id="search" class="form-control" placeholder="Search..">
+                </form>
+            </div>
+            <div class="card my-4 rounded-4 shadow bg-light">
+                <div class="card-body p-0">
+                    <div class="row">
+                        <div class="col-6">
+                            <img src="~/img/html.png" />
                         </div>
-                        <p class="fs-5">@training.TrainingName</p>
-                        <p class="ratings" id="ratings">@training.RateAverage</p>
-                        <a class="btn btn-primary" href="topic.html">DOWNLOAD RESOURCES</a>
+                        <div class="col-6 py-3">
+                            <div class="d-flex">
+                                <h5 class="fw-bold">HTML Basic </h5>
+                                @for (var i = 0; i < 4; i++)
+                                {
+                                    <i class="fa-solid fa-star" style="color: #EAC612;"></i>
+                                }
+                            </div>
+                            
+                            <p class="fs-6 w-75 cut-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore</p>
+                            <a class="btn btn-primary learn-btn" asp-controller="Training" asp-action="Training">LEARN NOW</a>
+                       
+                        </div>
                     </div>
                 </div>
-            }
+            </div>
+            <div class="card my-4 rounded-4 shadow bg-light">
+                <div class="card-body p-0">
+                    <div class="row">
+                        <div class="col-6">
+                            <img src="~/img/python.png" />
+                        </div>
+                        <div class="col-6 py-3">
+                            <div class="d-flex">
+                                <h5 class="fw-bold">Python </h5>
+                                @for (var i = 0; i < 3; i++)
+                                {
+                                    <i class="fa-solid fa-star" style="color: #EAC612;"></i>
+                                }
+                            </div>
+                        <p class="fs-6 w-75 cut-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
+                        <a class="btn btn-primary learn-btn" href="">LEARN NOW</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        <div class="card my-4 rounded-4 shadow bg-light">
+            <div class="card-body p-0">
+                <div class="row">
+                    <div class="col-6">
+						<img src="~/img/python.png" />
+                    </div>
+                    <div class="col-6 py-3">
+                        <div class="d-flex">
+                            <h5 class="fw-bold">C#</h5>
+                            @for (var i = 0; i < 5; i++)
+                            {
+                                <i class="fa-solid fa-star" style="color: #EAC612;"></i>
+                            }
+                        </div>
+                        <p class="fs-6 w-75 cut-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. tempor incididunt ut labore et dolore magna aliqua</p>
+                        <a class="btn btn-primary learn-btn" href="">LEARN NOW</a>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </main>
+
+@*@section scripts {
+    <script>
+
+        document.getElementById("nav-link").classList.add("active");
+    </script>
+}*@

@@ -11,52 +11,68 @@
     <div>
         <h3>What will you learn today?</h3>
     </div>
-    <!--carousel-->
-    <div id="carousel" class="carousel-container">
-        <div class="carousel-content">
-            <div id="first_content">
-                <img src="~/img/carousel_pic1.png" style="width:320px;" />
-                <div class="carousel-text">
-                    <h3>Dive into Programming Learn Python, C#</h3>
-                    <p>
-                        Unlock the world of programming! Learn python and C# for a powerful coding
-                        foundation. Perfect for beginners or those looking to expand their skills. Start
-                        your coding journey now!
-                    </p>
+    <div class="carousel carousel-container slide" id="carousel" data-bs-ride="carousel">
+                <div class="carousel-indicators">
+                    <button type="button" data-bs-target="#carousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                    <button type="button" data-bs-target="#carousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                    <button type="button" data-bs-target="#carousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                </div>
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <div class="row">
+                    <div class="col-6">
+                        <div class="d-flex align-items-center justify-content-center">
+                            <img src="~/img/carousel_pic1.png" class="d-block w-75 mx-auto" alt="...">
+                        </div>                
+                    </div>
+                    <div class="col-6">
+                        <div class="text-light">
+                            <h3 class="fw-bold">Dive Into Programming Learn HTML, C# and more</h3>
+                            <p class="fs-5">Unlock the world of programming! Learn Python and C# for a powerful coding foundation. Perfect for beginners or those looking to expand their skills. Start your coding journey now!.</p>
+                        </div>
+                    </div>
                 </div>
             </div>
-            <div id="second_content">
-                <img src="~/img/carousel_pic1.png" style="width:320px;" />
-                <div class="carousel-text">
-                    <h3>Second Content</h3>
-                    <p>
-                        lorem ipsum
-                    </p>
+            <div class="carousel-item">
+                <div class="row">
+                    <div class="col-6">
+                        <div class="d-flex align-items-center justify-content-center">
+                            <img src="~/img/carousel_pic2.png" class="d-block w-75 mx-auto" alt="...">
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="text-light">
+                            <h3 class="fw-bold">Study your favorite subject</h3>
+                            <p class="fs-5">Fuel your passion for knowledge! Explore a diverse range of subjects tailored to your interests. Whether it's science, literature, history, or technology, our platform offers a wealth of information to quench your curiosity.<p>
+                        </div>
+                    </div>
                 </div>
             </div>
-            <div id="third_content">
-                <img src="~/img/carousel_pic1.png" style="width:320px;" />
-                <div class="carousel-text">
-                    <h3>Third Content</h3>
-                    <p>
-                        ipsum lorem
-                    </p>
+            <div class="carousel-item">
+                <div class="row">
+                    <div class="col-6">
+                        <div class="d-flex align-items-center justify-content-center">
+                            <img src="~/img/carousel_pic3.png" class="d-block mx-auto" style="width: 65%; "alt="...">
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="text-light">
+                            <h3 class="fw-bold">Discover home remedies</h3>
+                            <p class="fs-5">Harness the power of natural healing! Delve into the world of home remedies, where nature's solutions meet wellness. From time-tested traditions to contemporary insights, our platform is your guide to discovering effective and holistic remedies for common ailments.</p>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
-        <!-- end of carousel content -->
-        <div class="carousel-buttons">
-            <button onclick="showItem(0)">&nbsp;</button>
-            <button onclick="showItem(1)">&nbsp;</button>
-            <button onclick="showItem(2)">&nbsp;</button>
         </div>
     </div>
     
     <!--end of carousel-->
-    <div class="bottom-content">
-        <h5>
-            With SHUGYOPEDIA, you’ll have access to an endless amount of knowledge.
-            Get Started by selecting a Training Category.
-        </h5>
+    <div class="card shadow border-0">
+        <div class="card-body">
+            <h5>
+                With SHUGYOPEDIA, you’ll have access to an endless amount of knowledge.
+                Get Started by selecting a Training Category.
+            </h5>
+        </div>
     </div>
 </main>
