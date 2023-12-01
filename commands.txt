@@ -18,6 +18,9 @@ http-server --cors -S -C cert.pem -o
 ALTER TABLE Users
 ADD UserEmail varchar(320) NOT NULL;
 
+INSERT INTO Users (UserId, Name, Password, CreatedBy, CreatedTime, UpdatedBy, UpdatedTime, UserEmail)
+VALUES (1, 'namehere', 'Kw7+jFXwfGw/o6Mi2vJEXw==', 'Admin', GETDATE(), 'Admin', GETDATE(), 'namehere@gmail.com');
+
 INSERT INTO Trainings (CategoryId, TrainingName, TrainingDescription, TrainingImage, CreatedBy, CreatedTime, UpdatedBy, UpdatedTime)
 VALUES (1, 'HTML Basics', 'Learn the basics of HTML.', 'test.png', 'Admin', GETDATE(), 'Admin', GETDATE());
 

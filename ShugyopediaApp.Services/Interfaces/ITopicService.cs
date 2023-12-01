@@ -14,6 +14,6 @@ namespace ShugyopediaApp.Services.Interfaces
         AddTopicViewModel GetTrainingSummary();
         void AddTopic(AddTopicViewModel topic, string user);
         void EditTopic(AddTopicViewModel topic, string user);
-        void DeleteTopic(int topicId);
+        void DeleteTopic(int TopicId);
     }
 }

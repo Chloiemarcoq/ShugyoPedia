@@ -42,7 +42,7 @@
                                         <input type="hidden" id="TopicName" name="TopicName" class="form-control" value="@topic.TopicName">
                                         <input type="hidden" id="ResourceFile" name="ResourceFile" class="form-control" value="@topic.ResourceFile">
                                         <input type="submit" class="btn btn-primary" asp-action="RedirectEditTopic" asp-controller="Topic" value="&#128393;">
-                                        <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#delete-@topic.TopicId">&#128465;</button>
+                                        <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal_@topic.TopicId">&#128465;</button>
                                     </form>
                                 </td>
                             </tr>
@@ -119,7 +119,7 @@
 @foreach (var topic in Model)
 {
     <!-- TOPIC DELETE MODAL -->
-    <div class="modal fade" id="delete-@topic.TopicId" tabindex="-1" data-bs-backdrop="static">
+    <div class="modal fade" id="deleteModal_@topic.TopicId" tabindex="-1" data-bs-backdrop="static">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
@@ -131,7 +131,7 @@
                     <div class="d-flex align-items-center justify-content-center">
                         <button type="button" class="btn btn-success mx-3" data-bs-dismiss="modal">Cancel</button>
                         <form asp-controller="Topic" asp-action="DeleteTopic" method="post">
-                            <input type="hidden" name="topicId" id="topicId" value="@topic.TopicId" />
+                            <input type="hidden" name="TopicId" id="TopicId" value="@topic.TopicId" />
                             <input type="submit" name="delete" id="delete" value="Delete" class="btn btn-danger mx-3" />
                         </form>
                     </div>

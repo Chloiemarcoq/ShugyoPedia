@@ -46,6 +46,7 @@ namespace ShugyopediaApp.Data.Repositories
             if (topicToDelete != null)
             {
                 this.GetDbSet<Topic>().Remove(topicToDelete);
+                UnitOfWork.SaveChanges();
             }
         }
     }

@@ -35,7 +35,7 @@
                                         <input type="hidden" id="UserEmail" name="UserEmail" class="form-control" value="@user.UserEmail">
                                         <input type="hidden" id="Password" name="Password" class="form-control" value="@user.Password">
                                         <input type="submit" class="btn btn-primary" asp-action="RedirectEditUser" asp-controller="User" value="&#128393;">
-                                        <button type="submit" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#delete-@user.UserId">&#128465;</button>
+                                        <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#delete_@user.UserId">&#128465;</button>
                                     </form>
                                 </td>
                             </tr>
@@ -50,7 +50,7 @@
 <!-- Modal -->
 @foreach(var user in Model)
 {
-    <div class="modal fade" id="delete-@user.UserId" tabindex="-1" data-bs-backdrop="static">
+    <div class="modal fade" id="delete_@user.UserId" tabindex="-1" data-bs-backdrop="static">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
@@ -62,7 +62,7 @@
                     <div class="d-flex align-items-center justify-content-center">
                         <button type="button" class="btn btn-success mx-3" data-bs-dismiss="modal">Cancel</button>
                         <form asp-controller="User" asp-action="DeleteUser" method="post">
-                            <input type="hidden" name="userId" id="userId" value="@user.UserId" />
+                            <input type="hidden" name="Id" id="Id" value="@user.Id" />
                             <input type="submit" name="delete" id="delete" value="Delete" class="btn btn-danger mx-3" />
                         </form>
                     </div>
