@@ -469,22 +469,20 @@ input[type="radio"] {
     width: auto;
     padding: 30px;
 }
-.carousel-container2 {
-    background-color: #AFD5FF;
-    border-radius: 20px;
-    height: 500px;
-    width: 95%;
-    padding: 30px;
-    margin-top: 20px;
-    z-index: 999;
+
+.read-more-content {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
 }
-.carousel-container3 {
-    background-color: #AFD5FF;
-    border-radius: 20px;
-    height: 500px;
-    width: 90%;
-    padding: 30px;
-    opacity: 0.5;
-    margin-top: 40px;
-    z-index: 9999;
+
+.read-more-show, .read-more-hide {
+    cursor: pointer;
+    color: blue;
+    display: none;
+}
+
+.read-more-show {
+    display: inline;
 }
