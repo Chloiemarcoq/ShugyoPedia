@@ -4,14 +4,14 @@
         <div class="card">
             <div class="card-body">
                 <h4 class="text-center">Advanced Filter</h4>
-                <form action="" method="POST">
+                <form asp-controller="" asp-action="" method="POST">
                     <div class="row">
                         <div class="col-6">
                             <div class="form-group my-3">
                                 <label for="filter_category">Filter by: Training</label>
                                 <div class="d-flex">
                                     <select name="filter_category" id="filter_category" class="form-select">
-                                        <option selected><u>All</u></option>
+                                        <option value="" selected>All</option>
                                         @foreach (var category in Model)
                                         {                                            
                                             <option disabled><u>@category.Key</u></option>
@@ -21,6 +21,10 @@
                                             }
                                         }                                        
                                     </select>
+                                    @*
+                                    <input type="reset" class="btn btn-primary mx-3" value="Reset" />
+                                    <input type="submit" class="btn btn-success mx-3" value="Filter" />
+                                    *@
                                 </div>
                             </div>
                         </div>

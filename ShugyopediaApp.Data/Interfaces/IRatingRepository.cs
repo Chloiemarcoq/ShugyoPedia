@@ -10,5 +10,6 @@ namespace ShugyopediaApp.Data.Interfaces
     public interface IRatingRepository
     {
         IQueryable<Rating> GetRatings();
+        void DeleteRating(Rating rating);
     }
 }

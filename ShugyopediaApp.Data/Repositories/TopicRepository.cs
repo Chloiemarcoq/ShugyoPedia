@@ -1,4 +1,5 @@
 ﻿using Basecode.Data.Repositories;
+using Microsoft.EntityFrameworkCore;
 using ShugyopediaApp.Data.Interfaces;
 using ShugyopediaApp.Data.Models;
 using System;
@@ -13,7 +14,9 @@ namespace ShugyopediaApp.Data.Repositories
     {
         public TopicRepository(IUnitOfWork unitOfWork) : base(unitOfWork)
         {
+
         }
+
         public IQueryable<Topic> GetTopics()
         {
             return this.GetDbSet<Topic>();
@@ -33,6 +36,16 @@ namespace ShugyopediaApp.Data.Repositories
                 recordFound.ResourceFile = (string.IsNullOrEmpty(topic.ResourceFile)) ? recordFound.ResourceFile : topic.ResourceFile;
                 recordFound.UpdatedBy = topic.UpdatedBy;
                 recordFound.UpdatedTime = topic.UpdatedTime;
+                UnitOfWork.SaveChanges();
+            }
+        }
+        public void DeleteTopic(Topic topic)
+        {
+            var topicToDelete = this.GetDbSet<Topic>().Find(topic.TopicId);
+
+            if (topicToDelete != null)
+            {
+                this.GetDbSet<Topic>().Remove(topicToDelete);
                 UnitOfWork.SaveChanges();
             }
         }
