@@ -5,6 +5,7 @@ using ShugyopediaApp.Services.ServiceModels;
 using System;
 using System.Collections.Generic;
 
+// used in other pages (ratings, topics)
 namespace ShugyopediaApp.Admin.ViewComponents
 {
     public class Filter : ViewComponent

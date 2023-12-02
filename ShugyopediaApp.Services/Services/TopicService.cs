@@ -76,7 +76,7 @@ namespace ShugyopediaApp.Services.Services
         public void EditTopic(AddTopicViewModel topic, string user)
         {
             string fileExtension = Path.GetExtension(topic.ResourceFileUpload.FileName)?.ToLower();
-            var model = new Topic();
+            Topic model = new Topic();
             model.TrainingId = topic.TrainingId;
             model.TopicId = topic.TopicId;
             model.TopicName = topic.TopicName;
@@ -93,6 +93,12 @@ namespace ShugyopediaApp.Services.Services
                 }
             }
             _topicRepository.EditTopic(model);
+        }
+        public void DeleteTopic(int TopicId)
+        {
+            var model = new Topic();
+            model.TopicId = TopicId;
+            _topicRepository.DeleteTopic(model);
         }
     }
 }

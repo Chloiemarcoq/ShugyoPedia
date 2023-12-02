@@ -12,5 +12,6 @@ namespace ShugyopediaApp.Data.Interfaces
         IQueryable<Topic> GetTopics();
         void AddTopic(Topic topic);
         void EditTopic(Topic topic);
+        void DeleteTopic(Topic topic);
     }
 }

@@ -26,10 +26,11 @@ namespace ShugyopediaApp.Admin.Controllers
         {
             _topicService = topicService;
         }
+        [AllowAnonymous]
         public IActionResult Index()
         {
-            List<TopicViewModel> topics = _topicService.GetTopics();
-            return View(topics);
+            List<TopicViewModel> topic = _topicService.GetTopics();
+            return View(topic);
         }
         [HttpGet]
         public IActionResult AddTopic()
@@ -58,6 +59,11 @@ namespace ShugyopediaApp.Admin.Controllers
         public IActionResult EditTopic(AddTopicViewModel topic)
         {
             _topicService.EditTopic(topic, this.UserId);
+            return RedirectToAction("Index");
+        }
+        public IActionResult DeleteTopic(Topic topic)
+		{
+			_topicService.DeleteTopic(topic.TopicId);
             return RedirectToAction("Index");
         }
     }

@@ -1,5 +1,6 @@
 ﻿using ShugyopediaApp.Data.Interfaces;
 using ShugyopediaApp.Data.Models;
+using ShugyopediaApp.Data.Repositories;
 using ShugyopediaApp.Services.Interfaces;
 using ShugyopediaApp.Services.ServiceModels;
 using System;
@@ -26,11 +27,13 @@ namespace ShugyopediaApp.Services.Services
             averageRate = (float)Math.Round(averageRate, 1);
             return averageRate;
         }
+
         public List<RatingViewModel> GetRatings()
         {
             List<RatingViewModel> data = _ratingRepository.GetRatings()
                 .Select(s => new RatingViewModel
                 {
+                    RatingId = s.RatingId,
                     TrainingName = s.Training.TrainingName,
                     RatingReview = s.RatingReview,
                     Rate = s.Rate,
@@ -40,6 +43,13 @@ namespace ShugyopediaApp.Services.Services
                 })
                 .ToList();
             return data;
+        }
+
+        public void DeleteRating(string ratingId) 
+        {
+            var model = new Rating();
+            model.RatingId = int.Parse(ratingId);
+            _ratingRepository.DeleteRating(model);
         }
     }
 }
