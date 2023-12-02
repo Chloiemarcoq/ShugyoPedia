@@ -26,5 +26,20 @@ namespace ShugyopediaApp.Services.Services
             averageRate = (float)Math.Round(averageRate, 1);
             return averageRate;
         }
+        public List<RatingViewModel> GetRatings()
+        {
+            List<RatingViewModel> data = _ratingRepository.GetRatings()
+                .Select(s => new RatingViewModel
+                {
+                    TrainingName = s.Training.TrainingName,
+                    RatingReview = s.RatingReview,
+                    Rate = s.Rate,
+                    RaterName = s.RaterName,
+                    RaterEmail = s.RaterEmail,
+                    CreatedTime = s.CreatedTime
+                })
+                .ToList();
+            return data;
+        }
     }
 }

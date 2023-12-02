@@ -1,103 +1,55 @@
-﻿@{
-    ViewData["Title"] = "Training";
-}
+﻿@using ShugyopediaApp.Data;
+@using ShugyopediaApp.Services.ServiceModels;
 
+
+@{
+    ViewData["Title"] = "Training";
+    string trainingImagesUrl = PathManager.UrlPath.TrainingImagesUrl;
+}
+@model List<TrainingViewModel>
 <main>
     <div class="container-fluid">
         <h1 class="text-center">Trainings</h1>
-        <div class="row justify-content-center my-4">
-            <div class="col-md-4">
-                <div class="card">
-                    <div class="card-body">
-                        <h4 class="text-center">Filter</h4>
-                        <form action="" method="POST">
-                            <div class="form-group my-3">
-                                <label for="filter_category">Training Category:</label>
-                                <div class="d-flex">
-                                    <select name="filter_category" id="filter_category" class="form-select">
-                                        <option selected>All</option>
-                                        <option value="programming">Programming</option>
-                                        <option value="med">Medical</option>
-                                        <option value="arts">Arts</option>
-                                    </select>
-                                    <button type="reset" class="btn btn-primary mx-3">Reset</button>
-                                    <button type="submit" class="btn btn-success mx-3">Filter</button>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
+        @await Component.InvokeAsync("FilterCategory")
         <div class="d-flex justify-content-between">
-            <a class="btn btn-success" asp-action="Add" asp-controller="Training">+Add Training</a>
+            <a class="btn btn-success" asp-action="AddTraining" asp-controller="Training">+ Add Training</a>
         </div>
         <div class="card my-3">
             <div class="card-body">
                 <table class="table table-striped table-hover table-borderless text-center my-3" id="datatable">
                     <thead class="table-info">
                         <tr>
-                            <th>Training ID</th>
-                            <th>Category ID</th>
                             <th>Training Name</th>
+                            <th>Category</th>
                             <th>Training Description</th>
-                            <th>Training Image</th>
-                            <th>Created By</th>
-                            <th>Created Time</th>
-                            <th>Updated By</th>
-                            <th>Updated Time</th>
-                            <th>Action</th>
+                            <th>Overall Rating</th>
+                            <th>Cover Image</th>
+                            <th>Actions</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>1</td>
-                            <td>11</td>
-                            <td>HTML</td>
-                            <td>Basics of HTML</td>
-                            <td>html.png</td>
-                            <td>Alpha</td>
-                            <td>02/02/02</td>
-                            <td>Bravo</td>
-                            <td>02/02/02</td>
-                            <td>
-                                <a class="btn btn-primary my-1" asp-action="Edit" asp-controller="Training">&#128393;</a>
-                                <a class="btn btn-danger my-1" data-bs-toggle="modal"
-                                   data-bs-target="#deleteModal">&#128465;</a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>1</td>
-                            <td>11</td>
-                            <td>HTML</td>
-                            <td>Basics of HTML</td>
-                            <td>html.png</td>
-                            <td>Alpha</td>
-                            <td>02/02/02</td>
-                            <td>Bravo</td>
-                            <td>02/02/02</td>
-                            <td>
-                                <a class="btn btn-primary my-1" asp-action="Edit" asp-controller="Training">&#128393;</a>
-                                <a class="btn btn-danger my-1" data-bs-toggle="modal"
-                                   data-bs-target="#deleteModal">&#128465;</a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>1</td>
-                            <td>11</td>
-                            <td>HTML</td>
-                            <td>Basics of HTML</td>
-                            <td>html.png</td>
-                            <td>Alpha</td>
-                            <td>02/02/02</td>
-                            <td>Bravo</td>
-                            <td>02/02/02</td>
-                            <td>
-                                <a class="btn btn-primary my-1" asp-action="Edit" asp-controller="Training">&#128393;</a>
-                                <a class="btn btn-danger my-1" data-bs-toggle="modal"
-                                   data-bs-target="#deleteModal">&#128465;</a>
-                            </td>
-                        </tr>
+                        @foreach (var training in Model)
+                        {
+                            <tr>
+                                <td>@training.TrainingName</td>
+                                <td>@training.CategoryName</td>
+                                <td>@training.TrainingDescription</td>
+                                <td>@training.RateAverage</td>
+                                <td><img src="@training.TrainingImage" class="rounded" alt="@training.TrainingImage.Replace(trainingImagesUrl, string.Empty)"></td>
+                                <td>
+                                    <form method="post">
+                                        <input type="hidden" id="TrainingId" name="TrainingId" class="form-control" value="@training.TrainingId">
+                                        <input type="hidden" id="TrainingName" name="TrainingName" class="form-control" value="@training.TrainingName">
+                                        <input type="hidden" id="CategoryId" name="CategoryId" class="form-control" value="@training.CategoryId">
+                                        <input type="hidden" id="CategoryName" name="CategoryName" class="form-control" value="@training.CategoryName">
+                                        <input type="hidden" id="TrainingDescription" name="TrainingDescription" class="form-control" value="@training.TrainingDescription">
+                                        <input type="hidden" id="TrainingImage" name="TrainingImage" class="form-control" value="@training.TrainingImage.Replace(trainingImagesUrl, string.Empty)">
+                                        <input type="submit" class="btn btn-primary" asp-action="RedirectEditTraining" asp-controller="Training" value="&#128393;">
+                                        <input type="submit" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal" value="&#128465">
+                                    </form>
+                                </td>
+                            </tr>
+                        }
                     </tbody>
                 </table>
             </div>

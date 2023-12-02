@@ -1,0 +1,53 @@
+﻿@{
+	ViewData["Title"] = "Edit Topic";
+}
+@model ShugyopediaApp.Services.ServiceModels.AddTopicViewModel
+<main>
+    <div class="container my-4">
+        <h1 class="text-center">Edit Topic</h1>
+        <div class="row justify-content-center my-4">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-body">
+                        <form asp-action="EditTopic" asp-controller="Topic" enctype="multipart/form-data" method="POST">
+                            <input type="hidden" asp-for="TopicId" class="form-control" value="@Model.TopicId">
+                            <div class="form-group my-3">
+                                <div class="row">
+                                    <div class="col-6">
+                                        <label for="TrainingName">Edit Training Name</label>
+                                        <select asp-for="TrainingId" class="form-select">
+                                            <option selected value="@Model.TrainingId">@Model.TrainingName</option>
+                                            @foreach (var training in Model.Trainings)
+                                            {
+                                                if (training.TrainingId == @Model.TrainingId) { continue; }
+                                                <option value="@training.TrainingId">@training.TrainingName</option>
+                                            }
+                                        </select>
+                                    </div>
+                                    <div class="col-6">
+                                        <label for="TopicName">Edit Topic Name</label>
+                                        <input type="text" asp-for="TopicName" class="form-control" placeholder="Enter topic name">
+                                    </div>
+                                </div>
+                            </div>
+                            <hr>
+                            <h4 class="text-center">Edit Resource</h4>
+                            <div class="form-group my-3">
+                                <div class="row">                                    
+                                    <div class="col-6">
+                                        <label for="ResourceFileUpload">Edit Resource File</label>
+                                        <input type="file" asp-for="ResourceFileUpload" accept=".mp4,.pdf,.ppt,.pps">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="d-flex align-items-center justify-content-center mt-5">
+                                <button type="reset" class="btn btn-primary mx-5">Clear</button>
+                                <button type="submit" class="btn btn-success mx-5">Edit Topic</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>

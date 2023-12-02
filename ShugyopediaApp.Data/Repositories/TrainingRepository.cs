@@ -18,6 +18,25 @@ namespace ShugyopediaApp.Data.Repositories
         {
             return this.GetDbSet<Training>();
         }
+        public void AddTraining(Training training)
+        {
+            this.GetDbSet<Training>().Add(training);
+            UnitOfWork.SaveChanges();
+        }
+        public void EditTraining(Training training)
+        {
+            var recordFound = this.GetDbSet<Training>().Find(training.TrainingId);
+            if (recordFound != null)
+            {
+                recordFound.TrainingName = training.TrainingName;
+                recordFound.CategoryId = training.CategoryId;
+                recordFound.TrainingDescription = training.TrainingDescription;
+                recordFound.TrainingImage = (string.IsNullOrEmpty(training.TrainingImage)) ? recordFound.TrainingImage : training.TrainingImage;
+                recordFound.UpdatedBy = training.UpdatedBy;
+                recordFound.UpdatedTime = training.UpdatedTime;
+                UnitOfWork.SaveChanges();
+            }
+        }
 
     }
 }

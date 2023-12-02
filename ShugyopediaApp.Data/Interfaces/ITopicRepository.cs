@@ -7,10 +7,10 @@ using System.Threading.Tasks;
 
 namespace ShugyopediaApp.Data.Interfaces
 {
-    public interface ITrainingRepository
+    public interface ITopicRepository
     {
-        IQueryable<Training> GetTrainings();
-        void AddTraining(Training training);
-        void EditTraining(Training training);
+        IQueryable<Topic> GetTopics();
+        void AddTopic(Topic topic);
+        void EditTopic(Topic topic);
     }
 }

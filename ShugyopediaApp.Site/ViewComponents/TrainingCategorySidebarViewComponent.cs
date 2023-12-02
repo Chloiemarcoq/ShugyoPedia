@@ -4,6 +4,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using ShugyopediaApp.Services.Interfaces;
+using ShugyopediaApp.Services.ServiceModels;
+using System.Collections.Generic;
 
 namespace ShugyopediaApp.Site.Component
 {
@@ -16,7 +18,7 @@ namespace ShugyopediaApp.Site.Component
         }
         public IViewComponentResult Invoke()
         {
-            var data = _trainingCategoryService.GetTrainingCategories();
+            List<TrainingCategoryViewModel> data = _trainingCategoryService.GetTrainingCategories();
             return View(data);
         }
     }
