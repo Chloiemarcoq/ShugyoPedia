@@ -1,11 +1,4 @@
-﻿/*SEARCH TRAINING*/
-document.getElementById('search-training').addEventListener('input', function () {
-    var searchQuery = this.value.toLowerCase();
-    document.querySelectorAll('.card').forEach(function (card) {
-        var find_training = card.querySelector('.topic-word').textContent.toLowerCase();
-        card.style.display = find_training.includes(searchQuery) ? 'block' : 'none';
-    });
-});
+﻿
 
 /*SEARCH CATEGORY*/
 document.addEventListener('DOMContentLoaded', function () {
