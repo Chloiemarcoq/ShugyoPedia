@@ -2,11 +2,6 @@
     <div class="sidebar-header d-flex align-items-center justify-content-center me-5">
         <a asp-action="Index" asp-controller="Home"><img src="~/img/logo_with_text_dark.png" alt="" /></a>
     </div>
-    <!--SEARCH BAR-->
-    <form action="" class="m-2">
-        <input type="search" name="search" id="search" class="form-control" placeholder="Search...">
-    </form>
-    <!--END OF SEARCH BAR-->
     <ul class="sidebar-nav" id="sidebar-nav">
         <li class="nav-item">
             <a class="nav-link active" asp-controller="Home" asp-action="Index" id="nav-link">
@@ -15,23 +10,28 @@
         </li>
     </ul>
     <hr class="m-0">
-    <div class="fs-5 sidebar-header p-2">Training Category</div>
-    <ul class="sidebar-nav" id="sidebar-nav">
+    <div class="fs-5 sidebar-header p-2">Training Categories</div>
+    <!--SEARCH BAR-->
+    <form action="" class="m-2">
+        <input type="search" name="search-category" id="search-category" class="form-control" placeholder="Search...">
+    </form>
+    <!--END OF SEARCH BAR-->
+    <ul class="sidebar-nav" id="category-list">
         <li class="nav-item">
             <a class="nav-link" asp-controller="Training" asp-action="AllTrainings" id="nav-link">
-                <span><i class="fa-solid fa-code"></i> Programming</span>
+                <i class="fa-solid fa-code"></i> <span class="category">Programming</span>
             </a>
         </li>
 
         <li class="nav-item">
             <a class="nav-link" asp-controller="Training" asp-action="AllTrainings" id="nav-link">
-                <span><i class="fa-solid fa-book"></i> Education</span>
+                <i class="fa-solid fa-book"></i> <span class="category">Education</span>
             </a>
         </li>
 
         <li class="nav-item">
             <a class="nav-link" asp-controller="Training" asp-action="AllTrainings" id="nav-link">
-                <span><i class="fa-solid fa-suitcase-medical"></i> Medical</span>
+                <i class="fa-solid fa-suitcase-medical"></i> <span class="category">Medical</span>
             </a>
         </li>
 

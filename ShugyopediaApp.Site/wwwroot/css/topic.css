@@ -210,7 +210,7 @@ video {
         top: 0;
         bottom: 0;
         right: calc(100% - var(--progress-position) * 100%);
-        background-color: #63C5DA;
+        background-color: #2F3CED;
     }
 
     .timeline .thumb-indicator {
@@ -220,7 +220,7 @@ video {
         height: 200%;
         top: -50%;
         left: calc(var(--progress-position) * 100%);
-        background-color: #63C5DA;
+        background-color: #2F3CED;
         border-radius: 50%;
         transition: transform 150ms ease-in-out;
         aspect-ratio: 1 / 1;

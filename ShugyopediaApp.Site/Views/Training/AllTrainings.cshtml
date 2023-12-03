@@ -17,10 +17,10 @@
             <div class="d-flex align-items-center justify-content-between my-3">
                 <h3>Programming</h3>
                 <form action="">
-                    <input type="text" name="search" id="search" class="form-control" placeholder="Search..">
+                <input type="text" name="search-training" id="search-training" class="form-control" placeholder="Search..">
                 </form>
             </div>
-            <div class="card my-4 rounded-4 shadow bg-light">
+        <div class="card my-4 rounded-4 shadow bg-light training">
                 <div class="card-body p-0">
                     <div class="row">
                         <div class="col-6">
@@ -28,7 +28,7 @@
                         </div>
                         <div class="col-6 py-3">
                             <div class="d-flex">
-                                <h5 class="fw-bold">HTML Basic </h5>
+                            <h5 class="fw-bold topic-word">HTML Basic </h5>
                                 @for (var i = 0; i < 4; i++)
                                 {
                                     <i class="fa-solid fa-star" style="color: #EAC612;"></i>
@@ -42,7 +42,7 @@
                     </div>
                 </div>
             </div>
-            <div class="card my-4 rounded-4 shadow bg-light">
+        <div class="card my-4 rounded-4 shadow bg-light training">
                 <div class="card-body p-0">
                     <div class="row">
                         <div class="col-6">
@@ -50,19 +50,19 @@
                         </div>
                         <div class="col-6 py-3">
                             <div class="d-flex">
-                                <h5 class="fw-bold">Python </h5>
+                            <h5 class="fw-bold topic-word">Python </h5>
                                 @for (var i = 0; i < 3; i++)
                                 {
                                     <i class="fa-solid fa-star" style="color: #EAC612;"></i>
                                 }
                             </div>
                         <p class="fs-6 w-75 cut-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
-                        <a class="btn btn-primary learn-btn" href="">LEARN NOW</a>
+                        <a class="btn btn-primary learn-btn" asp-controller="Training" asp-action="Training">LEARN NOW</a>
                         </div>
                     </div>
                 </div>
             </div>
-        <div class="card my-4 rounded-4 shadow bg-light">
+        <div class="card my-4 rounded-4 shadow bg-light training">
             <div class="card-body p-0">
                 <div class="row">
                     <div class="col-6">
@@ -70,7 +70,27 @@
                     </div>
                     <div class="col-6 py-3">
                         <div class="d-flex">
-                            <h5 class="fw-bold">C#</h5>
+                            <h5 class="fw-bold topic-word">C#</h5>
+                            @for (var i = 0; i < 5; i++)
+                            {
+                                <i class="fa-solid fa-star" style="color: #EAC612;"></i>
+                            }
+                        </div>
+                        <p class="fs-6 w-75 cut-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. tempor incididunt ut labore et dolore magna aliqua</p>
+                        <a class="btn btn-primary learn-btn" asp-controller="Training" asp-action="Training">LEARN NOW</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card my-4 rounded-4 shadow bg-light training">
+            <div class="card-body p-0">
+                <div class="row">
+                    <div class="col-6">
+                        <img src="~/img/python.png" />
+                    </div>
+                    <div class="col-6 py-3">
+                        <div class="d-flex">
+                            <h5 class="fw-bold topic-word">PHP</h5>
                             @for (var i = 0; i < 5; i++)
                             {
                                 <i class="fa-solid fa-star" style="color: #EAC612;"></i>
@@ -85,9 +105,17 @@
     </div>
 </main>
 
-@*@section scripts {
+@section scripts {
     <script>
-
-        document.getElementById("nav-link").classList.add("active");
+        /*SEARCH TRAINING*/
+        document.getElementById('search-training').addEventListener('input', function () {
+            var searchQuery = this.value.toLowerCase();
+            document.querySelectorAll('.card').forEach(function (card) {
+                var find_training = card.querySelector('.topic-word').textContent.toLowerCase();
+                card.style.display = find_training.includes(searchQuery) ? 'block' : 'none';
+            });
+        });
     </script>
-}*@
+}
+
+
