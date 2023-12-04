@@ -6,6 +6,7 @@ using ShugyopediaApp.Services.Interfaces;
 using ShugyopediaApp.Services.ServiceModels;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -20,6 +21,7 @@ namespace ShugyopediaApp.Services.Services
         private readonly ITrainingCategoryService _trainingCategoryService;
         private readonly IRatingService _ratingService;
         private readonly string _trainingImagesUrl;
+        private readonly string _resourceFileUrl;
         private readonly string _trainingImagesDirectory;
         public TrainingService(ITrainingRepository trainingRepository, ITrainingCategoryService trainingCategoryService, IRatingService ratingService)
         {
@@ -27,22 +29,23 @@ namespace ShugyopediaApp.Services.Services
             _trainingCategoryService = trainingCategoryService;
             _ratingService = ratingService;
             _trainingImagesUrl = PathManager.UrlPath.TrainingImagesUrl;
+            _resourceFileUrl = PathManager.UrlPath.TopicResources;
             _trainingImagesDirectory = PathManager.DirectoryPath.TrainingImagesDirectory;
         }
 
-        public Dictionary<string, object> GetTrainingsFromCategory(string category)
+        public List<TrainingViewModel> GetTrainingsFromCategory(string categoryName)
         {
-            Dictionary<string, object> result = new Dictionary<string, object>();
-            var allTrainings = _trainingRepository.GetTrainings().ToList();
-            result["CategoryName"] = category;
-            var data = allTrainings.Where(s => _trainingCategoryService.GetCategoryNameById(s.CategoryId) == category).Select(s => new TrainingViewModel
-            {
-                TrainingId = s.TrainingId,
-                TrainingImage = _trainingImagesUrl + s.TrainingImage,
-                TrainingName = s.TrainingName,
-                RateAverage = _ratingService.GetRatingAverageFromTraining(s.TrainingId).ToString()
-            }).ToList();
-            result["Trainings"] = data;
+            List<TrainingViewModel> result = _trainingRepository
+                .GetTrainings()
+                .Where(s => s.Category.CategoryName == categoryName)
+                .Select(s => new TrainingViewModel
+                {
+                    TrainingName = s.TrainingName,
+                    TrainingDescription = s.TrainingDescription,
+                    TrainingImage = _trainingImagesUrl + s.TrainingImage,
+                    RateAverage = _ratingService.GetRatingAverageFromTraining(s.TrainingId)
+                })
+                .ToList();
             return result;
         }
         public List<TrainingViewModel> GetTrainings()
@@ -57,7 +60,7 @@ namespace ShugyopediaApp.Services.Services
                     CategoryId = s.CategoryId,
                     TrainingDescription = s.TrainingDescription,
                     TrainingImage = _trainingImagesUrl + s.TrainingImage,
-                    RateAverage = _ratingService.GetRatingAverageFromTraining(s.TrainingId).ToString()
+                    RateAverage = _ratingService.GetRatingAverageFromTraining(s.TrainingId)
                 })
                 .OrderBy(s => s.TrainingId)
                 .ToList();
@@ -122,5 +125,41 @@ namespace ShugyopediaApp.Services.Services
             model.TrainingId = trainingId;
             _trainingRepository.DeleteTraining(model);
         }
+        public LearnTrainingViewModel GetTrainingTopicRatingDetails(string trainingName)
+        {
+            LearnTrainingViewModel data = new LearnTrainingViewModel();
+            Training training = _trainingRepository
+                    .GetTrainings()
+                    .FirstOrDefault(t => t.TrainingName == trainingName);
+            if (training != null)
+            {
+                data = new LearnTrainingViewModel
+                {
+                    CategoryName = training.Category.CategoryName,
+                    TrainingName = training.TrainingName,
+                    TrainingDescription = training.TrainingDescription,
+                    UpdatedTime = training.UpdatedTime,
+                    CreatedBy = training.CreatedBy,
+                    RateAverage = _ratingService.GetRatingAverageFromTraining(training.TrainingId),
+                    Ratings = training.Ratings.Select(r => new LearnRatingViewModel
+                    {
+                        RatingReview = r.RatingReview,
+                        Rate = r.Rate,
+                        RaterName = r.RaterName,
+                        RaterEmail = r.RaterEmail
+                    }).ToList(),
+                    Topics = training.Topics.Select(t => new LearnTopicViewModel
+                    {
+                        TopicId = t.TopicId,
+                        TopicName = t.TopicName,
+                        ResourceFile = _resourceFileUrl + t.ResourceFile,
+                        ResourceFileType = Path.GetExtension(t.ResourceFile),
+                        IsChecked = false
+                    }).ToList()                    
+                };
+            }                    
+            return data;
+        }
     }
+    
 }

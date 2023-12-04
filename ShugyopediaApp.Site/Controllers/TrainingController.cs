@@ -5,7 +5,9 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using ShugyopediaApp.Services.Interfaces;
+using ShugyopediaApp.Services.ServiceModels;
 using ShugyopediaApp.Site.Mvc;
+using System.Collections.Generic;
 
 namespace ShugyopediaApp.Site.Controllers
 {
@@ -32,22 +34,24 @@ namespace ShugyopediaApp.Site.Controllers
         }
         [HttpGet]
         [AllowAnonymous]
-        public IActionResult AllTrainings(string category)
+        public IActionResult AllTrainings(string categoryName)
         {
-            var data = _trainingService.GetTrainingsFromCategory(category);
+            List<TrainingViewModel> data = _trainingService.GetTrainingsFromCategory(categoryName);
             return View("AllTrainings", data);
         }
         [HttpGet]
         [AllowAnonymous]
-        public IActionResult Training(string training)
+        public IActionResult Learn(string trainingName)
         {
-            var data = _trainingService.GetTrainingsFromCategory(training);
-            return View("Training", data);
+            var data = _trainingService.GetTrainingTopicRatingDetails(trainingName);
+            return View(data);
         }
 
-        public IActionResult Topic()
+        public IActionResult DownloadResource(LearnTrainingViewModel data)
         {
-            return View();
+
+            string content = $"Category Name: {data.CategoryName}, Training Name: {data.TrainingName}, Description: {data.TrainingDescription}";
+            return Content(content, "text/plain");
         }
     }
 }

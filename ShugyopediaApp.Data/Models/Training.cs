@@ -21,8 +21,8 @@ namespace ShugyopediaApp.Data.Models
         public string UpdatedBy { get; set; }
         public DateTime UpdatedTime { get; set; }
 
-        public virtual TrainingCategory Category { get; set; }
-        public virtual ICollection<Rating> Ratings { get; set; }
-        public virtual ICollection<Topic> Topics { get; set; }
+        public TrainingCategory Category { get; set; }
+        public ICollection<Rating> Ratings { get; set; }
+        public ICollection<Topic> Topics { get; set; }
     }
 }
