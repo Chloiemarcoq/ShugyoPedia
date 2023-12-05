@@ -82,7 +82,7 @@ namespace ShugyopediaApp.Data
             {
                 get { return StorageServerUrl + "wwwroot_common/"; }
             }
-            public static string TopicResources
+            public static string TopicResourcesUrl
             {
                 get { return StorageServerUrl + "topic_resources/"; }
             }

@@ -17,5 +17,6 @@ namespace ShugyopediaApp.Services.Interfaces
         void EditTraining(AddTrainingViewModel training, string user);
         void DeleteTraining(int trainingId);
         LearnTrainingViewModel GetTrainingTopicRatingDetails(string trainingName);
+        Dictionary<string, string> DownloadResourceLogic(string fileUrl);
     }
 }

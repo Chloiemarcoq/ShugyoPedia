@@ -23,14 +23,18 @@ namespace ShugyopediaApp.Services.Services
         private readonly string _trainingImagesUrl;
         private readonly string _resourceFileUrl;
         private readonly string _trainingImagesDirectory;
+        private readonly string _topicResourcesDirectory;
+        private readonly string _topicResourcesUrl;
         public TrainingService(ITrainingRepository trainingRepository, ITrainingCategoryService trainingCategoryService, IRatingService ratingService)
         {
             _trainingRepository = trainingRepository;
             _trainingCategoryService = trainingCategoryService;
             _ratingService = ratingService;
             _trainingImagesUrl = PathManager.UrlPath.TrainingImagesUrl;
-            _resourceFileUrl = PathManager.UrlPath.TopicResources;
+            _resourceFileUrl = PathManager.UrlPath.TopicResourcesUrl;
             _trainingImagesDirectory = PathManager.DirectoryPath.TrainingImagesDirectory;
+            _topicResourcesUrl = PathManager.UrlPath.TopicResourcesUrl;
+            _topicResourcesDirectory = PathManager.DirectoryPath.TopicResourcesDirectory;
         }
 
         public List<TrainingViewModel> GetTrainingsFromCategory(string categoryName)
@@ -71,8 +75,8 @@ namespace ShugyopediaApp.Services.Services
             var categories = _trainingCategoryService.GetTrainingCategories()
                 .Select(s => new TrainingCategoryViewModel
                 {
-                     CategoryId = s.CategoryId,
-                     CategoryName= s.CategoryName
+                    CategoryId = s.CategoryId,
+                    CategoryName = s.CategoryName
                 })
                 .OrderBy(s => s.CategoryId)
                 .ToList();
@@ -119,7 +123,7 @@ namespace ShugyopediaApp.Services.Services
             }
             _trainingRepository.EditTraining(model);
         }
-        public void DeleteTraining(int trainingId) 
+        public void DeleteTraining(int trainingId)
         {
             var model = new Training();
             model.TrainingId = trainingId;
@@ -155,10 +159,37 @@ namespace ShugyopediaApp.Services.Services
                         ResourceFile = _resourceFileUrl + t.ResourceFile,
                         ResourceFileType = Path.GetExtension(t.ResourceFile),
                         IsChecked = false
-                    }).ToList()                    
+                    }).ToList()
                 };
-            }                    
+            }
             return data;
+        }
+        public Dictionary<string, string> DownloadResourceLogic(string fileUrl)
+        {
+            string fileName = fileUrl.Replace(_topicResourcesUrl, "");
+            string fileDirectory = Path.Combine(_topicResourcesDirectory, fileName);
+            string contentType;
+
+            switch (Path.GetExtension(fileName))
+            {
+                case ".pdf":
+                    contentType = "application/pdf";
+                    break;
+                case ".mp4":
+                    contentType = "video/mp4";
+                    break;
+                case ".ppt":
+                    contentType = "application/vnd.ms-powerpoint";
+                    break;
+                default:
+                    contentType = "application/octet-stream";
+                    break;
+            }
+            return new Dictionary<string, string> {
+                { "fileName", fileName },
+                { "fileDirectory", fileDirectory },
+                { "contentType", contentType }
+            };
         }
     }
     

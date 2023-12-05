@@ -4,10 +4,16 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
+using Microsoft.VisualBasic.FileIO;
+using ShugyopediaApp.Data;
 using ShugyopediaApp.Services.Interfaces;
 using ShugyopediaApp.Services.ServiceModels;
 using ShugyopediaApp.Site.Mvc;
+using System;
 using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Net.Mime;
 
 namespace ShugyopediaApp.Site.Controllers
 {
@@ -46,12 +52,32 @@ namespace ShugyopediaApp.Site.Controllers
             var data = _trainingService.GetTrainingTopicRatingDetails(trainingName);
             return View(data);
         }
-
-        public IActionResult DownloadResource(LearnTrainingViewModel data)
+        [HttpGet]
+        public IActionResult DownloadResource(string fileUrl)
         {
-
-            string content = $"Category Name: {data.CategoryName}, Training Name: {data.TrainingName}, Description: {data.TrainingDescription}";
-            return Content(content, "text/plain");
+            Dictionary<string,string> fileDetails = _trainingService.DownloadResourceLogic(fileUrl);
+            try
+            {
+                return File(System.IO.File.ReadAllBytes(fileDetails["fileDirectory"]), fileDetails["contentType"], fileDetails["fileName"]);
+            }
+            catch (Exception)
+            {
+                return Content("FUCK", "text/plain");
+            }
         }
+        [HttpPost]
+        public IActionResult DownloadResources(string[] checkboxes)
+        { 
+            if (checkboxes != null && checkboxes.Length > 0)
+            {
+                // Concatenate the checkbox values into a single string
+                string checkboxValues = string.Join(", ", checkboxes.Select(x => x.ToString()));
+
+                // Return the checkbox values as plain text
+                return Content(checkboxValues, "text/plain");
+            }
+
+            return Content("No checkboxes selected", "text/plain");
+}
     }
 }
