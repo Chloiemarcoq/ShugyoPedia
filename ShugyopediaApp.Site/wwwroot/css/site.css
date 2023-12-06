@@ -380,6 +380,7 @@ a:hover {
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
+    position: relative;
     gap: 20px;
     padding: 50px 50px;
     height: 100vh;

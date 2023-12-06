@@ -10,6 +10,6 @@ function showItem(index) {
 setInterval(function () {
     currentIndex = (currentIndex + 1) % items.length;
     showItem(currentIndex);
-}, 3000);
+}, 2000);
 
 showItem(currentIndex);
