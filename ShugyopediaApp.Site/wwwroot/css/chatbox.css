@@ -1,0 +1,111 @@
+﻿/* CHATBOX BUTTON */
+.chatbox-btn-container {
+    position: fixed;
+    top: 80%;
+    right: 3rem;
+    padding: 10px 10px;
+    /*border: 1px solid black;*/
+    z-index: 10;
+}
+
+.chatbox-btn {
+    padding: 10px 10px;
+    border-radius: 100%;
+    width: 50px;
+    height: 50px;
+    outline: none;
+    border: none;
+    background-color: blue;
+    color: white;
+    font-size: 23px;
+}
+
+/* CHATBOX */
+
+.chatbox-container {
+    display: none;
+    position: fixed;
+    bottom: 10%;
+    right: 5%;
+    width: 25%;
+    height: auto;
+    /*border: 1px solid black;*/
+    z-index: 10;
+    /*background-color: #fff;*/
+}
+
+.chatbox {
+    border: 1px solid green;
+    padding: 20px;
+    height: auto;
+    background-color: white;
+    border-radius: 10px;
+    position: relative;
+}
+
+.message-section {
+    display: flex;
+    flex-direction: column;
+    /*justify-content: end;*/
+    margin-top: 20px;
+    border: 1px solid black;
+    border-radius: 10px;
+    max-height: 200px;
+    width: auto;
+    overflow-y: auto;
+}
+
+.message-send,
+.message-receive {
+    padding: 10px;
+    margin: 5px;
+    border-radius: 5px;
+    max-width: 70%;
+    word-wrap: break-word;
+}
+
+.message-send {
+    /*border: 1px solid blue;*/
+    background-color: lightblue;
+    align-self: flex-end;
+}
+
+.message-receive {
+    /*border: 1px solid green;*/
+    background-color: lightgreen;
+    align-self: flex-start;
+}
+
+.close-btn-message {
+    position: absolute;
+    right: 20px;
+    top: 5px;
+    cursor: pointer;
+    outline: none;
+    border: none;
+    background-color: transparent;
+    font-size: 25px;
+}
+
+.input-container {
+    display: flex;
+    border: 1px solid black;
+    /*border-radius: 1px;*/
+    margin-top: 10px;
+}
+
+input[type="text"] {
+    flex: 1;
+    padding: 10px;
+    border: none;
+}
+
+#submit-message {
+    padding: 10px;
+    /*border: 1px solid black;*/
+    outline: none;
+    border: none;
+    cursor: pointer;
+    background-color: blue;
+    color: white;
+}
