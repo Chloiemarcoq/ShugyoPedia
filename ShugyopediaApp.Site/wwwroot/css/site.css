@@ -414,7 +414,7 @@ a:hover {
 
 /* RATING */
 .rating {
-    font-size: 24px;
+    font-size: 30px;
 }
 
 input[type="radio"] {
@@ -438,7 +438,7 @@ input[type="radio"] {
         overflow: hidden;
         white-space: nowrap;
         cursor: pointer;
-        font-size: 30px;
+        font-size: 40px;
         color: #ccc;
     }
 
@@ -447,12 +447,12 @@ input[type="radio"] {
         }
 
     .rating > input:checked ~ label {
-        color: #ffc700;
+        color: #EAC612;
     }
 
     .rating:not(:checked) > label:hover,
     .rating:not(:checked) > label:hover ~ label {
-        color: #deb217;
+        color: #EAC612;
     }
 
     .rating > input:checked + label:hover,
@@ -460,7 +460,7 @@ input[type="radio"] {
     .rating > input:checked ~ label:hover,
     .rating > input:checked ~ label:hover ~ label,
     .rating > label:hover ~ input:checked ~ label {
-        color: #c59b08;
+        color: #EAC612;
     }
 
 .carousel-container {

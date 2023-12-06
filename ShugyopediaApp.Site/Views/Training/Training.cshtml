@@ -9,7 +9,7 @@
     <div class="container my-4">
         <div class="row">
             <div class="col-8">
-                <div class="video-container paused shadow" data-volume-level="high">
+                @*<div class="video-container paused shadow" data-volume-level="high">
                     <div class="video-controls-container">
                         <div class="timeline-container">
                             <div class="timeline">
@@ -86,7 +86,8 @@
                     <video src="~/video/HTML Basics.mp4">
                         <track kind="captions" srclang="en" src="">
                     </video>
-                </div>
+                </div>*@
+                <div id="adobe-dc-view"></div>
             </div>
             <div class="col-4">
                 <div class="card" style="height: 330px;">
@@ -219,26 +220,39 @@
                     <!-- Leave a Rating Section -->
                     <h3>Leave a Rating</h3>
                     <form action="" method="POST">
+                       
                         <div class="row">
-                            <div class="rating">
-                                <input type="radio" id="star5" name="rate" value="5" />
-                                <label for="star5" title="text">5 stars</label>
+                            <div class="col-6">
+                                <div class="rating p-0">
+                                    <input type="radio" id="star5" name="rate" value="5" />
+                                    <label for="star5" title="text">5 stars</label>
 
-                                <input type="radio" id="star4" name="rate" value="4" />
-                                <label for="star4" title="text">4 stars</label>
+                                    <input type="radio" id="star4" name="rate" value="4" />
+                                    <label for="star4" title="text">4 stars</label>
 
-                                <input type="radio" id="star3" name="rate" value="3" />
-                                <label for="star3" title="text">3 stars</label>
+                                    <input type="radio" id="star3" name="rate" value="3" />
+                                    <label for="star3" title="text">3 stars</label>
 
-                                <input type="radio" id="star2" name="rate" value="2" />
-                                <label for="star2" title="text">2 stars</label>
+                                    <input type="radio" id="star2" name="rate" value="2" />
+                                    <label for="star2" title="text">2 stars</label>
 
-                                <input type="radio" id="star1" name="rate" value="1" />
-                                <label for="star1" title="text">1 star</label>
+                                    <input type="radio" id="star1" name="rate" value="1" />
+                                    <label for="star1" title="text">1 star</label>
 
+                                </div>
                             </div>
                         </div>
-                        <textarea name="rating-comment" id="rating-comment" class="form-control h-25 mb-2"
+                        <div class="row my-3">
+                            <div class="col-6">
+                                <label for="email">Email</label>
+                                <input type="text" name="email" id="email" class="form-control" placeholder="Email" autocomplete="off">
+                            </div>
+                            <div class="col-6">
+                                <label for="name">Display Name</label>
+                                <input type="text" name="name" id="name" class="form-control" placeholder="Display name" autocomplete="off">
+                            </div>
+                        </div>
+                        <textarea name="rating-comment" id="rating-comment" class="form-control h-25 my-3"
                                   placeholder="Share your thoughts..."></textarea>
                         <button type="submit" class="btn btn-primary">SUBMIT</button>
                     </form>
@@ -406,6 +420,15 @@
                     hideButton.style.display = 'none';
                 });
             }
+        });
+
+        document.addEventListener("adobe_dc_view_sdk.ready", function () {
+            var adobeDCView = new AdobeDC.View({ clientId: "2502340015ec47698a1885a2918f6823", divId: "adobe-dc-view" });
+            adobeDCView.previewFile(
+                {
+                    content: { location: { url: "/pdf/Exercise1.pdf" } },
+                    metaData: { fileName: "Exercise1.pdf" }
+                });
         });
     </script>
 }
