@@ -5,7 +5,7 @@
     </div>
     <ul class="sidebar-nav" id="sidebar-nav">
         <li class="nav-item">
-            <a class="nav-link active" asp-controller="Home" asp-action="Index" id="nav-link">
+            <a class="nav-link " asp-controller="Home" asp-action="Index" id="nav-link">
                 <span><i class="fa-solid fa-house"></i> Home</span>
             </a>
         </li>
@@ -18,6 +18,25 @@
     </form>
     <!--END OF SEARCH BAR-->
     <ul class="sidebar-nav" id="category-list">
+<<<<<<< HEAD
+        <li class="nav-item">
+            <a class="nav-link" asp-controller="Training" asp-action="AllTrainings" id="nav-link">
+                <i class="fa-solid fa-code"></i> <span class="category">Programming</span>
+            </a>
+        </li>
+
+        <li class="nav-item">
+            <a class="nav-link" asp-controller="Training" asp-action="AllTrainings" id="nav-link">
+                <i class="fa-solid fa-book"></i> <span class="category">Education</span>
+            </a>
+        </li>
+
+        <li class="nav-item">
+            <a class="nav-link" asp-controller="Training" asp-action="AllTrainings" id="nav-link">
+                <i class="fa-solid fa-suitcase-medical"></i> <span class="category">Medical</span>
+            </a>
+        </li>
+=======
         @foreach (var category in Model)
         {
             <li class="nav-item">
@@ -27,5 +46,8 @@
             </li>
         }
 
+>>>>>>> b9b04b0f9e048b246f3fbf38fc67239c6e562374
     </ul>
 </aside>
+
+

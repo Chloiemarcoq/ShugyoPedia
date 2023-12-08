@@ -90,7 +90,7 @@
                         <track kind="captions" srclang="en" src="">
                     </video>
                 </div>*@
-                <div id="adobe-dc-view"></div>
+                <div id="adobe-dc-view" class="border"></div>
             </div>
             @* Topics *@
             <div class="col-4">
@@ -225,7 +225,7 @@
                 </div>
                 @* Resources *@
                 <div class="tab-pane fade" id="resources" role="tabpanel">                    
-                        <div class="d-flex align-items-center justify-content-between">
+                        @*<div class="d-flex align-items-center justify-content-between">
                             <div class="d-flex align-items-center">
                                 <select name="filter" id="filter" class="form-select w-25 me-2">
                                     <option value="all">All</option>
@@ -238,10 +238,10 @@
                                 </div>
                             </div>
                             
-                        </div>
+                        </div>*@
                         <form asp-action="DownloadResources" asp-controller="Training" method="post">
                             <button type="submit" class="btn btn-primary">Download Selected Files</button>
-                            <div class="card">
+                            <div class="card my-3">
                                 <div class="card-body">
                                     <table class="table table-striped table-borderless text-center" id="datatable">
                                         <thead>
@@ -267,7 +267,8 @@
                                                     <a id="downloadButton" asp-action="DownloadResource" asp-controller="Training" asp-route-fileUrl="@topic.ResourceFile" class="btn btn-primary" download>Download</a>
                                                 </td>
                                             </tr>
-                                        }                                
+                                        }
+                                        
                                     </tbody>
                                 </table>
                             </div>
@@ -336,6 +337,18 @@
                     content: { location: { url: "D: \Coding\LocalServer\shugyopediaResources\topic_resources\CenterMEDiv.pdf" } },
                     metaData: { fileName: "CenterMEDiv.pdf" }
                 });
+        });
+
+        $(document).ready(function () {
+            $('#datatable').DataTable();
+        });
+
+        $(document).ready(function () {
+            $('#datatable').DataTable({
+                "paging": true,
+                "ordering": true,
+                "searching": true
+            });
         });
     </script>
 }
