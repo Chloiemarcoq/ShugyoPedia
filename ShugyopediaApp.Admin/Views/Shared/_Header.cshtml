@@ -2,6 +2,15 @@
 @inject IHttpContextAccessor HttpContextAccessor
 
 
+@functions {
+    // Helper function to determine if a given controller is active
+    private string IsActive(string controller)
+    {
+        var currentController = ViewContext.RouteData.Values["controller"] as string;
+        return (currentController == controller) ? "active" : string.Empty;
+    }
+}
+
 <header class="fixed-top" style="background-color: #2F3CED; color: white;">
     <div class="navbar">
         <div class="logo">
@@ -21,11 +30,11 @@
         </div>
     </div>
     <div class="navbar2">
-        <a class="link" asp-action="Index" asp-controller="TrainingCategory">Training Categories</a>
-        <a class="link" asp-action="Index" asp-controller="Training">Training</a>
-        <a class="link" asp-action="Index" asp-controller="Rating">Ratings</a>
-        <a class="link" asp-action="Index" asp-controller="Topic">Topics</a>
-        <a class="link" asp-action="Index" asp-controller="User">Users</a>
-        <a class="link" asp-action="Index" asp-controller="RecoveryRequest">Account Recovery Requests</a>
+        <a class="link @(IsActive("TrainingCategory"))" asp-action="Index" asp-controller="TrainingCategory">Training Categories</a>
+        <a class="link @(IsActive("Training"))" asp-action="Index" asp-controller="Training">Training</a>
+        <a class="link @(IsActive("Rating"))" asp-action="Index" asp-controller="Rating">Ratings</a>
+        <a class="link @(IsActive("Topic"))" asp-action="Index" asp-controller="Topic">Topics</a>
+        <a class="link @(IsActive("User"))" asp-action="Index" asp-controller="User">Users</a>
+        <a class="link @(IsActive("RecoveryRequest"))" asp-action="Index" asp-controller="RecoveryRequest">Account Recovery Requests</a>
    </div>
 </header>
