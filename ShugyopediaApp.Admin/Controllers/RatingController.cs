@@ -8,6 +8,7 @@ using ShugyopediaApp.Admin.Mvc;
 using ShugyopediaApp.Data.Models;
 using ShugyopediaApp.Services.Interfaces;
 using ShugyopediaApp.Services.ServiceModels;
+using System;
 using System.Collections.Generic;
 
 namespace ShugyopediaApp.Admin.Controllers
@@ -33,7 +34,15 @@ namespace ShugyopediaApp.Admin.Controllers
 
         public IActionResult DeleteRating(string ratingId)
         {
-            _ratingService.DeleteRating(ratingId);
+            try
+            {
+                _ratingService.DeleteRating(ratingId);
+                TempData["SuccessMessage"] = "Successfully Deleted";
+            }
+            catch (Exception ex)
+            {
+                TempData["ErrorMessage"] = $"Error Deleting: {ex.Message}";
+            }
             return RedirectToAction("Index");
         }
     }

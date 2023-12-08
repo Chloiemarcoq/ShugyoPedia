@@ -15,26 +15,31 @@
                                 <label for="UserId">User ID</label>
                                 <input type="text" asp-for="UserId" class="form-control"
                                        placeholder="Enter username">
+                                <span asp-validation-for="UserId" class="text-danger"></span>
                             </div>
                             <div class="form-group my-3">
                                 <label for="Name">Full Name</label>
                                 <input type="text" asp-for="Name" class="form-control"
                                        placeholder="Enter Full Name">
+                                <span asp-validation-for="Name" class="text-danger"></span>
                             </div>
                             <div class="form-group my-3">
                                 <label for="UserEmail">Email</label>
                                 <input type="email" asp-for="UserEmail" class="form-control"
                                        placeholder="Enter email">
+                                <span asp-validation-for="UserEmail" class="text-danger"></span>
                             </div>
                             <div class="form-group my-3">
                                 <label for="Password">Old Password</label>
                                 <input type="password" asp-for="Password" class="form-control"
                                        placeholder="Enter password" value="@Model.Password">
+                                <span asp-validation-for="Password" class="text-danger"></span>
                             </div>
                             <div class="form-group my-3">
                                 <label for="ConfirmPassword">Confirm Password</label>
                                 <input type="password" asp-for="ConfirmPassword" class="form-control"
                                        placeholder="Enter confirm password" value="@Model.Password">
+                                <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
                             </div>                            
                             <div class="d-flex align-items-center justify-content-center mt-5">
                                 <button type="reset" class="btn btn-primary mx-5">Clear</button>

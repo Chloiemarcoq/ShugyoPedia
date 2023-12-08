@@ -8,6 +8,7 @@ using ShugyopediaApp.Admin.Mvc;
 using ShugyopediaApp.Data.Models;
 using ShugyopediaApp.Services.Interfaces;
 using ShugyopediaApp.Services.ServiceModels;
+using System;
 using System.Collections.Generic;
 
 namespace ShugyopediaApp.Admin.Controllers
@@ -38,7 +39,15 @@ namespace ShugyopediaApp.Admin.Controllers
         [HttpPost]
         public IActionResult AddTrainingCategory(TrainingCategoryViewModel trainingCategory)
         {
-            _trainingCategoryService.AddTrainingCategory(trainingCategory, this.UserId);
+            try
+            {
+                _trainingCategoryService.AddTrainingCategory(trainingCategory, this.UserId);
+                TempData["SuccessMessage"] = "Successfully Added";
+            }
+            catch (Exception ex)
+            {
+                TempData["ErrorMessage"] = $"Error Adding: {ex.Message}";
+            }
             return RedirectToAction("Index");
         }
         [HttpPost]
@@ -49,13 +58,30 @@ namespace ShugyopediaApp.Admin.Controllers
         [HttpPost]
         public IActionResult EditTrainingCategory(TrainingCategoryViewModel trainingCategory)
 		{
-            _trainingCategoryService.EditTrainingCategory(trainingCategory, this.UserId);
+            try
+            {
+                _trainingCategoryService.EditTrainingCategory(trainingCategory, this.UserId);
+                TempData["SuccessMessage"] = "Successfully Edited";
+            }
+            catch (Exception ex)
+            {
+                TempData["ErrorMessage"] = $"Error Editing: {ex.Message}";
+            }
             return RedirectToAction("Index");
         }
 
         [HttpPost]
-        public IActionResult DeleteTrainingCategory(TrainingCategory trainingCategory) {
-            _trainingCategoryService.DeleteTrainingCategory(trainingCategory.CategoryId);
+        public IActionResult DeleteTrainingCategory(TrainingCategory trainingCategory) 
+        {
+            try
+            {
+                _trainingCategoryService.DeleteTrainingCategory(trainingCategory.CategoryId);
+                TempData["SuccessMessage"] = "Successfully Deleted";
+            }
+            catch (Exception ex)
+            {
+                TempData["ErrorMessage"] = $"Error Deleting: {ex.Message}";
+            }
             return RedirectToAction("Index");
         }
 	}

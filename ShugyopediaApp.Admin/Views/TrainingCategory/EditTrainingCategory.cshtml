@@ -16,10 +16,12 @@
                                 <label for="CategoryName">Category Name</label>
                                 <input type="text" asp-for="CategoryName" class="form-control"
                                        value="@Model.CategoryName">
+                                <span asp-validation-for="CategoryName" class="text-danger"></span>
                             </div>
                             <div class="form-group my-3">
                                 <label for="CategoryIcon">Category Icon</label>
                                 <input type="text" asp-for="CategoryIcon" class="form-control" value="@Model.CategoryIcon">
+                                <span asp-validation-for="CategoryIcon" class="text-danger"></span>
                                 <p class="fw-6 p-0 m-0">
                                     Copy Snippet from: <a href="http://fontawesome.com/search" target="_blank">http://fontawesome.com</a>
                                 </p>

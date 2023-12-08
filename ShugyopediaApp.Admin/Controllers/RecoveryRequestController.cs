@@ -8,6 +8,7 @@ using ShugyopediaApp.Admin.Mvc;
 using ShugyopediaApp.Data.Models;
 using ShugyopediaApp.Services.Interfaces;
 using ShugyopediaApp.Services.Services;
+using System;
 
 namespace ShugyopediaApp.Admin.Controllers
 {
@@ -30,7 +31,15 @@ namespace ShugyopediaApp.Admin.Controllers
         }
         public IActionResult DeleteAccountRecovery(AccountRecoveryRequest accountRecoveryRequest)
         {
-            _accountRecoveryRequestService.DeleteAccountRecovery(accountRecoveryRequest.RequestId);
+            try
+            {
+                _accountRecoveryRequestService.DeleteAccountRecovery(accountRecoveryRequest.RequestId);
+                TempData["SuccessMessage"] = "Successfully Deleted";
+            }
+            catch (Exception ex)
+            {
+                TempData["ErrorMessage"] = $"Error Deleting: {ex.Message}";
+            }
             return RedirectToAction("Index");
         }
     }

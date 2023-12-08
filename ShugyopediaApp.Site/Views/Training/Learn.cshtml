@@ -174,7 +174,9 @@
                     <hr>
                     <!-- Leave a Rating Section -->
                     <h3>Leave a Rating</h3>
-                    <form action="" method="POST">
+                    <form asp-action="AddRating" asp-controller="Rating" method="POST">
+                        <input type="hidden" value="@Model.TrainingId" asp-for="TrainingId" />
+                        <input type="hidden" value="@Model.TrainingName" asp-for="TrainingName" />
                         <div class="row">
                             <div class="col-6">
                                 <div class="rating p-0">
@@ -199,14 +201,14 @@
                         <div class="row my-3">
                             <div class="col-6">
                                 <label for="email">Email</label>
-                                <input type="text" name="email" id="email" class="form-control" placeholder="Email" autocomplete="off">
+                                <input type="email" name="email" id="email" class="form-control" placeholder="Email" autocomplete="off">
                             </div>
                             <div class="col-6">
                                 <label for="name">Display Name</label>
                                 <input type="text" name="name" id="name" class="form-control" placeholder="Display name" autocomplete="off">
                             </div>
                         </div>
-                        <textarea name="rating-comment" id="rating-comment" class="form-control h-25 my-3"
+                        <textarea name="review" id="review" class="form-control h-25 my-3"
                                   placeholder="Share your thoughts..."></textarea>
                         <button type="submit" class="btn btn-primary">SUBMIT</button>
                     </form>
@@ -292,42 +294,41 @@
         </div>
     </div>
 </main>
-@section scripts {
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            const showButtons = document.querySelectorAll('.read-more-show');
-            const hideButtons = document.querySelectorAll('.read-more-hide');
-            const contents = document.querySelectorAll('.read-more-content');
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const showButtons = document.querySelectorAll('.read-more-show');
+        const hideButtons = document.querySelectorAll('.read-more-hide');
+        const contents = document.querySelectorAll('.read-more-content');
 
-            for (let i = 0; i < showButtons.length; i++) {
-                const showButton = showButtons[i];
-                const hideButton = hideButtons[i];
-                const content = contents[i];
+        for (let i = 0; i < showButtons.length; i++) {
+            const showButton = showButtons[i];
+            const hideButton = hideButtons[i];
+            const content = contents[i];
 
-                showButton.addEventListener('click', function () {
-                    content.style.webkitLineClamp = 'unset';
-                    showButton.style.display = 'none';
-                    hideButton.style.display = 'inline';
-                });
+            showButton.addEventListener('click', function () {
+                content.style.webkitLineClamp = 'unset';
+                showButton.style.display = 'none';
+                hideButton.style.display = 'inline';
+            });
 
-                hideButton.addEventListener('click', function () {
-                    content.style.webkitLineClamp = '2';
-                    showButton.style.display = 'inline';
-                    hideButton.style.display = 'none';
-                });
-            }
-        });
-        document.getElementById("downloadButton").addEventListener("click", function (event) {
-            event.preventDefault(); 
-            var downloadUrl = this.getAttribute("href");
-            window.location.href = downloadUrl;
-        });
-        document.getElementById("select-all").addEventListener("change", function () {
-            var checkboxes = document.getElementsByName("checkboxes");
-            for (var i = 0; i < checkboxes.length; i++) {
-                checkboxes[i].checked = this.checked;
-            }
-        });
+            hideButton.addEventListener('click', function () {
+                content.style.webkitLineClamp = '2';
+                showButton.style.display = 'inline';
+                hideButton.style.display = 'none';
+            });
+        }
+    });
+    document.getElementById("downloadButton").addEventListener("click", function (event) {
+        event.preventDefault(); 
+        var downloadUrl = this.getAttribute("href");
+        window.location.href = downloadUrl;
+    });
+    document.getElementById("select-all").addEventListener("change", function () {
+        var checkboxes = document.getElementsByName("checkboxes");
+        for (var i = 0; i < checkboxes.length; i++) {
+            checkboxes[i].checked = this.checked;
+        }
+    });
 
         var checkboxes = document.getElementsByName("checkboxes");
         for (var i = 0; i < checkboxes.length; i++) {
@@ -344,9 +345,9 @@
             });
         }
 
-        $(document).ready(function () {
-            $('#datatable').DataTable();
-        });
+    $(document).ready(function () {
+        $('#datatable').DataTable();
+    });
 
         $(document).ready(function () {
             $('#datatable').DataTable({
@@ -387,6 +388,8 @@
 
 
 }
+
+
 @functions {
     void RenderStars(double rateAverage)
     {

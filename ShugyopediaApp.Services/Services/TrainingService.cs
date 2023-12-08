@@ -142,6 +142,7 @@ namespace ShugyopediaApp.Services.Services
                 {
                     CategoryName = training.Category.CategoryName,
                     TrainingName = training.TrainingName,
+                    TrainingId = training.TrainingId,
                     TrainingDescription = training.TrainingDescription,
                     UpdatedTime = training.UpdatedTime,
                     CreatedBy = training.CreatedBy,
