@@ -38,9 +38,15 @@ namespace ShugyopediaApp.Site.Controllers
                 RaterName = name
             };
 
-            // Call the service to add the rating
-            _ratingService.AddRating(model.TrainingId, newRating);
-
+            try
+            {
+                // Call the service to add the rating
+                _ratingService.AddRating(model.TrainingId, newRating);
+                TempData["SuccessMessage"] = "Successfully Rated";
+            } catch (Exception ex) 
+            {
+                TempData["ErrorMessage"] = $"Error Rating: {ex.Message}";
+            }
             // Redirect to a success page or back to the view
             return RedirectToAction("Learn", "Training", new { trainingName = model.TrainingName }); // Replace with your desired action and controller names
         }

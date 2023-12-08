@@ -134,10 +134,9 @@ namespace ShugyopediaApp.Admin.Controllers
             }
             else
             {
-                TempData["ErrorMessage"] = "Email associated to any account";
-                return RedirectToAction("ForgotPassword", "Account");
+                TempData["ErrorMessage"] = "Email not associated to any account";
+                return RedirectToAction("Login", "Account");
             }
-            
         }
         [HttpGet]
         [AllowAnonymous]
@@ -145,7 +144,7 @@ namespace ShugyopediaApp.Admin.Controllers
         public IActionResult EmailSender(string email)
         {            
             _accountRecoveryRequestService.EmailSender(email);
-            TempData["ErrorMessage"] = "Check your email";
+            TempData["SuccessMessage"] = "Request sent, please check your email.";
             return RedirectToAction("Login", "Account");
         }
         [HttpGet]
