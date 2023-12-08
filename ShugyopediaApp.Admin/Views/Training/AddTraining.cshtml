@@ -14,8 +14,8 @@
                                 <div class="row">
                                     <div class="col-6">
                                         <label for="TrainingName">Training Name</label>
-                                        <input type="text" asp-for="TrainingName"
-                                               class="form-control" placeholder="Enter training name">
+                                        <input type="text" asp-for="TrainingName" class="form-control" placeholder="Enter training name">
+                                        <span asp-validation-for="TrainingName" class="text-danger"></span>
                                     </div>
                                     <div class="col-6">
                                         <label for="CategoryNames">Category</label>
@@ -26,16 +26,19 @@
                                                 <option value="@category.CategoryId">@category.CategoryName</option>
                                             }
                                         </select>
+                                        <span asp-validation-for="CategoryId" class="text-danger"></span>
                                     </div>
                                 </div>
                             </div>
                             <div class="form-group my-3">
                                 <label for="TrainingDescription">Training Description:</label>
                                 <textarea asp-for="TrainingDescription" class="form-control" rows="3" placeholder="Enter training description..."></textarea>
+                                <span asp-validation-for="TrainingDescription" class="text-danger"></span>
                             </div>
                             <div class="form-group my-3 mx-auto">
                                 <label for="TrainingImageFile">Training Image: </label>
                                 <input type="file" asp-for="TrainingImageFile" accept=".png">
+                                <span asp-validation-for="TrainingImageFile" class="text-danger"></span>
                             </div>
                             <div class="d-flex align-items-center justify-content-center mt-5">
                                 <button type="reset" class="btn btn-primary mx-5">Clear</button>

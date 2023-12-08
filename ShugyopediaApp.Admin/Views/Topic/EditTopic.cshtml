@@ -23,10 +23,12 @@
                                                 <option value="@training.TrainingId">@training.TrainingName</option>
                                             }
                                         </select>
+                                        <span asp-validation-for="TrainingId" class="text-danger"></span>
                                     </div>
                                     <div class="col-6">
                                         <label for="TopicName">Edit Topic Name</label>
                                         <input type="text" asp-for="TopicName" class="form-control" placeholder="Enter topic name">
+                                        <span asp-validation-for="TopicName" class="text-danger"></span>
                                     </div>
                                 </div>
                             </div>
@@ -37,6 +39,7 @@
                                     <div class="col-6">
                                         <label for="ResourceFileUpload">Edit Resource File</label>
                                         <input type="file" asp-for="ResourceFileUpload" accept=".mp4,.pdf,.ppt,.pps">
+                                        <span asp-validation-for="ResourceFileUpload" class="text-danger"></span>
                                     </div>
                                 </div>
                             </div>

@@ -9,6 +9,7 @@ using ShugyopediaApp.Data.Models;
 using ShugyopediaApp.Services.Interfaces;
 using ShugyopediaApp.Services.ServiceModels;
 using ShugyopediaApp.Services.Services;
+using System;
 using System.Collections.Generic;
 
 namespace ShugyopediaApp.Admin.Controllers
@@ -40,7 +41,15 @@ namespace ShugyopediaApp.Admin.Controllers
         [HttpPost]
         public IActionResult AddTraining(AddTrainingViewModel training)
         {
-            _trainingService.AddTraining(training, this.UserId);
+            try
+            {
+                _trainingService.AddTraining(training, this.UserId);
+                TempData["SuccessMessage"] = "Successfully Added";
+            }
+            catch (Exception ex) 
+            {
+                TempData["ErrorMessage"] = $"Error Adding: {ex.Message}";
+            }
             return RedirectToAction("Index");
         }
         [HttpPost]
@@ -58,13 +67,29 @@ namespace ShugyopediaApp.Admin.Controllers
         [HttpPost]
         public IActionResult EditTraining(AddTrainingViewModel training)
         {
-            _trainingService.EditTraining(training, this.UserId);
+            try
+            {
+                _trainingService.EditTraining(training, this.UserId);
+                TempData["SuccessMessage"] = "Successfully Edited";
+            }
+            catch (Exception ex) 
+            {
+                TempData["ErrorMessage"] = $"Error Editing: {ex.Message}";
+            }
             return RedirectToAction("Index");
         }
         [HttpPost]
         public IActionResult DeleteTraining(Training training)
         {
-            _trainingService.DeleteTraining(training.TrainingId);
+            try
+            {
+                _trainingService.DeleteTraining(training.TrainingId);
+                TempData["SuccessMessage"] = "Successfully Deleted";
+            }
+            catch (Exception ex)
+            {
+                TempData["ErrorMessage"] = $"Error Deleting: {ex.Message}";
+            }
             return RedirectToAction("Index");
         }
      }

@@ -23,15 +23,15 @@ namespace ShugyopediaApp.Data
         public virtual DbSet<Training> Trainings { get; set; }
         public virtual DbSet<TrainingCategory> TrainingCategories { get; set; }
         public virtual DbSet<User> Users { get; set; }
-        
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<AccountRecoveryRequest>(entity =>
             {
                 entity.HasKey(e => e.RequestId)
-                    .HasName("PK__AccountR__33A8517A1E854493");
+                    .HasName("PK__AccountR__33A8517AC06A598D");
 
-                entity.HasIndex(e => e.Token, "UQ__AccountR__CA90DA7AAD1484DE")
+                entity.HasIndex(e => e.Token, "UQ__AccountR__CA90DA7A8FA264A7")
                     .IsUnique();
 
                 entity.Property(e => e.DateExpiration)
@@ -189,7 +189,7 @@ namespace ShugyopediaApp.Data
                 entity.HasIndex(e => e.UserEmail, "UQ_UserEmail")
                     .IsUnique();
 
-                entity.HasIndex(e => e.UserId, "UQ__Users__1788CC4DA596A5F8")
+                entity.HasIndex(e => e.UserId, "UQ__Users__1788CC4D927A3221")
                     .IsUnique();
 
                 entity.Property(e => e.CreatedBy)
