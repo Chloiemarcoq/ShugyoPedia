@@ -53,7 +53,12 @@
 @section scripts {
     <script>
         // Check for error message and display Toastr notification
+        var successMessage = '@TempData["SuccessMessage"]';
         var errorMessage = '@TempData["ErrorMessage"]';
+        if(successMessage) {
+            toastr.success(successMessage);
+        }
+        
         if (errorMessage) {
             toastr.error(errorMessage);
         }
