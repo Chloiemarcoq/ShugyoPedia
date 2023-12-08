@@ -81,12 +81,11 @@
         border-radius: 10px;
     }
 
-    .sidebar-nav .active {
-        background: #2F3CED;
+    .sidebar-nav .nav-link.active {
         color: white;
+        background: #2F3CED;
         border-radius: 10px;
     }
-
 
 .search-container {
     display: flex;

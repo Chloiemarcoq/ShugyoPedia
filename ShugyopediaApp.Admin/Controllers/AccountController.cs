@@ -170,7 +170,7 @@ namespace ShugyopediaApp.Admin.Controllers
         {
             _userService.ResetPassword(user);
             _accountRecoveryRequestService.DeleteRequestByEmail(user.UserEmail);
-            TempData["ErrorMessage"] = "Password Reset Successful";
+            TempData["SuccessMessage"] = "Password Reset Successful";
             return RedirectToAction("Login", "Account");
         }
     }
