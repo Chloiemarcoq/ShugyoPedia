@@ -1,0 +1,92 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@* CHATBOX BUTTON*@
+<div class="chatbox-btn-container">
+    <button id="chatbox-btn" type="button" class="chatbox-btn">
+        <i class="fa-regular fa-message"></i>
+    </button>
+</div>
+
+@* CHATBOX *@
+<div id="chatbox-container" class="chatbox-container">
+    <div class="chatbox">
+        <button type="button" id="close-btn-message" class="close-btn-message">
+            <i class="fa-regular fa-circle-xmark"></i>
+        </button>
+        <div class="messages">
+            <p class="question">send</p>
+            <p class="response">receive</p>
+        </div>
+        <div class="textMessage">
+            <input type="text" placeholder="Ask anything to ShugyoAIBot" required />
+            <button type="submit" name="submit-message" id="submit-message">
+                <i class="fa-regular fa-share-from-square"></i>
+            </button>
+        </div>
+        @* <form class="input-container">
+            <input type="text" placeholder="message here..." required/>
+            <button type="submit" name="submit-message" id="submit-message">
+                <i class="fa-regular fa-share-from-square"></i>
+            </button>
+        </form> *@
+    </div>
+</div>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    // Function to send a message to OpenAI
+    
+    function sendMessageToOpenAI(message) {
+        const OPENAI_API_KEY = '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'; // Replace with your actual OpenAI API key
+
+        // Data to send to the API
+        const data = {
+            "model": "gpt-3.5-turbo",
+            "messages": [{ "role": "user", "content": message }],
+            "temperature": 0.7
+        };
+
+        $.ajax({
+            type: "POST",
+            url: "https://api.openai.com/v1/chat/completions",
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": `Bearer ${OPENAI_API_KEY}`
+            },
+            data: JSON.stringify(data),
+            success: function (response) {
+                // Handle the response from OpenAI here
+                console.log(response);
+                // Display the response in the chatbox
+                displayResponse(response.choices[0].message.content);
+            },
+            error: function (xhr, status, error) {
+                console.error(error);
+            }
+        });
+    }
+    function displayResponse(response) {
+        console.log(response); // Log the response to inspect its structure
+        $('.messages').append(`<p class="response">${response}</p>`);
+    }
+
+    // Event listener for the message submission
+    $('#submit-message').on('click', function () {
+        const userMessage = $('.textMessage input').val();
+        if (userMessage.trim() !== '') {
+            // Display the user message in the chatbox
+            $('.messages').append(`<p class="question">${userMessage}</p>`);
+            // Send the user message to OpenAI
+            sendMessageToOpenAI(userMessage);
+            // Clear the input field after sending the message
+            $('.textMessage input').val('');
+        }
+    });
+
+    // Additional code for opening/closing the chatbox or any other UI interactions
+    // Add event listeners or functions to handle those interactions as needed
+    // For example, toggling the visibility of the chatbox, handling close button, etc.
+
+</script>

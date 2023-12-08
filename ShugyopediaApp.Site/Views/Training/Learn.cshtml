@@ -159,7 +159,9 @@
                     <hr>
                     <!-- Leave a Rating Section -->
                     <h3>Leave a Rating</h3>
-                    <form action="" method="POST">
+                    <form asp-action="AddRating" asp-controller="Rating" method="POST">
+                        <input type="hidden" value="@Model.TrainingId" asp-for="TrainingId" />
+                        <input type="hidden" value="@Model.TrainingName" asp-for="TrainingName" />
                         <div class="row">
                             <div class="col-6">
                                 <div class="rating p-0">
@@ -184,14 +186,14 @@
                         <div class="row my-3">
                             <div class="col-6">
                                 <label for="email">Email</label>
-                                <input type="text" name="email" id="email" class="form-control" placeholder="Email" autocomplete="off">
+                                <input type="email" name="email" id="email" class="form-control" placeholder="Email" autocomplete="off">
                             </div>
                             <div class="col-6">
                                 <label for="name">Display Name</label>
                                 <input type="text" name="name" id="name" class="form-control" placeholder="Display name" autocomplete="off">
                             </div>
                         </div>
-                        <textarea name="rating-comment" id="rating-comment" class="form-control h-25 my-3"
+                        <textarea name="review" id="review" class="form-control h-25 my-3"
                                   placeholder="Share your thoughts..."></textarea>
                         <button type="submit" class="btn btn-primary">SUBMIT</button>
                     </form>

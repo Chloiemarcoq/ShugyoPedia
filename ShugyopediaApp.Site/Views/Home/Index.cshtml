@@ -75,7 +75,7 @@
             </h5>
         </div>
     </div>
-    @await Html.PartialAsync("../Shared/Components/Chatbox/Index.cshtml")
+    @await Component.InvokeAsync("Chatbox")
 </main>
 <script>
     let messageButton = document.querySelector('.chatbox-btn')

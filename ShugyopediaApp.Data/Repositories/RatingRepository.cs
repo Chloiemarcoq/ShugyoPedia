@@ -30,5 +30,10 @@ namespace ShugyopediaApp.Data.Repositories
                 UnitOfWork.SaveChanges();
             }
         }
+        public void AddRating(Rating rating)
+        {
+            this.GetDbSet<Rating>().Add(rating);
+            UnitOfWork.SaveChanges();
+        }
     }
 }

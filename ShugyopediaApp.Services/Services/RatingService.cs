@@ -35,6 +35,7 @@ namespace ShugyopediaApp.Services.Services
                 {
                     RatingId = s.RatingId,
                     TrainingName = s.Training.TrainingName,
+                    TrainingId = s.Training.TrainingId,
                     RatingReview = s.RatingReview,
                     Rate = s.Rate,
                     RaterName = s.RaterName,
@@ -44,13 +45,22 @@ namespace ShugyopediaApp.Services.Services
                 .ToList();
             return data;
         }
-
         public void DeleteRating(string ratingId) 
         {
             var model = new Rating();
             model.RatingId = int.Parse(ratingId);
             _ratingRepository.DeleteRating(model);
         }
-        //public void 
+        public void AddRating(int trainingId, LearnRatingViewModel rating)
+        {
+            var model = new Rating();
+            model.RatingReview = rating.RatingReview;
+            model.Rate = rating.Rate;
+            model.RaterEmail = rating.RaterEmail;
+            model.RaterName = rating.RaterName;
+            model.TrainingId = trainingId;
+            model.CreatedTime = DateTime.Now;
+            _ratingRepository.AddRating(model);
+        }
     }
 }

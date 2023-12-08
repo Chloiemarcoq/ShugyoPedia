@@ -11,5 +11,6 @@ namespace ShugyopediaApp.Data.Interfaces
     {
         IQueryable<Rating> GetRatings();
         void DeleteRating(Rating rating);
+        void AddRating(Rating rating);
     }
 }
