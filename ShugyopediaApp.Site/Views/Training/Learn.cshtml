@@ -1,6 +1,8 @@
+@using ShugyopediaApp.Services.ServiceModels;
 @{
     ViewData["Title"] = "Shugyopedia";
 }
+@model LearnTrainingViewModel
 @await Component.InvokeAsync("TrainingCategorySidebar")
 <main class="main" style="margin-top: 170px;">
     <div class="pos-img">
@@ -8,6 +10,7 @@
     </div>
     <div class="container my-4">
         <div class="row">
+            @* Video Topic Resource *@
             <div class="col-8">
                 @*<div class="video-container paused shadow" data-volume-level="high">
                     <div class="video-controls-container">
@@ -87,32 +90,23 @@
                         <track kind="captions" srclang="en" src="">
                     </video>
                 </div>*@
-                <div id="adobe-dc-view"></div>
+                <div id="adobe-dc-view" class="border"></div>
             </div>
+            @* Topics *@
             <div class="col-4">
                 <div class="card" style="height: 330px;">
                     <div class="card-header">
                         <div class="d-flex justify-content-center align-items-center">
-                            <p class="fs-3 m-0">7 Lessons</p>
+                            <p class="fs-3 m-0">@Model.Topics.Count @((Model.Topics.Count >= 1) ? "Lesson" : "Lessons")</p>
                         </div>
                     </div>
                     <div class="card-body overflow-y-scroll">
                         <p class="card-text">
                             <ol>
-                                <li class="fs-4">Intro Basics</li>
-                                <li class="fs-4">Elements</li>
-                                <li class="fs-4">Attributes</li>
-                                <li class="fs-4">Forms</li>
-                                <li class="fs-4">Graphics</li>
-                                <li class="fs-4">Media</li>
-                                <li class="fs-4">API</li>
-                                <li class="fs-4">API</li>
-                                <li class="fs-4">API</li>
-                                <li class="fs-4">API</li>
-                                <li class="fs-4">API</li>
-                                <li class="fs-4">API</li>
-                                <li class="fs-4">API</li>
-                                <li class="fs-4">API</li>
+                                @foreach (var topic in Model.Topics)
+                                {
+                                    <li class="fs-4">@topic.TopicName</li>                                    
+                                }
                             </ol>
                         </p>
                     </div>
@@ -138,89 +132,34 @@
                     </button>
                 </li>
             </ul>
+            
             <div class="tab-content pt-2" id="tab">
+                @* Details *@
                 <div class="tab-pane fade show active" id="details" role="tabpanel">
-                    <h2>HTML Basics</h2>
-                    <p class="fs-6 m-0">
-                        Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum
-                        Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum
-                    </p>
+                    <h2>@Model.TrainingName</h2>
+                    <p class="fs-6 m-0">@Model.TrainingDescription</p>
                     <div class="fs-6 mt-4" id="video-details">
-                        <p class="m-0"><span class="fw-bold">Created By:</span> HTML ML</p>
-                        <p class="m-0"><span class="fw-bold">Last Updated:</span> Febuary 2, 2022</p>
-                        <p class="m-0"><span class="fw-bold">Category:</span> Programming<p>
+                        <p class="m-0"><span class="fw-bold">Created By:</span> @Model.CreatedBy</p>
+                        <p class="m-0"><span class="fw-bold">Last Updated:</span> @Model.UpdatedTime</p>
+                        <p class="m-0"><span class="fw-bold">Category:</span> @Model.CategoryName<p>
                     </div>
                 </div>
+                @* Reviews *@
                 <div class="tab-pane fade" id="reviews" role="tabpanel">
                     <h3>Training Feedback</h3>
                     <div class="row">
                         <div class="col-3">
                             <div class="d-flex flex-column align-items-center justify-content-center lh-1 mt-4">
-                                <p class="fs-4 m-0">4.8</p>
-                                <p class="fs-4 m-0">
-                                    @for (var i = 0; i < 5; i++)
-                                    {
-                                        <i class="fa-solid fa-star" style="color: #EAC612;"></i>
-                                    }
-                                </p>
+                                <p class="fs-4 m-0">@Model.RateAverage</p>
+                                <p class="fs-4 m-0">@{RenderStars(Model.RateAverage);}</p>
                                 <p class="fs-4 m-0">Rating</p>
                             </div>
-                        </div>
-                        <div class="col-6">
-                            <div class="progress my-2" role="progressbar">
-                                <div class="progress-bar bg-warning text-dark" style="width: 100%">100%</div>
-                            </div>
-                            <div class="progress my-2" role="progressbar">
-                                <div class="progress-bar bg-warning text-dark" style="width: 75%">75%</div>
-                            </div>
-                            <div class="progress my-2" role="progressbar">
-                                <div class="progress-bar bg-warning text-dark" style="width: 50%">50%</div>
-                            </div>
-                            <div class="progress my-2" role="progressbar">
-                                <div class="progress-bar bg-warning text-dark" style="width: 25%">25%</div>
-                            </div>
-                            <div class="progress my-2" role="progressbar">
-                                <div class="progress-bar bg-warning text-dark" style="width: 10%">10%</div>
-                            </div>
-
-                        </div>
-                        <div class="col-3">
-                            <div class="my-1 lh-1">
-                                <p class="fs-6 m-2">
-                                    @for (var i = 0; i < 5; i++)
-                                    {
-                                        <i class="fa-solid fa-star" style="color: #EAC612;"></i>
-                                    }
-                                </p>
-                                <p class="fs-6 m-2">
-                                    @for (var i = 0; i < 4; i++)
-                                    {
-                                        <i class="fa-solid fa-star" style="color: #EAC612;"></i>
-                                    }
-                                </p>
-                                <p class="fs-6 m-2">
-                                    @for (var i = 0; i < 3; i++)
-                                    {
-                                        <i class="fa-solid fa-star" style="color: #EAC612;"></i>
-                                    }
-                                </p>
-                                <p class="fs-6 m-2">
-                                    @for (var i = 0; i < 2; i++)
-                                    {
-                                        <i class="fa-solid fa-star" style="color: #EAC612;"></i>
-                                    }
-                                </p>
-                                <p class="fs-6 m-2">
-                                    <i class="fa-solid fa-star" style="color: #EAC612;"></i>
-                                </p>
-                            </div>
-                        </div>
+                        </div>                        
                     </div>
                     <hr>
                     <!-- Leave a Rating Section -->
                     <h3>Leave a Rating</h3>
                     <form action="" method="POST">
-                       
                         <div class="row">
                             <div class="col-6">
                                 <div class="rating p-0">
@@ -259,94 +198,32 @@
                     <hr>
                     <!-- User Reviews Section -->
                     <h3>User Reviews</h3>
-                    <div class="card my-3">
-                        <div class="card-body p-2">
-                            <div class="d-flex">
-                                <div class="rounded-img">
-                                    <img src="~/img/defaultimage.jpg" alt="">
+                    @foreach (var rating in Model.Ratings)
+                    {
+                        <div class="card my-3">
+                            <div class="card-body p-2">
+                                <div class="d-flex">
+                                    <div class="rounded-img">
+                                        <img src="https://ui-avatars.com/api/?name=@(rating.RaterName)" alt="">
+                                    </div>
+                                    <div class="ms-3">
+                                        <p class="fs-5 m-0 fw-bold">@rating.RaterName</p>
+                                        <p class="fs-5 m-0">@{RenderStars(rating.Rate);}</p>
+                                    </div>
                                 </div>
-                                <div class="ms-3">
-                                    <p class="fs-5 m-0 fw-bold">Wael Hee</p>
-                                    <p class="fs-5 m-0">
-                                        @for (var i = 0; i < 4; i++)
-                                        {
-                                            <i class="fa-solid fa-star" style="color: #EAC612;"></i>
-                                        }
-                                    </p>
+                                <div class="my-3">
+                                    <p class="fs-6 read-more-content">@rating.RatingReview
+                                    </p><span class="read-more-show">Read More</span>
+
+                                    <span class="read-more-hide">Show Less</span>
                                 </div>
-                            </div>
-                            <div class="my-3">
-                                <p class="fs-6 read-more-content">
-                                    The resource files are very informative. It really helps me in
-                                    my learning journey about HTML. Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem
-                                    Ipsum Lorem Ipsum The resource files are very informative. It really helps me in
-                                    my learning journey about HTML. Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem
-                                    Ipsum Lorem Ipsum
-                                </p><span class="read-more-show">Read More</span>
-                                
-                                <span class="read-more-hide">Show Less</span>
                             </div>
                         </div>
-                    </div>
-                    <div class="card my-3">
-                        <div class="card-body p-2">
-                            <div class="d-flex">
-                                <div class="rounded-img">
-                                    <img src="~/img/defaultimage.jpg" alt="">
-                                </div>
-                                <div class="ms-3">
-                                    <p class="fs-5 m-0 fw-bold">Aiko E. Lara</p>
-                                    <p class="fs-5 m-0">
-                                        @for (var i = 0; i < 5; i++)
-                                        {
-                                            <i class="fa-solid fa-star" style="color: #EAC612;"></i>
-                                        }
-                                    </p>
-                                </div>
-                            </div>
-                            <div class="my-3">
-                                <p class="fs-6 read-more-content">
-                                    The resource files are very informative. It really helps me in
-                                    my learning journey about HTML. Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem
-                                    Ipsum Lorem Ipsum
-                                </p>
-                                <span class="read-more-show">Read More</span>
-                                <span class="read-more-hide">Show Less</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card my-3">
-                        <div class="card-body p-2">
-                            <div class="d-flex">
-                                <div class="rounded-img">
-                                    <img src="~/img/defaultimage.jpg" alt="">
-                                </div>
-                                <div class="ms-3">
-                                    <p class="fs-5 m-0 fw-bold">Clee Torres</p>
-                                    <p class="fs-5 m-0">
-                                        @for (var i = 0; i < 3; i++)
-                                        {
-                                            <i class="fa-solid fa-star" style="color: #EAC612;"></i>
-                                        }
-                                    </p>
-                                </div>
-                            </div>
-                            <div class="my-3">
-                                <p class="fs-6 read-more-content">
-                                    The resource files are very informative. It really helps me in
-                                    my learning journey about HTML. Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem
-                                    Ipsum Lorem Ipsum ney about HTML. Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem
-                                    Ipsum Lorem Ipsum
-                                </p>
-                                <span class="read-more-show">Read More</span>
-                                <span class="read-more-hide">Show Less</span>
-                            </div>
-                        </div>
-                    </div>
+                    }
                 </div>
-                <div class="tab-pane fade" id="resources" role="tabpanel">
-                    <form action="">
-                        <div class="d-flex align-items-center justify-content-between">
+                @* Resources *@
+                <div class="tab-pane fade" id="resources" role="tabpanel">                    
+                        @*<div class="d-flex align-items-center justify-content-between">
                             <div class="d-flex align-items-center">
                                 <select name="filter" id="filter" class="form-select w-25 me-2">
                                     <option value="all">All</option>
@@ -358,34 +235,38 @@
                                     <button type="submit" class="btn btn-primary">Search</button>
                                 </div>
                             </div>
-                            <a href="" class="btn btn-primary">Download Selected Files</a>
-                        </div>
-                        <div class="card">
-                            <div class="card-body">
-                                <table class="table table-striped table-borderless text-center" id="datatable">
-                                    <thead>
-                                        <tr>
-                                            <th><input type="checkbox" name="select-all" id="select-all" class="form-check-input"> Title</th>
-                                            <th>Document Tag</th>
-                                            <th>Download</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td><input type="checkbox" name="lesson3" id="lesson3" class="form-check-input"> Lesson 3</td>
-                                            <td>.mp4</td>
-                                            <td><a href="" class="btn btn-primary" download>Download</a></td>
-                                        </tr>
-                                        <tr>
-                                            <td><input type="checkbox" name="lesson4" id="lesson4" class="form-check-input"> Lesson 4</td>
-                                            <td>.mp4</td>
-                                            <td><a href="" class="btn btn-primary" download>Download</a></td>
-                                        </tr>
-                                        <tr>
-                                            <td><input type="checkbox" name="lesson5" id="lesson5" class="form-check-input"> Lesson 5</td>
-                                            <td>.mp4</td>
-                                            <td><a href="" class="btn btn-primary" download>Download</a></td>
-                                        </tr>
+                            
+                        </div>*@
+                        <form asp-action="DownloadResources" asp-controller="Training" method="post">
+                            <button type="submit" class="btn btn-primary">Download Selected Files</button>
+                            <div class="card my-3">
+                                <div class="card-body">
+                                    <table class="table table-striped table-borderless text-center" id="datatable">
+                                        <thead>
+                                            <tr>
+                                                <th>
+                                                    <input type="checkbox" id="select-all" class="form-check-input"> 
+                                                    Title
+                                                </th>
+                                                <th>Document Tag</th>
+                                                <th>Download</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach (var topic in Model.Topics)
+                                            {
+                                                <tr>
+                                                    <td>
+                                                        <input type="checkbox" value="@topic.ResourceFile" name="checkboxes" class="form-check-input"> 
+                                                        @topic.TopicName
+                                                    </td>
+                                                <td>@topic.ResourceFileType</td>
+                                                <td>
+                                                    <a id="downloadButton" asp-action="DownloadResource" asp-controller="Training" asp-route-fileUrl="@topic.ResourceFile" class="btn btn-primary" download>Download</a>
+                                                </td>
+                                            </tr>
+                                        }
+                                        
                                     </tbody>
                                 </table>
                             </div>
@@ -421,14 +302,73 @@
                 });
             }
         });
+        document.getElementById("downloadButton").addEventListener("click", function (event) {
+            event.preventDefault(); 
+            var downloadUrl = this.getAttribute("href");
+            window.location.href = downloadUrl;
+        });
+        document.getElementById("select-all").addEventListener("change", function () {
+            var checkboxes = document.getElementsByName("checkboxes");
+            for (var i = 0; i < checkboxes.length; i++) {
+                checkboxes[i].checked = this.checked;
+            }
+        });
 
+        var checkboxes = document.getElementsByName("checkboxes");
+        for (var i = 0; i < checkboxes.length; i++) {
+            checkboxes[i].addEventListener("change", function () {
+                var selectAllCheckbox = document.getElementById("select-all");
+                var allChecked = true;
+                for (var j = 0; j < checkboxes.length; j++) {
+                    if (!checkboxes[j].checked) {
+                        allChecked = false;
+                        break;
+                    }
+                }
+                selectAllCheckbox.checked = allChecked;
+            });
+        }
         document.addEventListener("adobe_dc_view_sdk.ready", function () {
             var adobeDCView = new AdobeDC.View({ clientId: "2502340015ec47698a1885a2918f6823", divId: "adobe-dc-view" });
             adobeDCView.previewFile(
                 {
-                    content: { location: { url: "/pdf/Exercise1.pdf" } },
-                    metaData: { fileName: "Exercise1.pdf" }
+                    content: { location: { url: "D: \Coding\LocalServer\shugyopediaResources\topic_resources\CenterMEDiv.pdf" } },
+                    metaData: { fileName: "CenterMEDiv.pdf" }
                 });
         });
+
+        $(document).ready(function () {
+            $('#datatable').DataTable();
+        });
+
+        $(document).ready(function () {
+            $('#datatable').DataTable({
+                "paging": true,
+                "ordering": true,
+                "searching": true
+            });
+        });
     </script>
+}
+@functions {
+    void RenderStars(double rateAverage)
+    {
+        int fullStars = (int)rateAverage;
+        bool hasHalfStar = rateAverage - fullStars >= 0.5;
+
+        for (int i = 0; i < fullStars; i++)
+        {
+            <i class="fa-solid fa-star" style="color: #EAC612;"></i>
+        }
+
+        if (hasHalfStar)
+        {
+            <i class="fa-solid fa-star-half" style="color: #EAC612;"></i>
+        }
+
+        for (int i = fullStars + (hasHalfStar ? 1 : 0); i < 5; i++)
+        {
+            <i class="fa-regular fa-star" style="color: #EAC612;"></i>
+        }
+    }
 }

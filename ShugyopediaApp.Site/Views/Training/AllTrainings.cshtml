@@ -2,108 +2,69 @@
 @{
     ViewData["Title"] = "All Trainings";
 }
-@model Dictionary<string, object>
+@model List<TrainingViewModel>
 
 <!-- SIDE BAR -->
 @await Component.InvokeAsync("TrainingCategorySidebar")
 <!-- MAIN BODY -->
 <main class="main">
     <div class="pos-img">
-        <img src="~/img/bg-shape1.png" alt="HTML tutorial" class="w-100" />
+        <img src="~/img/bg-shape1.png" alt="SquigglyDesign" class="w-100" />
     </div>
 
-    <!-- TRAININGS -->
     <div class="container" style="margin-top: 100px;">
-            <div class="d-flex align-items-center justify-content-between my-3">
-                <h3>Programming</h3>
-                <form action="">
+        <div class="d-flex align-items-center justify-content-between my-3">
+            <h3>Programming</h3>
+            <form action="">
                 <input type="text" name="search-training" id="search-training" class="form-control" placeholder="Search..">
-                </form>
-            </div>
-        <div class="card my-4 rounded-4 shadow bg-light training">
+            </form>
+        </div>
+        <!-- TRAININGS -->
+        @foreach (var training in Model)
+        { 
+            <div class="card my-4 rounded-4 shadow bg-light training">
                 <div class="card-body p-0">
                     <div class="row">
                         <div class="col-6">
-                            <img src="~/img/html.png" />
+                            <img src="@training.TrainingImage" />
                         </div>
                         <div class="col-6 py-3">
                             <div class="d-flex">
-                            <h5 class="fw-bold topic-word">HTML Basic </h5>
-                                @for (var i = 0; i < 4; i++)
-                                {
-                                    <i class="fa-solid fa-star" style="color: #EAC612;"></i>
-                                }
+                                <h5 class="fw-bold topic-word">@training.TrainingName </h5>
+                                @{RenderStars(training.RateAverage);}
                             </div>
-                            
-                            <p class="fs-6 w-75 cut-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore</p>
-                            <a class="btn btn-primary learn-btn" asp-controller="Training" asp-action="Training">LEARN NOW</a>
-                       
+                            <p class="fs-6 w-75 cut-text">@training.TrainingDescription</p>
+                            <a class="btn btn-primary learn-btn" asp-controller="Training" asp-action="Learn" asp-route-trainingName="@training.TrainingName">LEARN NOW</a>
                         </div>
                     </div>
                 </div>
             </div>
-        <div class="card my-4 rounded-4 shadow bg-light training">
-                <div class="card-body p-0">
-                    <div class="row">
-                        <div class="col-6">
-                            <img src="~/img/python.png" />
-                        </div>
-                        <div class="col-6 py-3">
-                            <div class="d-flex">
-                            <h5 class="fw-bold topic-word">Python </h5>
-                                @for (var i = 0; i < 3; i++)
-                                {
-                                    <i class="fa-solid fa-star" style="color: #EAC612;"></i>
-                                }
-                            </div>
-                        <p class="fs-6 w-75 cut-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
-                        <a class="btn btn-primary learn-btn" asp-controller="Training" asp-action="Training">LEARN NOW</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        <div class="card my-4 rounded-4 shadow bg-light training">
-            <div class="card-body p-0">
-                <div class="row">
-                    <div class="col-6">
-						<img src="~/img/python.png" />
-                    </div>
-                    <div class="col-6 py-3">
-                        <div class="d-flex">
-                            <h5 class="fw-bold topic-word">C#</h5>
-                            @for (var i = 0; i < 5; i++)
-                            {
-                                <i class="fa-solid fa-star" style="color: #EAC612;"></i>
-                            }
-                        </div>
-                        <p class="fs-6 w-75 cut-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. tempor incididunt ut labore et dolore magna aliqua</p>
-                        <a class="btn btn-primary learn-btn" asp-controller="Training" asp-action="Training">LEARN NOW</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="card my-4 rounded-4 shadow bg-light training">
-            <div class="card-body p-0">
-                <div class="row">
-                    <div class="col-6">
-                        <img src="~/img/python.png" />
-                    </div>
-                    <div class="col-6 py-3">
-                        <div class="d-flex">
-                            <h5 class="fw-bold topic-word">PHP</h5>
-                            @for (var i = 0; i < 5; i++)
-                            {
-                                <i class="fa-solid fa-star" style="color: #EAC612;"></i>
-                            }
-                        </div>
-                        <p class="fs-6 w-75 cut-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. tempor incididunt ut labore et dolore magna aliqua</p>
-                        <a class="btn btn-primary learn-btn" href="">LEARN NOW</a>
-                    </div>
-                </div>
-            </div>
-        </div>
+        }        
     </div>
 </main>
+
+@functions {
+    void RenderStars(double rateAverage)
+    {
+        int fullStars = (int)rateAverage;
+        bool hasHalfStar = rateAverage - fullStars >= 0.5;
+
+        for (int i = 0; i < fullStars; i++)
+        {
+            <i class="fa-solid fa-star" style="color: #EAC612;"></i>
+        }
+
+        if (hasHalfStar)
+        {
+            <i class="fa-solid fa-star-half" style="color: #EAC612;"></i>
+        }
+
+        for (int i = fullStars + (hasHalfStar ? 1 : 0); i < 5; i++)
+        {
+            <i class="fa-regular fa-star" style="color: #EAC612;"></i>
+        }
+    }
+}
 
 @section scripts {
     <script>

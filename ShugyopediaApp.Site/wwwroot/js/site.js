@@ -1,6 +1,4 @@
-﻿
-
-/*SEARCH CATEGORY*/
+﻿/*SEARCH CATEGORY*/
 document.addEventListener('DOMContentLoaded', function () {
     const searchInput = document.getElementById('search-category');
     const list = document.getElementById('category-list');
@@ -27,14 +25,15 @@ document.addEventListener('DOMContentLoaded', function () {
 var sidebar = document.getElementById("sidebar");
 var read_more = document.getElementById("read-more");
 
-sidebar.addEventListener("mouseenter", () => {
+/*sidebar.addEventListener("mouseenter", () => {
     document.getElementById("nav-link").classList.remove("active");
 })
 
 sidebar.addEventListener("mouseleave", () => {
     document.getElementById("nav-link").classList.add("active");
-})
+})*/
 
 read_more.addEventListener("onclick", () => {
     document.getElementById("nav-link").classList.add("active");
 })
+

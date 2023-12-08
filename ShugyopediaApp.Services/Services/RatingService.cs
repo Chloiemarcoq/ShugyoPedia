@@ -51,5 +51,6 @@ namespace ShugyopediaApp.Services.Services
             model.RatingId = int.Parse(ratingId);
             _ratingRepository.DeleteRating(model);
         }
+        //public void 
     }
 }
