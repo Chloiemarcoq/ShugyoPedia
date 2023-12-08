@@ -223,7 +223,7 @@
                 </div>
                 @* Resources *@
                 <div class="tab-pane fade" id="resources" role="tabpanel">                    
-                        <div class="d-flex align-items-center justify-content-between">
+                        @*<div class="d-flex align-items-center justify-content-between">
                             <div class="d-flex align-items-center">
                                 <select name="filter" id="filter" class="form-select w-25 me-2">
                                     <option value="all">All</option>
@@ -236,7 +236,7 @@
                                 </div>
                             </div>
                             
-                        </div>
+                        </div>*@
                         <form asp-action="DownloadResources" asp-controller="Training" method="post">
                             <button type="submit" class="btn btn-primary">Download Selected Files</button>
                             <div class="card my-3">
