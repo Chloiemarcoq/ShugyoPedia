@@ -25,3 +25,8 @@
 .link:hover {
     color: #00f; 
 }
+
+.navbar2 .link.active {
+    color: #00f;
+    text-decoration: underline;
+}

@@ -1,11 +1,19 @@
-﻿
+﻿@functions {
+    // Helper function to determine if a given controller is active
+    private string IsActive(string controller)
+    {
+        var currentController = ViewContext.RouteData.Values["controller"] as string;
+        return (currentController == controller) ? "active" : string.Empty;
+    }
+}
+
 <aside id="sidebar" class="sidebar border">
     <div class="sidebar-header d-flex align-items-center justify-content-center me-5">
         <a asp-action="Index" asp-controller="Home"><img src="~/img/logo_with_text_dark.png" alt="" /></a>
     </div>
     <ul class="sidebar-nav" id="sidebar-nav">
         <li class="nav-item">
-            <a class="nav-link " asp-controller="Home" asp-action="Index" id="nav-link">
+            <a class="nav-link @(IsActive("Home"))" asp-controller="Home" asp-action="Index" id="nav-link">
                 <span><i class="fa-solid fa-house"></i> Home</span>
             </a>
         </li>
@@ -21,12 +29,10 @@
         @foreach (var category in Model)
         {
             <li class="nav-item">
-                <a class="nav-link" asp-controller="Training" asp-action="AllTrainings" asp-route-categoryName="@category.CategoryName">
+                <a class="nav-link @(IsActive("Training"))" asp-controller="Training" asp-action="AllTrainings" asp-route-categoryName="@category.CategoryName">
                     <span>@Html.Raw(category.CategoryIcon) @category.CategoryName</span>
                 </a>
             </li>
         }
     </ul>
 </aside>
-
-
