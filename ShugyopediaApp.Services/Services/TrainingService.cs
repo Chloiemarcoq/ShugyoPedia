@@ -8,6 +8,7 @@ using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.IO;
+using System.IO.Compression;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -164,32 +165,107 @@ namespace ShugyopediaApp.Services.Services
             }
             return data;
         }
+        //public Dictionary<string, string> DownloadResourceLogic(string fileUrl)
+        //{
+        //    string fileName = fileUrl.Replace(_topicResourcesUrl, "");
+        //    string fileDirectory = Path.Combine(_topicResourcesDirectory, fileName);
+        //    string contentType;
+
+        //    switch (Path.GetExtension(fileName))
+        //    {
+        //        case ".pdf":
+        //            contentType = "application/pdf";
+        //            break;
+        //        case ".mp4":
+        //            contentType = "video/mp4";
+        //            break;
+        //        case ".ppt":
+        //            contentType = "application/vnd.ms-powerpoint";
+        //            break;
+        //        default:
+        //            contentType = "application/octet-stream";
+        //            break;
+        //    }
+        //    return new Dictionary<string, string> {
+        //        { "fileName", fileName },
+        //        { "fileDirectory", fileDirectory },
+        //        { "contentType", contentType }
+        //    };
+        //}
+        //public byte[] DownloadMultipleResourcesLogic(List<string> fileUrls)
+        //{
+        //    using (MemoryStream zipStream = new MemoryStream())
+        //    {
+        //        using (ZipArchive archive = new ZipArchive(zipStream, ZipArchiveMode.Create, true))
+        //        {
+        //            foreach (string fileUrl in fileUrls)
+        //            {
+        //                string fileName = fileUrl.Replace(_topicResourcesUrl, "");
+        //                string fileDirectory = Path.Combine(_topicResourcesDirectory, fileName);
+        //                string contentType;
+
+        //                switch (Path.GetExtension(fileName))
+        //                {
+        //                    case ".pdf":
+        //                        contentType = "application/pdf";
+        //                        break;
+        //                    case ".mp4":
+        //                        contentType = "video/mp4";
+        //                        break;
+        //                    case ".ppt":
+        //                        contentType = "application/vnd.ms-powerpoint";
+        //                        break;
+        //                    default:
+        //                        contentType = "application/octet-stream";
+        //                        break;
+        //                }
+
+        //                // Download file content (assuming you have a method to retrieve the file content)
+        //                byte[] fileBytes = DownloadFileContent(fileUrl);
+
+        //                // Create a new entry in the zip archive
+        //                ZipArchiveEntry entry = archive.CreateEntry(fileName, CompressionLevel.Optimal);
+
+        //                // Write the file content to the zip entry
+        //                using (Stream entryStream = entry.Open())
+        //                {
+        //                    entryStream.Write(fileBytes, 0, fileBytes.Length);
+        //                }
+        //            }
+        //        }
+
+        //        // Return the byte array of the zipped files
+        //        return zipStream.ToArray();
+        //    }
+        //}
         public Dictionary<string, string> DownloadResourceLogic(string fileUrl)
         {
             string fileName = fileUrl.Replace(_topicResourcesUrl, "");
             string fileDirectory = Path.Combine(_topicResourcesDirectory, fileName);
-            string contentType;
+            string contentType = GetContentType(Path.GetExtension(fileName));
 
-            switch (Path.GetExtension(fileName))
+            return new Dictionary<string, string>
+        {
+            { "fileName", fileName },
+            { "fileDirectory", fileDirectory },
+            { "contentType", contentType }
+        };
+        }
+
+
+        private string GetContentType(string fileExtension)
+        {
+            switch (fileExtension)
             {
                 case ".pdf":
-                    contentType = "application/pdf";
-                    break;
+                    return "application/pdf";
                 case ".mp4":
-                    contentType = "video/mp4";
-                    break;
+                    return "video/mp4";
                 case ".ppt":
-                    contentType = "application/vnd.ms-powerpoint";
-                    break;
+                    return "application/vnd.ms-powerpoint";
                 default:
-                    contentType = "application/octet-stream";
-                    break;
+                    return "application/octet-stream";
             }
-            return new Dictionary<string, string> {
-                { "fileName", fileName },
-                { "fileDirectory", fileDirectory },
-                { "contentType", contentType }
-            };
         }
     }
     

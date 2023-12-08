@@ -23,7 +23,9 @@ namespace ShugyopediaApp.Data
         public virtual DbSet<Training> Trainings { get; set; }
         public virtual DbSet<TrainingCategory> TrainingCategories { get; set; }
         public virtual DbSet<User> Users { get; set; }
+
         
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<AccountRecoveryRequest>(entity =>

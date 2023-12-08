@@ -12,8 +12,10 @@ using ShugyopediaApp.Site.Mvc;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.IO.Compression;
 using System.Linq;
 using System.Net.Mime;
+using static ShugyopediaApp.Data.PathManager;
 
 namespace ShugyopediaApp.Site.Controllers
 {
@@ -55,29 +57,67 @@ namespace ShugyopediaApp.Site.Controllers
         [HttpGet]
         public IActionResult DownloadResource(string fileUrl)
         {
-            Dictionary<string,string> fileDetails = _trainingService.DownloadResourceLogic(fileUrl);
+            Dictionary<string, string> fileDetails = _trainingService.DownloadResourceLogic(fileUrl);
             try
             {
                 return File(System.IO.File.ReadAllBytes(fileDetails["fileDirectory"]), fileDetails["contentType"], fileDetails["fileName"]);
             }
             catch (Exception)
             {
-                return Content("FUCK", "text/plain");
+                return Content("Error, file cannot be found", "text/plain");
             }
         }
         [HttpPost]
         public IActionResult DownloadResources(string[] checkboxes)
-        { 
-            if (checkboxes != null && checkboxes.Length > 0)
+        {
+            List<string> filePaths = new List<string>();
+            foreach (var path in checkboxes)
             {
-                // Concatenate the checkbox values into a single string
-                string checkboxValues = string.Join(", ", checkboxes.Select(x => x.ToString()));
+                string directory = PathManager.DirectoryPath.TopicResourcesDirectory;
+                string url = PathManager.UrlPath.TopicResourcesUrl;
+                filePaths.Add(Path.Combine(directory,path.Replace(url, "")));
+            }
+            if (filePaths != null && filePaths.Any())
+            {
+                // Set a unique name for the zip file
+                string zipFileName = "ZippedFiles_" + DateTime.Now.ToString("yyyyMMddHHmmss") + ".zip";
 
-                // Return the checkbox values as plain text
-                return Content(checkboxValues, "text/plain");
+                // Get the path to the temporary directory
+                string tempDirectory = Path.Combine(Path.GetTempPath(), "ZippedFilesTemp");
+
+                // Create the temporary directory if it doesn't exist
+                Directory.CreateDirectory(tempDirectory);
+
+                // Create a unique temporary directory for this zip operation
+                string uniqueTempDirectory = Path.Combine(tempDirectory, Path.GetRandomFileName());
+                Directory.CreateDirectory(uniqueTempDirectory);
+
+                // Add each selected file to the temporary directory
+                foreach (string filePath in filePaths)
+                {
+                    // Copy each file to the temporary directory
+                    string fileName = Path.GetFileName(filePath);
+                    string destFilePath = Path.Combine(uniqueTempDirectory, fileName);
+                    System.IO.File.Copy(filePath, destFilePath);
+                }
+
+                // Create a zip file from the temporary directory
+                string zipFilePath = Path.Combine(tempDirectory, zipFileName);
+                ZipFile.CreateFromDirectory(uniqueTempDirectory, zipFilePath);
+
+                // Read the zip file and return it as a FileStreamResult
+                FileStream zipFileStream = new FileStream(zipFilePath, FileMode.Open, FileAccess.Read);
+                return File(zipFileStream, "application/zip", zipFileName);
             }
 
-            return Content("No checkboxes selected", "text/plain");
-}
+            // If no files were selected, return an error or appropriate response
+            return Content("No files selected for download.", "text/plain");
+        }
     }
 }
+        //if (checkboxes != null && checkboxes.Length > 0)
+        //{
+        //    return Content(checkboxes.ToString(), "text/plain");//redirect dapat same ubos
+        //}
+        //return Content("No checkboxes selected", "text/plain");
+
