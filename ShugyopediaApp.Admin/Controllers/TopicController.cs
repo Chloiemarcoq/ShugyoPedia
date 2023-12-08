@@ -9,6 +9,7 @@ using ShugyopediaApp.Data.Models;
 using ShugyopediaApp.Services.Interfaces;
 using ShugyopediaApp.Services.ServiceModels;
 using ShugyopediaApp.Services.Services;
+using System;
 using System.Collections.Generic;
 
 namespace ShugyopediaApp.Admin.Controllers
@@ -41,7 +42,15 @@ namespace ShugyopediaApp.Admin.Controllers
         [HttpPost]
         public IActionResult AddTopic(AddTopicViewModel topic)
         {
-            _topicService.AddTopic(topic, this.UserId);
+            try
+            {
+                _topicService.AddTopic(topic, this.UserId);
+                TempData["SuccessMessage"] = "Successfully Added";
+            }
+            catch (Exception ex)
+            {
+                TempData["ErrorMessage"] = $"Error Adding: {ex.Message}";
+            }
             return RedirectToAction("Index");
         }
         [HttpPost]
@@ -58,12 +67,27 @@ namespace ShugyopediaApp.Admin.Controllers
         [HttpPost]
         public IActionResult EditTopic(AddTopicViewModel topic)
         {
-            _topicService.EditTopic(topic, this.UserId);
+            try
+            {
+                _topicService.EditTopic(topic, this.UserId);
+                TempData["SuccessMessage"] = "Successfully Edited";
+            }
+            catch (Exception ex)
+            {
+                TempData["ErrorMessage"] = $"Error Editing: {ex.Message}";
+            }
             return RedirectToAction("Index");
         }
         public IActionResult DeleteTopic(Topic topic)
 		{
-			_topicService.DeleteTopic(topic.TopicId);
+            try
+            {
+                _topicService.DeleteTopic(topic.TopicId);
+                TempData["SuccessMessage"] = "Successfully Deleted";
+            } catch (Exception ex)
+            {
+                TempData["ErrorMessage"] = $"Error Deleting: {ex.Message}";
+            }
             return RedirectToAction("Index");
         }
     }
