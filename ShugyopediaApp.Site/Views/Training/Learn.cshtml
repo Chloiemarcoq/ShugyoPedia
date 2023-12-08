@@ -16,7 +16,7 @@
                 {
                     @if (resource.ResourceFileType == ".mp4")
                     {*@
-               @* <div class="video-container paused shadow" data-volume-level="high" id="video-container">
+                    @*<div class="video-container paused shadow" data-volume-level="high" id="video-container">
                             <div class="video-controls-container">
                                 <div class="timeline-container">
                                     <div class="timeline">
@@ -114,10 +114,10 @@
                     <div class="card-body overflow-y-scroll">
                         <p class="card-text">
                             <ol>
-                                @*@foreach (var topic in Model.Topics)
+                                @foreach (var topic in Model.Topics)
                                 {
                                     <li class="fs-4" onclick="changeFile('@topic.ResourceFile')" style="cursor: pointer;">@topic.TopicName</li>
-                                }*@
+                                }
                                 <li class="fs-4"  onclick="changeFile('/pdf/Exercise1.pdf')" style="cursor: pointer;" id="try">PDF 1</li>
                                 <li class="fs-4" onclick="changeFile('/pdf/Exercise2.pdf')" style="cursor: pointer;">PDF 2</li>
                                 <li class="fs-4" onclick="changeFile('/video/HTML.mp4')" style="cursor: pointer;">VIDEO 1</li>
@@ -380,6 +380,8 @@
             //videoResource.load();
             //videoResource.pause();
             pdfResource.src = fileSource;
+            pdfResource.load();
+            pdfResource.pause();
             
             document.getElementById('video-container').style.display = 'block';
             document.getElementById('pdf-container').style.display = 'block';
