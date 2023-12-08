@@ -67,3 +67,4 @@ git restore --staged <file> =====> usntage a file
 
 ---GMAIL PASS---
 smtp: vces kwbh hghn ousu
+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

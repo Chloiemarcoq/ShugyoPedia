@@ -43,7 +43,7 @@
     position: relative;
 }
 
-.message-section {
+.messages {
     display: flex;
     flex-direction: column;
     /*justify-content: end;*/
@@ -55,8 +55,8 @@
     overflow-y: auto;
 }
 
-.message-send,
-.message-receive {
+.response,
+.question {
     padding: 10px;
     margin: 5px;
     border-radius: 5px;
@@ -64,13 +64,13 @@
     word-wrap: break-word;
 }
 
-.message-send {
+.question {
     /*border: 1px solid blue;*/
     background-color: lightblue;
     align-self: flex-end;
 }
 
-.message-receive {
+.response {
     /*border: 1px solid green;*/
     background-color: lightgreen;
     align-self: flex-start;

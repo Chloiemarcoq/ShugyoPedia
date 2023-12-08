@@ -14,5 +14,6 @@ namespace ShugyopediaApp.Services.Interfaces
         public float GetRatingAverageFromTraining(int trainingId);
         void DeleteRating(string ratingId);
         List<RatingViewModel> GetRatings();
+        void AddRating(int trainingId, LearnRatingViewModel rating);
     }
 }
