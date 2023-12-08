@@ -44,6 +44,7 @@ namespace ShugyopediaApp.Services.Services
         }
         public void EmailSender(string receiverEmail)
         {
+
             string token = Guid.NewGuid().ToString();
             AccountRecoveryRequest request = new AccountRecoveryRequest
             {
@@ -60,13 +61,51 @@ namespace ShugyopediaApp.Services.Services
                 Credentials = new NetworkCredential(senderMail, pw),
                 EnableSsl = true
             };
+            string htmlBody = @"<!DOCTYPE html>
+    <html lang=""en"">
+    <head>
+        <meta charset=""UTF-8"">
+        <meta name=""viewport"" content=""width=device-width, initial-scale=1.0"">
+        <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
+        <title>Change Password</title>
+    </head>
+    <style>
+        /* Your existing CSS styles */
+    </style>
+    <body>
+        <div class=""mid-container"">
+            <div class=""hello"">
+                <h1>Hello there!</h1>
+            </div>
+            <div class=""text1"">
+                <p>We received a request to reset your password. If you didn't make this request, you can safely ignore this email.</p>
+            </div>
+            <div class=""btn-container"">
+                <div class=""btn"">
+                    <a href=""https://localhost:22519/Account/ResetPassword?token=" + token + @""" target=""_blank"">
+                        <button>CHANGE YOUR PASSWORD</button>
+                    </a>
+                </div>
+            </div>
+            <div class=""text2"">
+                <p>If you have any questions or need assistance, please contact our support team at customer.support@shugyopedia.com.</p>
+            </div>
+            <div class=""text3"">
+                <p>Best Regards,</p>
+            </div> 
+            <div class=""text4"">
+                <p>Shugyopedia</p>
+            </div>  
+        </div>
+    </body>
+    </html>";
+
             client.SendMailAsync(
                 new MailMessage(from: senderMail,
                                 to: receiverEmail,
                                 subject: "Shugyopedia Account Recovery Request",
-                                body: "https://localhost:22519/Account/ResetPassword?token=" + token
-                                )
-            );
+                                body: htmlBody)
+                { IsBodyHtml = true });
         }
         public bool ValidRequest(string token)
         {

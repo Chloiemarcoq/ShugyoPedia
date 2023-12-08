@@ -4,8 +4,6 @@
 }
 @model List<TrainingViewModel>
 
-<!-- SIDE BAR -->
-@await Component.InvokeAsync("TrainingCategorySidebar")
 <!-- MAIN BODY -->
 <main class="main">
     <div class="pos-img">
@@ -26,7 +24,7 @@
                 <div class="card-body p-0">
                     <div class="row">
                         <div class="col-6">
-                            <img src="@training.TrainingImage" />
+                            <img width="400" src="@training.TrainingImage" />
                         </div>
                         <div class="col-6 py-3">
                             <div class="d-flex">
@@ -42,6 +40,9 @@
         }        
     </div>
 </main>
+
+<!-- SIDE BAR -->
+@await Component.InvokeAsync("TrainingCategorySidebar")
 
 @functions {
     void RenderStars(double rateAverage)

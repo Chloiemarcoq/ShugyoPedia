@@ -162,6 +162,7 @@ namespace ShugyopediaApp.Admin.Controllers
                 }
             }
             //invalid token or expired request here
+            TempData["ErrorMessage"] = "Token is invalid or expired.";
             return RedirectToAction("ForgotPassword", "Account");          
         }
         [HttpPost]

@@ -36,7 +36,7 @@
                                 <td>@training.CategoryName</td>
                                 <td>@training.TrainingDescription</td>
                                 <td>@training.RateAverage</td>
-                                <td><img src="@training.TrainingImage" class="rounded" alt="@training.TrainingImage.Replace(trainingImagesUrl, string.Empty)"></td>
+                                <td><img src="@training.TrainingImage" class="rounded" width="200" alt="@training.TrainingImage.Replace(trainingImagesUrl, string.Empty)"></td>
                                 <td>
                                     <form method="post">
                                         <input type="hidden" id="TrainingId" name="TrainingId" class="form-control" value="@training.TrainingId">
