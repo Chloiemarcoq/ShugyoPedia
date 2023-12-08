@@ -1,4 +1,5 @@
 ﻿using Basecode.Data.Repositories;
+using Microsoft.EntityFrameworkCore;
 using ShugyopediaApp.Data.Interfaces;
 using ShugyopediaApp.Data.Models;
 using System;
@@ -16,7 +17,10 @@ namespace ShugyopediaApp.Data.Repositories
         }
         public IQueryable<Training> GetTrainings()
         {
-            return this.GetDbSet<Training>();
+            return this.GetDbSet<Training>()
+                .Include(t => t.Category)
+                .Include(t => t.Ratings)
+                .Include(t => t.Topics);
         }
         public void AddTraining(Training training)
         {

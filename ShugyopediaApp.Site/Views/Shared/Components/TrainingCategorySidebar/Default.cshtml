@@ -1,4 +1,5 @@
-﻿<aside id="sidebar" class="sidebar border">
+﻿
+<aside id="sidebar" class="sidebar border">
     <div class="sidebar-header d-flex align-items-center justify-content-center me-5">
         <a asp-action="Index" asp-controller="Home"><img src="~/img/logo_with_text_dark.png" alt="" /></a>
     </div>
@@ -17,23 +18,14 @@
     </form>
     <!--END OF SEARCH BAR-->
     <ul class="sidebar-nav" id="category-list">
-        <li class="nav-item">
-            <a class="nav-link" asp-controller="Training" asp-action="AllTrainings" id="nav-link">
-                <i class="fa-solid fa-code"></i> <span class="category">Programming</span>
-            </a>
-        </li>
-
-        <li class="nav-item">
-            <a class="nav-link" asp-controller="Training" asp-action="AllTrainings" id="nav-link">
-                <i class="fa-solid fa-book"></i> <span class="category">Education</span>
-            </a>
-        </li>
-
-        <li class="nav-item">
-            <a class="nav-link" asp-controller="Training" asp-action="AllTrainings" id="nav-link">
-                <i class="fa-solid fa-suitcase-medical"></i> <span class="category">Medical</span>
-            </a>
-        </li>
+        @foreach (var category in Model)
+        {
+            <li class="nav-item">
+                <a class="nav-link" asp-controller="Training" asp-action="AllTrainings" asp-route-categoryName="@category.CategoryName">
+                    <span>@Html.Raw(category.CategoryIcon) @category.CategoryName</span>
+                </a>
+            </li>
+        }
 
     </ul>
 </aside>
