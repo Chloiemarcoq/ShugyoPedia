@@ -9,6 +9,7 @@
 *.svclog
 .vs/
 .vscode/settings.json
+appsettings.json
 
 # Build results
 [Aa]rtifacts/
