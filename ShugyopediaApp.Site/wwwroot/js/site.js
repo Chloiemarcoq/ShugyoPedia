@@ -1,6 +1,4 @@
-﻿
-
-/*SEARCH CATEGORY*/
+﻿/*SEARCH CATEGORY*/
 document.addEventListener('DOMContentLoaded', function () {
     const searchInput = document.getElementById('search-category');
     const list = document.getElementById('category-list');
@@ -38,3 +36,4 @@ sidebar.addEventListener("mouseleave", () => {
 read_more.addEventListener("onclick", () => {
     document.getElementById("nav-link").classList.add("active");
 })
+
