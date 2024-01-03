@@ -8,12 +8,17 @@
 }
 @model List<TrainingViewModel>
 
+@* ViewData["category"] *@
+
 <main>
     <div class="container-fluid">
         <h1 class="text-center">Trainings</h1>
         @await Component.InvokeAsync("FilterCategory")
         <div class="d-flex justify-content-between">
             <a class="btn btn-success" asp-action="AddTraining" asp-controller="Training">+ Add Training</a>
+        </div>
+        <div>
+            @ViewData["category"]
         </div>
         <div class="card my-3">
             <div class="card-body">
@@ -36,7 +41,7 @@
                                 <td>@training.CategoryName</td>
                                 <td>@training.TrainingDescription</td>
                                 <td>@training.RateAverage</td>
-                                <td><img src="@training.TrainingImage" class="rounded" alt="@training.TrainingImage.Replace(trainingImagesUrl, string.Empty)"></td>
+                                <td><img src="@training.TrainingImage" class="rounded" width="200" alt="@training.TrainingImage.Replace(trainingImagesUrl, string.Empty)"></td>
                                 <td>
                                     <form method="post">
                                         <input type="hidden" id="TrainingId" name="TrainingId" class="form-control" value="@training.TrainingId">
@@ -57,6 +62,10 @@
         </div>
     </div>
 </main>
+@* <form>
+    <input value="@ViewBag.category" type="hidden" id="categoryName" name="categoryName" />
+</form>
+<p>@ViewBag.category hello</p> *@
 <!-- DELETE MODAL -->
 <!-- Modal -->
 @foreach (var training in Model)
@@ -84,6 +93,7 @@
 }
 <script>
     $(document).ready(() => {
+
         var filterCategorySelect = document.getElementById('filter_category')
         var table = $('#datatable').DataTable()
         var searchInput = $('input[type="search"]')
@@ -110,3 +120,22 @@
         }
     </script>
 }
+
+<script>
+    $(document).ready(() => {
+    // Get the category value from ViewData
+        var categoryValue = document.getElementById("categoryName").value;
+        console.log(categoryValue);
+
+    // Check if the category value exists and is not empty
+    if (categoryValue && categoryValue.trim() !== '') {
+        // Set the search input value in the DataTable
+        var table = $('#datatable').DataTable();
+        var searchInput = $('input[type="search"]');
+        searchInput.val(categoryValue);
+
+        // Trigger search on the DataTable
+        table.search(categoryValue).draw();
+    }
+});
+</script>

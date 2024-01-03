@@ -14,6 +14,6 @@ namespace ShugyopediaApp.Services.ServiceModels
         public string TopicName { get; set; }
         public int TrainingId { get; set; }
         public string TrainingName { get; set; }
-        public string ResourceFile { get; set; }        
+        public string ResourceFile { get; set; }   
     }
 }

@@ -17,24 +17,18 @@ namespace ShugyopediaApp.Site.ViewComponents
 
         public async Task<IViewComponentResult> InvokeAsync()
         {
-            var chatViewModel = new ChatViewModel(); // Create an instance of your ChatViewModel
-
-            // Make HTTP requests here to fetch messages or perform actions
-
-            // Example: Fetching messages
+            var chatViewModel = new ChatViewModel(); 
             var httpClient = _clientFactory.CreateClient();
             var response = await httpClient.GetAsync("https://api.openai.com/v1/completions");
             if (response.IsSuccessStatusCode)
             {
                 var content = await response.Content.ReadAsStringAsync();
-                // Populate chatViewModel.Messages with fetched messages
             }
             else
             {
-                // Handle failure or errors
             }
 
-            return View("_Chatbox", chatViewModel); // Pass the view model to the view "_Chatbox.cshtml"
+            return View("_Chatbox", chatViewModel);
         }
     }
 }

@@ -47,9 +47,9 @@ namespace ShugyopediaApp.Admin.Controllers
                 _topicService.AddTopic(topic, this.UserId);
                 TempData["SuccessMessage"] = "Successfully Added";
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                TempData["ErrorMessage"] = $"Error Adding: {ex.Message}";
+                TempData["ErrorMessage"] = $"Error Adding: File too large";
             }
             return RedirectToAction("Index");
         }

@@ -17,10 +17,5 @@ namespace ShugyopediaApp.Services.ServiceModels
         public string TrainingName { get; set; }
         public string TrainingDescription { get; set; }
         public string TrainingImage { get; set; }
-        //public string CreatedBy { get; set; }
-        //public DateTime UpdatedTime { get; set; }
-        //public virtual TrainingCategory Category { get; set; }
-        //public virtual Rating Rating { get; set; }
-        //public virtual ICollection<Topic> Topics { get; set; }
     }
 }
