@@ -12,14 +12,13 @@
 
     <div class="container" style="margin-top: 100px;">
         <div class="d-flex align-items-center justify-content-between my-3">
-            <h3>Programming</h3>
-            <form action="">
-                <input type="text" name="search-training" id="search-training" class="form-control" placeholder="Search..">
-            </form>
+        
         </div>
+
         <!-- TRAININGS -->
         @foreach (var training in Model)
-        { 
+        {
+            <h3>@training.CategoryName</h3>
             <div class="card my-4 rounded-4 shadow bg-light training">
                 <div class="card-body p-0">
                     <div class="row">

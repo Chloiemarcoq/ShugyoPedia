@@ -27,9 +27,12 @@ namespace ShugyopediaApp.Admin.Controllers
         {
             _trainingService = trainingService;
         }
-        public IActionResult Index()
+
+        [HttpGet]
+        public IActionResult Index(string category)
         {
             List<TrainingViewModel> trainings = _trainingService.GetTrainings();
+            ViewBag.category = category;
             return View(trainings);
         }
         [HttpGet]

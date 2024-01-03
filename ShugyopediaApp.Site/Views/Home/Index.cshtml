@@ -75,19 +75,5 @@
             </h5>
         </div>
     </div>
-    @await Component.InvokeAsync("Chatbox")
+    
 </main>
-<script>
-    let messageButton = document.querySelector('.chatbox-btn')
-    let messageCloseButton = document.querySelector('.close-btn-message')
-
-    let chatBoxContainer = document.querySelector('.chatbox-container')
-
-    messageButton.addEventListener('click', () => {
-        chatBoxContainer.style.display = "block"
-    })
-
-    messageCloseButton.addEventListener('click', () => {
-        chatBoxContainer.style.display = "none"
-    })
-</script>

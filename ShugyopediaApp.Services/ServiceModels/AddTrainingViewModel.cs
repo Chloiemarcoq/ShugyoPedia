@@ -23,8 +23,6 @@ namespace ShugyopediaApp.Services.ServiceModels
 
         [Required(ErrorMessage = "TrainingDescription is required.")]
         public string TrainingDescription { get; set; }
-
-        [Required(ErrorMessage = "TrainingImage is required.")]
         public IFormFile TrainingImageFile { get; set; }
         public string TrainingImage { get; set; }
     }

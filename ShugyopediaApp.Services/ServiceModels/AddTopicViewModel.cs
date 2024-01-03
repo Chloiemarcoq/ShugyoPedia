@@ -21,7 +21,6 @@ namespace ShugyopediaApp.Services.ServiceModels
         public string TrainingName { get; set; }
         public string ResourceFile { get; set; }
 
-        [Required(ErrorMessage = "ResourceFile is required.")]
         public IFormFile ResourceFileUpload { get; set; }
     }
 }

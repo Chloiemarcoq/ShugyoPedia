@@ -1,9 +1,4 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
-}
-@* CHATBOX BUTTON*@
+﻿@* CHATBOX BUTTON*@
 <div class="chatbox-btn-container">
     <button id="chatbox-btn" type="button" class="chatbox-btn">
         <i class="fa-regular fa-message"></i>
@@ -32,13 +27,12 @@
 <script>
 
     function sendMessageToOpenAI(message) {
-        const OPENAI_API_KEY = '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';
-        const prePrompt = "Roleplay as a chatbot named ShugyoAIBot. If you need to address me, address me as ShugyoLearner";
+        const OPENAI_API_KEY = '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';
+        message = "Roleplay as a chatbot named ShugyoBot. Address me as ShugyoLearner." + message;
 
         const data = {
             "model": "gpt-3.5-turbo",
             "messages": [
-                { "role": "system", "content": prePrompt },
                 { "role": "user", "content": message }
             ],
             "temperature": 0.7
@@ -79,5 +73,16 @@
         }
     });
 
+    let messageButton = document.querySelector('.chatbox-btn')
+    let messageCloseButton = document.querySelector('.close-btn-message')
 
+    let chatBoxContainer = document.querySelector('.chatbox-container')
+
+    messageButton.addEventListener('click', () => {
+        chatBoxContainer.style.display = "block"
+    })
+
+    messageCloseButton.addEventListener('click', () => {
+        chatBoxContainer.style.display = "none"
+    })
 </script>

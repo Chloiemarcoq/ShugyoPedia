@@ -115,7 +115,7 @@ namespace ShugyopediaApp.Admin
 
             services.Configure<FormOptions>(options =>
             {
-                options.ValueLengthLimit = 1024 * 1024 * 100;
+                options.MultipartBodyLengthLimit = 134217728;
             });
 
             services.AddSingleton<IFileProvider>(
